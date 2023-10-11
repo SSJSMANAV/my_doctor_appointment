@@ -1,13 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Header from "./Components/Header/header";
+import Home from "./Components/Home/home";
+import Appointment from "./Components/Appointment/appointment";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
+    {/* <Header /> */}
+    {/* <Home /> */}
+    {/* <Appointment /> */}
   </React.StrictMode>
 );
 

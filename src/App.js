@@ -1,13 +1,20 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Home from "../src/Components/Home/home";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Appointment from "./Components/Appointment/appointment";
+import Header from "./Components/Header/header";
+import Booking from "./Components/Booking/booking";
+
+const router = createBrowserRouter([
+  { path: "/", element: <Home /> },
+  { path: "/appointment", element: <Appointment /> },
+  { path: "/header", element: <Header /> },
+  { path: "/booking", element: <Booking /> },
+]);
 
 function App() {
-  return (
-    <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
-      <p className="text-3xl text-gray-700 font-bold mb-5">Welcome!</p>
-      <p className="text-gray-500 text-lg">React and Tailwind CSS in action</p>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
