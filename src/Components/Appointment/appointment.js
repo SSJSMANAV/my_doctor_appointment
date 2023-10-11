@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../Header/header";
 import DoctorDataItem from "./doctor_data_item";
+import ProfileCard from "./profile_card";
 
 const doctor1 = {
   name: "Sagar1",
@@ -62,9 +63,9 @@ function Appointment() {
         </div>
       </div>
 
-      <div>
+      <div className="grid grid-cols-5">
         {filteredList.map((doctorData) => (
-          <DoctorDataItem doctor={doctorData}></DoctorDataItem>
+          <ProfileCard doctor={doctorData}></ProfileCard>
         ))}
       </div>
     </main>
@@ -72,3 +73,6 @@ function Appointment() {
 }
 
 export default Appointment;
+
+
+// space between dropdown and the items

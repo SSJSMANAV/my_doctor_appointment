@@ -22,30 +22,27 @@ function Header() {
           <p className="text-2xl">MEDICAL</p>
         </div>
         <div className="mt-1.5 font-semibold">
-          <a
-            href="#"
+          <Link to='/'
+          
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Home
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Services
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Find a Doctor
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Contact
-          </a>
+          </Link>
         </div>
         <div className="relative w-52 pl-8">
           <div className="flex items-center ">

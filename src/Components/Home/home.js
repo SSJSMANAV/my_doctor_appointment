@@ -1,5 +1,6 @@
 import react from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import Questions from "../question";
 // import Review from "../review";
@@ -23,6 +24,12 @@ import {
 library.add(faFacebookF);
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/appointment");
+  }
   return (
     <main className="App my-0 mr-auto ml-auto mt-2">
       <Header />
@@ -41,7 +48,7 @@ const Home = () => {
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </p>
-            <button className="py-2 bg-blue-500 text-slate-200 px-2 rounded-2xl hover:bg-orange-500 transition ease-in-out duration-300">
+            <button onClick={handleClick} className="py-2 bg-blue-500 text-slate-200 px-2 rounded-md hover:bg-orange-500 transition ease-in-out duration-300 text-white">
               Make an Appointment
             </button>
           </div>
