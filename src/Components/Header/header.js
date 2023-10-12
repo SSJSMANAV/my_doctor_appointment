@@ -22,25 +22,22 @@ function Header() {
           <p className="text-2xl">MEDICAL</p>
         </div>
         <div className="mt-1.5 font-semibold">
-          <Link to='/'
-          
+          <Link
+            to="/"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Home
           </Link>
-          <Link
-            className="mr-7 hover:text-orange-400 transition-all duration-300"
-          >
+          <Link className="mr-7 hover:text-orange-400 transition-all duration-300">
             Services
           </Link>
           <Link
+            to="/my_appointments"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
-            Find a Doctor
+            My Appointments
           </Link>
-          <Link
-            className="mr-7 hover:text-orange-400 transition-all duration-300"
-          >
+          <Link className="mr-7 hover:text-orange-400 transition-all duration-300">
             Contact
           </Link>
         </div>

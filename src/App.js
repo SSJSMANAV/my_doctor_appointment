@@ -1,20 +1,32 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "../src/Components/Home/home";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Routes, Navigate, Route } from "react-router-dom";
 import Appointment from "./Components/Appointment/appointment";
 import Header from "./Components/Header/header";
 import DoctorDetailsPage from "./Components/DoctorDetails/doctor_Details_page";
-
-const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "/appointment", element: <Appointment /> },
-  { path: "/header", element: <Header /> },
-  { path: "/doctorDetailsPage", element: <DoctorDetailsPage /> },
-]);
+import MyAppointments from "./Components/MyAppointments/my_appointments";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+      <Header></Header>
+      <Routes>
+        <Route exact path="/" element={<Navigate replace to="/home" />}></Route>
+        <Route exact path="/appointment" element={<Appointment />}></Route>
+        <Route
+          exact
+          path="/doctorDetailsPage"
+          element={<DoctorDetailsPage />}
+        ></Route>
+        <Route
+          exact
+          path="/my_appointments"
+          element={<MyAppointments />}
+        ></Route>
+        <Route exact path="/home" element={<Home />}></Route>
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

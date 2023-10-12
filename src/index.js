@@ -3,17 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Header from "./Components/Header/header";
-import Home from "./Components/Home/home";
-import Appointment from "./Components/Appointment/appointment";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <BrowserRouter>
     <App />
-    {/* <Header /> */}
-    {/* <Home /> */}
-    {/* <Appointment /> */}
+    </BrowserRouter>
+    
   </React.StrictMode>
 );
 
