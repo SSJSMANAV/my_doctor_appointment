@@ -48,11 +48,11 @@ function Header() {
           </a>
         </div>
         <div className="relative w-52 pl-8">
-          <div className="flex items-center ">
+          <div className="flex  ">
             <img
               src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
               style={{ height: "20%", width: "20%" }}
-              className="flex rounded-3xl items-center border border-gray-400 cursor-pointer"
+              className="flex rounded-3xl  border border-gray-400 cursor-pointer justify-end"
               onClick={toggleOptions}
             />
           </div>

@@ -4,13 +4,13 @@ import Home from "../src/Components/Home/home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Appointment from "./Components/Appointment/appointment";
 import Header from "./Components/Header/header";
-import Booking from "./Components/Booking/booking";
+import DoctorDetailsPage from "./Components/DoctorDetails/doctor_Details_page";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/appointment", element: <Appointment /> },
   { path: "/header", element: <Header /> },
-  { path: "/booking", element: <Booking /> },
+  { path: "/doctorDetailsPage", element: <DoctorDetailsPage /> },
 ]);
 
 function App() {
