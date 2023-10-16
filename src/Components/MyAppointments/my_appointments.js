@@ -69,7 +69,7 @@ const MyAppointments = () => {
           </div>
           <AddAppointmentButton></AddAppointmentButton>
         </div>
-        <div className="bg-teal-500 mt-5 px-4 py-4 rounded-md w-full">
+        <div className="bg-gray-200 mt-5 px-4 py-4 rounded-md w-full">
           <h1 className="text-black font-bold ">Appointments</h1>
 
           <div className="flex w-full justify-between mb-5">
@@ -79,6 +79,7 @@ const MyAppointments = () => {
             <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Status</div>
             <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Action</div>
           </div>
+          <MyAppointmentItem></MyAppointmentItem>
           <MyAppointmentItem></MyAppointmentItem>
           <MyAppointmentItem></MyAppointmentItem>
           <MyAppointmentItem></MyAppointmentItem>

@@ -19,7 +19,7 @@ const MyAppointmentItem = () => {
       <div className="w-1/4 flex flex-row justify-center"> Male</div>
       <div className="w-1/4 flex flex-row justify-center"> Pending</div>
       <div className="w-1/4 flex flex-row justify-center items-center">
-        <div className=" bg-teal-300 border border-solid border-black flex flex-row gap-x-3 items-center py-1 px-2 hover:bg-teal-600">
+        <div className=" border border-solid border-orange-400 transition-all cursor-pointer duration-200  ease-in-out border-spacing-2 flex flex-row gap-x-3 text-orange-400 items-center py-1 rounded-sm px-2 hover:bg-orange-400 hover:text-white">
           <p className="text-sm"> Email</p>
 
           <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
