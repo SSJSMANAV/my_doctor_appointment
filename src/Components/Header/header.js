@@ -40,9 +40,10 @@ function Header() {
             My Appointments
           </Link>
           <Link
+          to='medical_history_list'
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
-            Contact Us
+            Medical History
           </Link>
         </div>  
         <div className="relative w-52 pl-8">

@@ -9,6 +9,7 @@ import DoctorForm from "./Components/MedicalHistory/post_checkup_form";
 import AppointmentDates from "./Components/DoctorDetails/appointment_dates";
 import RatingsAndReviews from "./Components/DoctorDetails/ratings_reviews";
 import LocationDetails from "./Components/DoctorDetails/location_details";
+import MedicalHistoryList from "./Components/MedicalHistory/medical_history_list";
 
 function App() {
   return (
@@ -39,6 +40,11 @@ function App() {
           exact
           path="/my_appointments"
           element={<MyAppointments />}
+        ></Route>
+        <Route
+          exact
+          path="/medical_history_list"
+          element={<MedicalHistoryList />}
         ></Route>
         <Route exact path="/home" element={<Home />}></Route>
         <Route exact path="/post_checkup_form" element={<DoctorForm />}></Route>

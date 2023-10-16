@@ -17,6 +17,8 @@
     "@testing-library/user-event": "^13.5.0",
     "formik": "^2.4.5",
     "google-map-react": "^2.2.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.7.0",
     "react": "^18.2.0",
     "react-calendar": "^4.6.0",
     "react-datepicker": "^4.20.0",
