@@ -50,6 +50,8 @@ function App() {
         <Route exact path="/home" element={<Home />}></Route>
         <Route exact path="/post_checkup_form" element={<DoctorForm />}></Route>
         <Route path="/doctor-details/:doctorId/checkout-form" element={<CheckoutForm></CheckoutForm>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/signup" element={<SignUp></SignUp>}></Route>
       </Routes>
     </div>
   );
