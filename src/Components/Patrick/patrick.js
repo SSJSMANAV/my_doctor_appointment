@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Patrick = () => {
-    return <div></div>
-}
+  return <div>dskehsdjijnsdkj</div>;
+};
 
 export default Patrick;
