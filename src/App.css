@@ -1,5 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
 .App {
   text-align: center;
+  color: #1a1a1a;
 }
 
 .App-logo {
@@ -28,6 +38,7 @@
   color: #61dafb;
 }
 
+/* KEYFRAMES */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +46,120 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.lin-grad {
+  background-image: linear-gradient(to right, #9eddff, #fff, #fffadd);
+}
+
+.font {
+}
+.medical {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.lft_con_first h1 {
+  font-size: 3rem;
+}
+.lft_con_first p {
+  margin: 0.8rem 0rem;
+}
+/* .lft_con_first button {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 20px;
+  color: blue;
+  border: 2px solid black;
+  background: linear-gradient(to right, blue 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+} */
+
+/* .lft_con_first button:hover {
+  color: white;
+  background-position: left bottom;
+} */
+
+.left_container {
+  width: 40%;
+  margin-right: 5%;
+  margin-top: 3rem;
+}
+.datas {
+  display: flex;
+  margin-top: 2rem;
+}
+.datas .data {
+  margin-right: 2rem;
+}
+
+.angry-grid {
+  display: grid;
+
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 0px;
+  height: 100%;
+}
+
+#item-0 {
+  padding-top: 1rem;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+#item-1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+#item-2 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.right_container {
+  width: 55%;
+  margin-top: 5rem;
+}
+
+img {
+  border-radius: 1rem;
+}
+
+.font {
+  font-size: 0.9rem;
+}
+
+.font-radius {
+  border-radius: 40%;
+}
+
+/* In your CSS file or Tailwind CSS configuration */
+.transition-height {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 02s ease-in-out;
+}
+
+.transition-height1 {
+  max-height: 0;
+  overflow: hidden;
+  transition: min-height 09s ease-in-out;
+}
+
+.max-height {
+  max-height: 1000px; /* Adjust this value based on your content */
+}
+
+.min-height {
+  min-height: 0px;
 }
