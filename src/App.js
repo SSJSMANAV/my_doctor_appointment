@@ -23,6 +23,7 @@ function App() {
         <Route exact path="/signup" element={<SignUp />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/find-doctors" element={<FindDoctors />}></Route>
+
         <Route path="/doctor-details/:doctorId" element={<DoctorDetailsPage />}>
           <Route
             path="/doctor-details/:doctorId/appointmentdates"
@@ -30,7 +31,7 @@ function App() {
           ></Route>
           <Route
             path="/doctor-details/:doctorId/locationdetails"
-            element={<LocationDetails />} 
+            element={<LocationDetails />}
           ></Route>
           <Route
             path="/doctor-details/:doctorId/ratings&reviews"
@@ -49,7 +50,10 @@ function App() {
         ></Route>
         <Route exact path="/home" element={<Home />}></Route>
         <Route exact path="/post_checkup_form" element={<DoctorForm />}></Route>
-        <Route path="/doctor-details/:doctorId/checkout-form" element={<CheckoutForm></CheckoutForm>}></Route>
+        <Route
+          path="/doctor-details/:doctorId/checkout-form"
+          element={<CheckoutForm></CheckoutForm>}
+        ></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
       </Routes>
