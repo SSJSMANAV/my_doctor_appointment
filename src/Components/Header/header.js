@@ -22,39 +22,39 @@ function Header() {
           <p className="text-2xl">MEDICAL</p>
         </div>
         <div className="mt-1.5 font-semibold">
-          <Link to='/'
-          
+          <Link
+            to="/"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Home
           </Link>
-          <Link to='/find-doctors'
+          <Link
+            to="/find-doctors"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Find Doctors
           </Link>
           <Link
-          to='/my_appointments'
+            to="/my_appointments"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             My Appointments
           </Link>
           <Link
-          to='medical_history_list'
+            to="medical_history_list"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Medical History
           </Link>
-        </div>  
+        </div>
         <div className="relative w-52 pl-8">
-          <div className="flex  ">
-            <img
-              src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-              style={{ height: "20%", width: "20%" }}
-              className="flex rounded-3xl  border border-gray-400 cursor-pointer justify-end"
-              onClick={toggleOptions}
-            />
-          </div>
+          <img
+            src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+            alt="alt"
+            style={{ height: "20%", width: "20%" }}
+            className="flex rounded-3xl  border border-gray-400 cursor-pointer justify-end"
+            onClick={toggleOptions}
+          />
           {showOptions && (
             <div
               className={`absolute mt-2 right-12 bg-white border rounded-lg border-gray-400 shadow-lg text-left transition transition-max-h duration-500 ${
