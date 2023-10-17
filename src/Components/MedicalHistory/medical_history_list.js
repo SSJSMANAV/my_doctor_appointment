@@ -36,7 +36,7 @@ const MedicalHistoryList = () => {
   return (
     <div className="pt-24 flex flex-col items-center">
       <div className="w-4/6 flex flex-row justify-start">
-        <h1 className="text-2xl text-start font-semibold mb-4 text-blue-600">
+        <h1 className="text-2xl text-start font-semibold mb-4 text-black">
           Medical History
         </h1>
       </div>

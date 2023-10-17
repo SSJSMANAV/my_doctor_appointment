@@ -45,7 +45,7 @@ const doctor6 = {
 
 const DoctorsList1 = [doctor1, doctor2, doctor3, doctor4, doctor5, doctor6];
 
-function Appointment() {
+const FindDoctors = () => {
   const [selectedDoctor, setSelectedDoctor] = useState("All"); // Initialize with "Eye Surgeon"
 
   // Function to handle the doctor selection
@@ -108,6 +108,6 @@ function Appointment() {
   );
 }
 
-export default Appointment;
+export default FindDoctors;
 
 // space between dropdown and the items

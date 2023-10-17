@@ -105,7 +105,7 @@ const DoctorDetailsPage = () => {
         <div className="flex flex-col w-3/5">
           <div className="flex flex-row gap-x-0 w-full">
             <NavLink
-              to={`/doctorDetailsPage/${doctorId}/appointmentdates`}
+              to={`/doctor-details/${doctorId}/appointmentdates`}
               className={(navData) =>
                 navData.isActive
                   ? "w-1/3  text-center inline-block px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200"
@@ -115,7 +115,7 @@ const DoctorDetailsPage = () => {
               <FontAwesomeIcon icon={items[0].icon} className="text-lg" />
             </NavLink>
             <NavLink
-              to={`/doctorDetailsPage/${doctorId}/locationdetails`}
+              to={`/doctor-details/${doctorId}/locationdetails`}
               className={(navData) =>
                 navData.isActive
                   ? "w-1/3 text-center inline-block px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200"
@@ -125,7 +125,7 @@ const DoctorDetailsPage = () => {
               <FontAwesomeIcon icon={items[1].icon} className="text-lg" />
             </NavLink>
             <NavLink
-              to={`/doctorDetailsPage/${doctorId}/ratings&reviews`}
+              to={`/doctor-details/${doctorId}/ratings&reviews`}
               className={(navData) =>
                 navData.isActive
                   ? "w-1/3 text-center inline-block px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200"

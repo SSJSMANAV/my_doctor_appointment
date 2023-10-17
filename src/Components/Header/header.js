@@ -28,10 +28,10 @@ function Header() {
           >
             Home
           </Link>
-          <Link
+          <Link to='/find-doctors'
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
-            Services
+            Find Doctors
           </Link>
           <Link
           to='/my_appointments'

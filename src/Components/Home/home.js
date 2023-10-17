@@ -28,7 +28,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/appointment");
+    navigate("/find-doctors");
   }
   return (
     <main className="App my-0 mr-auto ml-auto mt-2">

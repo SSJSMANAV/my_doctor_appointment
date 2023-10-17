@@ -5,7 +5,7 @@ const ProfileCard = (props) => {
   const navigate = useNavigate();
 
   const navigateToDetailsPage = () => {
-    navigate(`/doctorDetailsPage/${props.doctor.id}/appointmentdates`);
+    navigate(`/doctor-details/${props.doctor.id}/appointmentdates`);
   };
   return (
     <div className="text-center bg-white-100 rounded-md shadow-md p-4 my-0 pt-12">

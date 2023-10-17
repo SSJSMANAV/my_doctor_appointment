@@ -40,7 +40,7 @@ const MedicalHistoryRecord = ({ record }) => {
 
 
   return (
-    <div className="bg-white p-4 mb-4 shadow-md shadow-blue-200 rounded-sm">
+    <div className="bg-white p-4 mb-4 shadow-md shadow-gray-200 rounded-sm">
       <div className="flex justify-between items-center">
         <div className="flex flex-row items-center">
           <h2 className="font-semibold pr-3 text-gray-400">Diagnosis: </h2>

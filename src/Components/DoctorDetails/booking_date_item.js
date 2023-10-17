@@ -1,6 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const BookingDateItem = () => {
+  const navigate = useNavigate();
+  const { doctorId } = useParams();
+
   return (
     <div className="flex flex-col mt-3 ">
       <div className="flex flex-row justify-between items-center px-6">
@@ -12,7 +17,10 @@ const BookingDateItem = () => {
           </p>
         </div>
         <div
-          onClick={() => {}}
+          onClick={() => {
+            navigate(`/doctor-details/${doctorId}/checkout-form`);
+            console.log("tada");
+          }}
           className="px-3 py-0.5 rounded-sm hover:text-white hover:bg-yellow-500 bg-yellow-400 cursor-pointer text-sm font-semibold"
         >
           Book

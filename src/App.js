@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "../src/Components/Home/home";
 import { Routes, Navigate, Route } from "react-router-dom";
-import Appointment from "./Components/Appointment/appointment";
+import FindDoctors from "./Components/FindDoctors/find_doctors";
 import Header from "./Components/Header/header";
 import DoctorDetailsPage from "./Components/DoctorDetails/doctor_Details_page";
 import MyAppointments from "./Components/MyAppointments/my_appointments";
@@ -10,6 +10,9 @@ import AppointmentDates from "./Components/DoctorDetails/appointment_dates";
 import RatingsAndReviews from "./Components/DoctorDetails/ratings_reviews";
 import LocationDetails from "./Components/DoctorDetails/location_details";
 import MedicalHistoryList from "./Components/MedicalHistory/medical_history_list";
+import Login from "./Components/Auth/Login/login";
+import SignUp from "./Components/Auth/SignUp/sign_up";
+import CheckoutForm from "./Components/CheckOut/checkout_form";
 
 function App() {
   return (
@@ -17,22 +20,20 @@ function App() {
       <Header></Header>
       <Routes>
         <Route exact path="/" element={<Navigate replace to="/home" />}></Route>
-        <Route exact path="/appointment" element={<Appointment />}></Route>
-        <Route
-          exact
-          path="/doctorDetailsPage/:doctorId"
-          element={<DoctorDetailsPage />}
-        >
+        <Route exact path="/signup" element={<SignUp />}></Route>
+        <Route exact path="/login" element={<Login />}></Route>
+        <Route exact path="/find-doctors" element={<FindDoctors />}></Route>
+        <Route path="/doctor-details/:doctorId" element={<DoctorDetailsPage />}>
           <Route
-            path="/doctorDetailsPage/:doctorId/appointmentdates"
+            path="/doctor-details/:doctorId/appointmentdates"
             element={<AppointmentDates />}
           ></Route>
           <Route
-            path="/doctorDetailsPage/:doctorId/locationdetails"
-            element={<LocationDetails />}
+            path="/doctor-details/:doctorId/locationdetails"
+            element={<LocationDetails />} 
           ></Route>
           <Route
-            path="/doctorDetailsPage/:doctorId/ratings&reviews"
+            path="/doctor-details/:doctorId/ratings&reviews"
             element={<RatingsAndReviews />}
           ></Route>
         </Route>
@@ -48,6 +49,7 @@ function App() {
         ></Route>
         <Route exact path="/home" element={<Home />}></Route>
         <Route exact path="/post_checkup_form" element={<DoctorForm />}></Route>
+        <Route path="/doctor-details/:doctorId/checkout-form" element={<CheckoutForm></CheckoutForm>}></Route>
       </Routes>
     </div>
   );
