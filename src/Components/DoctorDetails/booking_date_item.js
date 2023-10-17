@@ -21,7 +21,7 @@ const BookingDateItem = () => {
             navigate(`/doctor-details/${doctorId}/checkout-form`);
             console.log("tada");
           }}
-          className="px-3 py-0.5 rounded-sm hover:text-white hover:bg-yellow-500 bg-yellow-400 cursor-pointer text-sm font-semibold"
+          className="px-3 py-1 rounded-sm hover:text-white hover:bg-yellow-400 border border-solid border-yellow-400 bg-white cursor-pointer text-sm  text-yellow-400 font-semibold"
         >
           Book
         </div>
