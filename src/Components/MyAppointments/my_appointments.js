@@ -36,18 +36,18 @@ const MyAppointments = () => {
                 startDate={startDate}
                 endDate={endDate}
                 placeholderText="Start Date"
-                className="text-center"
+                className="text-center bg-transparent"
               />
               <h1> - </h1>
               <DatePicker
-                selected={endDate}
+                selected={endDate}        
                 onChange={handleEndDateChange}
                 selectsEnd
                 startDate={startDate}
                 endDate={endDate}
                 minDate={startDate}
                 placeholderText="End Date"
-                className="text-center"
+                className="text-center bg-transparent"
               />
             </div>
           </div>

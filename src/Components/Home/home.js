@@ -1,21 +1,12 @@
-import react from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Questions from "../Questions/question";
 import Review from "../Review/review";
-import { useState } from "react";
+
 import Header from "../Header/header";
 
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import {
-  faFacebookF,
-  faInstagram,
-  faLinkedin,
-  faReddit,
-} from "@fortawesome/free-brands-svg-icons";
-import {
-  faEnvelope,
-  faHippo,
-  faPlus,
   faMinus,
   faArrowRight,
   faStar,
@@ -64,18 +55,26 @@ const Home = () => {
             <div className="mt-20 mr-8 ml-12">
               <img
                 src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+                alt="alt"
                 style={{ height: "70%", width: "45rem" }}
+                className="object-cover"
               />
             </div>
             <div className="mt-28 ">
               <div className="mb-8">
                 <img
                   src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+                  alt="alt"
                   style={{ height: "30%", width: "15rem" }}
+                  className="object-cover"
                 />
               </div>
               <div>
-                <img src={process.env.PUBLIC_URL + "/img/doctor-1.png"} />
+                <img
+                  src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+                  alt="alt"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -89,15 +88,16 @@ const Home = () => {
               Providing the best medical Services
             </h1>
             <p className="mt-4">
-              World class care for everyone.Our health system offers unmatched ,
-              expert health care
+              World class care for everyone. Our health system offers unmatched
+              , expert health care.
             </p>
           </div>
           <div className="grid grid-cols-3 mt-20">
             <div className="mr-4 w-10/12">
               <img
-                src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-                className="h-3/5"
+                src="https://img.freepik.com/free-photo/image-asian-woman-doctor-nurse-found-smth-looking-through-magnifying-glass-stare-surprised_1258-83265.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1697241600&semt=ais"
+                alt="alt"
+                className="h-3/5 object-cover"
               />
               <h3 className="text-2xl mt-5">Find a Doctor</h3>
               <p className="w-full mt-4">
@@ -110,8 +110,9 @@ const Home = () => {
             </div>
             <div className="mr-16 w-10/12">
               <img
-                src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-                className="h-3/5"
+                src="https://www.lifewire.com/thmb/YBQuRMKxxhx3Zb3uJ1x-QOT6VsM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Maplocation_-5a492a4e482c52003601ea25.jpg"
+                alt="alt"
+                className="h-3/5 object-cover"
               />
               <h3 className="text-2xl mt-5">Find a Location</h3>
               <p className="w-full mt-4">
@@ -124,8 +125,9 @@ const Home = () => {
             </div>
             <div className="mr-16 w-10/12">
               <img
-                src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-                className="h-3/5"
+                src="https://www.rsny.org/wp-content/uploads/2020/02/make-an-appointment.png"
+                alt="alt"
+                className="h-3/5 object-cover"
               />
               <h3 className="text-2xl mt-5">Book Appointment</h3>
               <p className="w-full mt-4">
@@ -139,42 +141,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* THIRD CONTAINER */}
-      <div class="third_container" className="flex pb-32">
-        <div className="w-4/6 flex my-0 mx-auto">
-          <div className="w-5/12">
-            <div className="pl-10">
-              <img
-                src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-                style={{ width: "80%", height: "30%" }}
-              />
-            </div>
-          </div>
-          <div className="w-7/12 ml-5 ">
-            <h1 className="font-semibold text-4xl text-left">
-              Proud to be one of the nation's best
-            </h1>
-            <p className="text-left mt-5">
-              For 30 years in a row, U.S. News & World Report has recognized us
-              as one of the best publics hospitals in the Nation #1 in the Texas
-              . Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s,
-            </p>
-            <p className="text-left mt-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </p>
-            <div className="text-left mt-5">
-              <button className="px-5 py-2 font-semibold bg-orange-400 text-white  hover:bg-blue-700 transition-all duration-300 rounded-3xl">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       {/* FOURTH CONTAINER */}
       <div class="fourth_container pb-32">
         <div className="w-4/6 my-0 mx-auto">
@@ -350,6 +317,7 @@ const Home = () => {
               <img
                 src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                 style={{ width: "90%", height: "25rem" }}
+                alt="alt"
               />
             </div>
           </div>
@@ -373,6 +341,8 @@ const Home = () => {
                 <img
                   src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                   style={{ width: "90%", height: "22rem" }}
+                  className="object-cover"
+                  alt="alt"
                 />
               </div>
               <div className="mt-4 text-left px-2" style={{ width: "90%" }}>
@@ -406,6 +376,8 @@ const Home = () => {
                 <img
                   src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                   style={{ width: "90%", height: "22rem" }}
+                  alt="alt"
+                  className="object-cover"
                 />
               </div>
               <div className="mt-4 text-left px-2" style={{ width: "90%" }}>
@@ -439,6 +411,8 @@ const Home = () => {
                 <img
                   src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                   style={{ width: "90%", height: "22rem" }}
+                  className="object-cover"
+                  alt="alt"
                 />
               </div>
               <div className="mt-4 text-left px-2" style={{ width: "90%" }}>
@@ -477,6 +451,8 @@ const Home = () => {
             <img
               src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
               style={{ width: "100%", height: "26rem" }}
+              alt="alt"
+              className="object-cover"
             />
           </div>
           <div className="ml-36 mt-14 text-left">
@@ -502,10 +478,7 @@ const Home = () => {
               question={"What is your medical care"}
               answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
             />
-            <Questions
-              question={"What is your medical care"}
-              answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
-            />
+            
           </div>
         </div>
       </div>
@@ -523,89 +496,6 @@ const Home = () => {
             <Review />
             <Review />
             <Review />
-          </div>
-        </div>
-      </div>
-      {/* EIGHT CONTAINER FOOTER */}
-
-      <div class="footer" className="bg-gray-400">
-        <div className="w-4/6 flex my-0 mx-auto py-12">
-          <div className="w-2/5">
-            <div className="text-left">
-              <h2>Medicare</h2>
-              <p className=" text-xs  text-gray-700">
-                Copyright @2023 developed by Muhibur Rahman all rights reserved
-              </p>
-              <div className="mt-4 cursor-pointer">
-                <FontAwesomeIcon
-                  icon={faFacebookF}
-                  className="border border-black px-3.5 py-2 font-radius font "
-                  style={{}}
-                />
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  className="border border-black ml-2 px-3 py-2 font-radius font "
-                  style={{}}
-                />
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  className="border border-black ml-2 px-3 py-2 font-radius font "
-                  style={{}}
-                />
-                <FontAwesomeIcon
-                  icon={faReddit}
-                  className="border border-black ml-2 px-3 py-2 font-radius font "
-                  style={{}}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="3/5">
-            <div className="grid grid-cols-3 pl-8">
-              <div className="flex flex-col pt-1  text-left ">
-                <h1 className="font-semibold text-lg pb-4">Quick Links</h1>
-                <div className="flex flex-col h-40 justify-between mt-3 text-gray-700">
-                  <p className=" hover:text-gray-200 cursor-pointer">Home</p>
-                  <p className=" hover:text-gray-200 cursor-pointer">
-                    About Us
-                  </p>
-                  <p className=" hover:text-gray-200 cursor-pointer">
-                    Services
-                  </p>
-                  <p className=" hover:text-gray-200 cursor-pointer">Blog</p>
-                </div>
-              </div>
-              <div className="flex flex-col pt-1  text-left ">
-                <h1 className="font-semibold text-lg pb-4">I want to: </h1>
-                <div className="flex flex-col h-40 justify-between mt-3 text-gray-700">
-                  <p className=" hover:text-gray-200 cursor-pointer">
-                    Find a Doctor
-                  </p>
-                  <p className=" hover:text-gray-200 cursor-pointer">
-                    Request an Appointment
-                  </p>
-                  <p className=" hover:text-gray-200 cursor-pointer">
-                    Find a Location
-                  </p>
-                  <p className=" hover:text-gray-200 cursor-pointer">
-                    Get a Opinion
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col pt-1  text-left pl-16">
-                <h1 className="font-semibold text-lg pb-4">Support</h1>
-                <div className="flex flex-col h-40 justify-between mt-3 text-gray-700">
-                  <p className=" hover:text-gray-200 cursor-pointer">Donate</p>
-                  <p className=" hover:text-gray-200 cursor-pointer">
-                    About Us
-                  </p>
-                  <p></p>
-                  <p></p>
-                  <p></p>
-                  <p></p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

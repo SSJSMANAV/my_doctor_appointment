@@ -13,6 +13,7 @@ import MedicalHistoryList from "./Components/MedicalHistory/medical_history_list
 import Login from "./Components/Auth/Login/login";
 import SignUp from "./Components/Auth/SignUp/sign_up";
 import CheckoutForm from "./Components/CheckOut/checkout_form";
+import Footer from "./Components/Footer/footer";
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
         ></Route>
         <Route
           exact
-          path="/medical_history_list"
+          path="/medical_history_list" 
           element={<MedicalHistoryList />}
         ></Route>
         <Route exact path="/home" element={<Home />}></Route>
@@ -57,6 +58,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

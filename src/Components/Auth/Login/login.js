@@ -1,25 +1,19 @@
 import React from "react";
 import "./login.css";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { faGooglePlusG } from "@fortawesome/free-brands-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  faFacebookF,
-  faInstagram,
-  faLinkedinIn,
-  faReddit,
-} from "@fortawesome/free-brands-svg-icons";
+
 import { Link } from "react-router-dom";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 const LogIn = () => {
   const SignIn = () => {
     toast("Sign In Successfull");
   };
   return (
-    <main class="main-container flex bg-black ">
+    <main class="main-container flex bg-white lin-grad">
       <ToastContainer
         position="top-left"
         autoClose={1000}
@@ -34,27 +28,17 @@ const LogIn = () => {
       />
       <div className="w-3/5 bg-slate-300 mt-12 ">
         <div className="mt-16 ">
-          <div className="flex justify-around ">
-            <h1 className="text-cyan-700 font-bold text-3xl">
-              Sign in to Diprella
-            </h1>
+          <div className="flex justify-around">
+            <div className="flex flex-row">
+              <h1 className="text-cyan-700 font-bold text-3xl pr-3">
+                Sign in to
+              </h1>
+              <h1 className="text-orange-400 font-bold text-3xl"> myDoctor</h1>
+            </div>
           </div>
-          <div className="flex justify-center mt-4 ">
-            <FontAwesomeIcon
-              icon={faFacebookF}
-              className="px-4 py-3 mr-5 mt-1.5 text-lg border border-2 border-gray-200 bor-rad cursor-pointer hover:border-cyan-200 hover:shadow hover:shadow-cyan-200"
-            />
-            <FontAwesomeIcon
-              icon={faGooglePlusG}
-              className="px-3 py-3 mr-5 mt-1.5 text-lg border border-2 border-gray-200 bor-rad cursor-pointer hover:border-cyan-200 hover:shadow hover:shadow-cyan-200"
-            />
-            <FontAwesomeIcon
-              icon={faLinkedinIn}
-              className="px-3.5 py-3 mr-5 mt-1.5 text-lg border border-2 border-gray-200 bor-rad cursor-pointer hover:border-cyan-200 hover:shadow hover:shadow-cyan-200"
-            />
-          </div>
+
           <div className="flex justify-center mt-4">
-            <p>or use your email account</p>
+            <p>Use your email account</p>
           </div>
           <div className="relative mt-4 flex justify-center">
             <div className="relative w-8/12">
@@ -83,17 +67,14 @@ const LogIn = () => {
                   placeholder="Password"
                 />
                 <div className="absolute pl-2 flex items-center">
-                  <FontAwesomeIcon
-                    icon={faGooglePlusG}
-                    className="text-gray-500"
-                  />
+                  <FontAwesomeIcon icon={faLock} className="text-gray-500" />
                 </div>
               </div>
             </div>
           </div>
           <div className="flex justify-center ">
-            <div className="mt-6  flex justify-center border border-gray-200 w-1/3 cursor-pointer shadow shadow-white  hover:shadow-cyan-300 hover:text-gray-600 ">
-              <a href="#">Forgot your Password</a>
+            <div className="mt-6  border border-gray-200 px-2 py-1  cursor-pointer  hover:shadow-cyan-300 hover:text-gray-600 ">
+              <div>Forgot your Password ?</div>
             </div>
           </div>
           <div className="flex justify-center mt-8  ">
@@ -117,7 +98,7 @@ const LogIn = () => {
           <div className="flex justify-center mt-10">
             <Link
               to={"/signup"}
-              className="px-10 py-2 bg-transparent rounded-3xl font-semibold text-gray-200 border border-gray-200 border-2"
+              className="px-10 py-2 bg-transparent rounded-3xl font-semibold text-gray-200  border-gray-200 border-2"
             >
               Sign Up
             </Link>

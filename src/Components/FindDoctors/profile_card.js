@@ -8,7 +8,7 @@ const ProfileCard = (props) => {
     navigate(`/doctor-details/${props.doctor.id}/appointmentdates`);
   };
   return (
-    <div className="text-center bg-white-100 rounded-md shadow-md p-4 my-0 pt-12">
+    <div className="text-center bg-white-100 rounded-md  shadow-lg p-4 my-0 pt-12">
       <div className="rounded-full overflow-hidden mx-auto w-24 h-24 border border-solid  border-black ">
         <img
           src={process.env.PUBLIC_URL + props.doctor.image}
