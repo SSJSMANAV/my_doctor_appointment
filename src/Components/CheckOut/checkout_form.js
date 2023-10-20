@@ -4,8 +4,7 @@ import PayPalButton from "./paypal_button";
 const CheckoutForm = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-white p-8 rounded-lg shadow-md shadow-orange-400 text-center w-1/3">
-        
+      <div className="bg-white p-8 rounded-lg shadow-md shadow-orange-400 text-center lg:w-1/3 sm:w-full sm:m-8 ">
         <h2 className="text-lg text-purple-950 font-semibold mb-6 text-start ">
           Proceed To CheckOut
         </h2>
@@ -21,7 +20,7 @@ const CheckoutForm = () => {
               type="text"
               id="amount"
               className="border border-gray-300 rounded w-full py-2 px-3 text-orange-400 text-md font-semibold"
-              value="$ 40"
+              value="$ 50"
               disabled
             />
           </div>

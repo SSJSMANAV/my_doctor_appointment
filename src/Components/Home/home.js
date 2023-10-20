@@ -4,7 +4,7 @@ import Questions from "../Questions/question";
 import Review from "../Review/review";
 
 import Header from "../Header/header";
-
+import { useEffect } from "react";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import {
   faMinus,
@@ -19,9 +19,9 @@ const Home = () => {
       <Header />
       <section className="pb-24 flex lin-grad pt-16  ">
         <div className="w-4/6 flex my-0 mx-auto">
-          <div class="left_container">
+          <div class="left_container lg:w-2/5 lg:pt-8 sm:w-full sm:pt-20">
             <div class="lft_con_first">
-              <h1 className="font-bold text-left">
+              <h1 className="font-bold text-left lg:text-5xl lg:leading-snug sm:text-4xl sm:leading-snug sm:pb-4">
                 We help patients live a healthy, longer life
               </h1>
               <p className="text-left">
@@ -31,27 +31,27 @@ const Home = () => {
                 molestiae sapiente temporibus non ipsam voluptatibus nisi sunt.
               </p>
               <div className="text-left">
-                <button className="p-3 px-6 mt-6 font-semibold bg-orange-500 rounded-3xl text-white hover:bg-blue-500 transition-all duration-300">
+                <button className="lg:p-3 lg:px-6 sm:p-3 sm:text-sm mt-6 font-semibold bg-orange-500 rounded-3xl text-white hover:bg-blue-500 transition-all duration-300">
                   Request an Appointment
                 </button>
               </div>
             </div>
-            <div className="flex mt-10" class="datas">
-              <div class="data">
+            <div className="lg:flex lg:flex-row mt-10  sm:flex-col sm:items-center">
+              <div className="lg:mr-8 sm:mb-4">
                 <p className="text-5xl font-semibold">30+</p>
                 <p className="text-xs font-normal mt-2">Years of Experience</p>
               </div>
-              <div class="data">
+              <div className="lg:mr-8 sm:mb-4">
                 <p className="text-5xl font-semibold">15+</p>
                 <p className="text-xs font-normal mt-2">Clinic Location</p>
               </div>
-              <div class="data">
+              <div className="lg:mr-8 sm:mb-4">
                 <p className="text-5xl font-semibold">100%</p>
                 <p className="text-xs font-normal mt-2">Patient Satisfaction</p>
               </div>
             </div>
           </div>
-          <div className="flex">
+          <div className="lg:flex sm:hidden">
             <div className="mt-20 mr-8 ml-12">
               <img
                 src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
@@ -82,7 +82,7 @@ const Home = () => {
       </section>
       {/* SECOND CONTAINER */}
       <section class="second_container" className="pb-32 pt-12">
-        <div className="w-4/6 my-0 mx-auto">
+        <div className="lg:w-4/6 my-0 mx-auto">
           <div className="w-5/12 my-0 mr-auto ml-auto">
             <h1 className="text-4xl font-semibold">
               Providing the best medical Services
@@ -108,7 +108,7 @@ const Home = () => {
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </div>
-            <div className="mr-16 w-10/12">
+            <div className="mr-16 w-10/12 ">
               <img
                 src="https://www.lifewire.com/thmb/YBQuRMKxxhx3Zb3uJ1x-QOT6VsM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Maplocation_-5a492a4e482c52003601ea25.jpg"
                 alt="alt"
@@ -123,7 +123,7 @@ const Home = () => {
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </div>
-            <div className="mr-16 w-10/12">
+            <div className="mr-16 w-10/12 ">
               <img
                 src="https://www.rsny.org/wp-content/uploads/2020/02/make-an-appointment.png"
                 alt="alt"
@@ -141,7 +141,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* FOURTH CONTAINER */}
       <div class="fourth_container pb-32">
         <div className="w-4/6 my-0 mx-auto">
@@ -478,7 +478,6 @@ const Home = () => {
               question={"What is your medical care"}
               answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
             />
-            
           </div>
         </div>
       </div>

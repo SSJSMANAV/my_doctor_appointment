@@ -67,16 +67,16 @@ const FindDoctors = () => {
     <main>
       <div className="lin-grad">
         <div className="flex flex-col justify-start w-4/6 my-0 mx-auto py-28">
-          <div className="flex flex-row items-center justify-between">
-            <div className="flex flex-row items-center">
-              <p className="pr-4 text-lg font-semibold">
+          <div className="flex lg:flex-row  sm:flex-col  lg:items-center lg:justify-between">
+            <div className="flex flex-row items-center sm:mt-12 ">
+              <p className="pr-4 lg:text-lg sm:text-sm font-semibold ">
                 {" "}
                 Sort By Speciality :
               </p>
               <select
                 value={selectedDoctor}
                 onChange={(e) => handleDoctorSelection(e.target.value)}
-                className="py-2 px-4 border border-solid border-gray-300 flex"
+                className="py-2 lg:px-4 sm:px-1 border border-solid border-gray-300 flex sm:text-sm lg:text-lg"
               >
                 <option value="All" className="px-2 py-2">
                   {" "}
@@ -89,7 +89,7 @@ const FindDoctors = () => {
                 <option value="Heart Surgeon">Heart Surgeon</option>
               </select>
             </div>
-            <div className="flex flex-row">
+            <div className="flex flex-row sm:mt-4">
               <input
                 type="text"
                 placeholder="Search Doctors"
@@ -102,7 +102,7 @@ const FindDoctors = () => {
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-3 w-full mt-5 justify-between gap-x-10 gap-y-5 ">
+          <div className="grid lg:grid-cols-3 sm:justify-center md:grid-cols-2 w-full mt-5 justify-between gap-x-10 gap-y-5 ">
             {filteredList.map((doctorData) => (
               <ProfileCard doctor={doctorData}></ProfileCard>
             ))}
