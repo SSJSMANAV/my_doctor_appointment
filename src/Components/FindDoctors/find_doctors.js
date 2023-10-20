@@ -65,7 +65,7 @@ const FindDoctors = () => {
 
   return (
     <main>
-      <div className="lin-grad">
+      <div >
         <div className="flex flex-col justify-start w-4/6 my-0 mx-auto py-28">
           <div className="flex lg:flex-row  sm:flex-col  lg:items-center lg:justify-between">
             <div className="flex flex-row items-center sm:mt-12 ">
@@ -77,6 +77,7 @@ const FindDoctors = () => {
                 value={selectedDoctor}
                 onChange={(e) => handleDoctorSelection(e.target.value)}
                 className="py-2 lg:px-4 sm:px-1 border border-solid border-gray-300 flex sm:text-sm lg:text-lg"
+
               >
                 <option value="All" className="px-2 py-2">
                   {" "}

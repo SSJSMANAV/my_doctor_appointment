@@ -34,6 +34,7 @@ const DoctorDetailsPage = () => {
       <div className="w-4/6 flex my-0 mx-auto mt-24 sm:flex-col lg:flex-row ">
         <div className=" lft_con lg:w-2/5 sm:w-full ">
           <div className="lg:w-10/12 shadow-sm shadow-slate-300 sm:w-full sm:mt-12">
+
             <div className="bg-slate-100">
               <div>
                 <img
