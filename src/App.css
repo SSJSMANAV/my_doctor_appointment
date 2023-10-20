@@ -52,18 +52,16 @@
   background-image: linear-gradient(to right, #9eddff, #fff, #fffadd);
 }
 
-.font {
-}
 .medical {
   font-size: 1.5rem;
   font-weight: 600;
 }
-.lft_con_first h1 {
+/* .lft_con_first h1 {
   font-size: 3rem;
-}
-.lft_con_first p {
+} */
+/* .lft_con_first p {
   margin: 0.8rem 0rem;
-}
+} */
 /* .lft_con_first button {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -81,18 +79,18 @@
   background-position: left bottom;
 } */
 
-.left_container {
+/* .left_container {
   width: 40%;
   margin-right: 5%;
   margin-top: 3rem;
-}
-.datas {
+} */
+/* .datas {
   display: flex;
   margin-top: 2rem;
 }
 .datas .data {
   margin-right: 2rem;
-}
+} */
 
 .angry-grid {
   display: grid;
