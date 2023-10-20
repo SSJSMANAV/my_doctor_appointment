@@ -31,8 +31,8 @@ const DoctorDetailsPage = () => {
 
   return (
     <main>
-      <div className="w-4/6 flex my-0 mx-auto mt-24 ">
-        <div className=" lft_con w-2/5 ">
+      <div className="w-4/6 flex my-0 mx-auto mt-24 mb-0">
+        <div className=" lft_con w-2/5 ">  
           <div className=" w-10/12 shadow-sm shadow-slate-300">
             <div className="bg-slate-100">
               <div>
