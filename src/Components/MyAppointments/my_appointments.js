@@ -24,7 +24,7 @@ const MyAppointments = () => {
     setAppointmentStatus(status);
   };
   return (
-    <div className="pb-24 flex lin-grad pt-24">
+    <div className="pb-24 flex  pt-24">
       <div className="w-4/6 flex my-0 mx-auto pt-4 flex-col">
         <div className="flex flex-row justify-between items-center w-full">
           <div>
@@ -69,7 +69,7 @@ const MyAppointments = () => {
           </div>
           <AddAppointmentButton></AddAppointmentButton>
         </div>
-        <div className="bg-gray-200 mt-5 px-4 py-4 rounded-md w-full">
+        <div className="bg-blue-200 mt-5 px-4 py-4 rounded-md w-full">
           <h1 className="text-black font-bold ">Appointments</h1>
 
           <div className="flex w-full justify-between mb-5">

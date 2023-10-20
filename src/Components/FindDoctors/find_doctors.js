@@ -65,7 +65,7 @@ const FindDoctors = () => {
 
   return (
     <main>
-      <div className="lin-grad">
+      <div>
         <div className="flex flex-col justify-start w-4/6 my-0 mx-auto py-28">
           <div className="flex lg:flex-row  sm:flex-col  lg:items-center lg:justify-between">
             <div className="flex flex-row items-center sm:mt-12 ">

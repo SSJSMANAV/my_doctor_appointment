@@ -4,7 +4,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const MyAppointmentItem = () => {
   return (
-    <div className="flex flex-row justify-between items-center bg-white px-2 py-3 mb-2 rounded-md">
+    <div className="flex flex-row justify-between items-center bg-gray-100 shadow-sm px-2 py-3 mb-2 rounded-md">
       <div className="w-1/4 flex flex-row justify-start"> lk32432kjl32j4k2</div>
       <div className="flex flex-row items-center justify-center w-1/4">
         <div className="rounded-full overflow-hidden mx-auto w-10 h-10 mr-2">
