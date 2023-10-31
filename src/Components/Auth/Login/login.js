@@ -13,7 +13,7 @@ const LogIn = () => {
     toast("Sign In Successfull");
   };
   return (
-    <main class="main-container flex bg-white lin-grad">
+    <main className="main-container flex bg-white lin-grad">
       <ToastContainer
         position="top-left"
         autoClose={1000}

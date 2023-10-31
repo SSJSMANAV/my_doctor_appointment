@@ -19,60 +19,70 @@ import { LoadScript } from "@react-google-maps/api";
 
 function App() {
   return (
-    <LoadScript googleMapsApiKey="AIzaSyBuM5vSQxrCsjTNcX1CTInG3CU0feIL9L0">
-    <div>
-      <Header></Header>
-      <Routes>
-        <Route exact path="/" element={<Navigate replace to="/home" />}></Route>
-        <Route exact path="/signup" element={<SignUp />}></Route>
-        <Route exact path="/login" element={<Login />}></Route>
-        <Route exact path="/find-doctors" element={<FindDoctors />}></Route>
+    // <LoadScript googleMapsApiKey="AIzaSyBuM5vSQxrCsjTNcX1CTInG3CU0feIL9L0">
+      <div>
+        <Header></Header>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<Navigate replace to="/home" />}
+          ></Route>
+          <Route exact path="/signup" element={<SignUp />}></Route>
+          <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/find-doctors" element={<FindDoctors />}></Route>
 
-        <Route path="/doctor-details/:doctorId" element={<DoctorDetailsPage />}>
           <Route
-            path="/doctor-details/:doctorId/appointmentdates"
-            element={<AppointmentDates />}
+            path="/doctor-details/:doctorId"
+            element={<DoctorDetailsPage />}
+          >
+            <Route
+              path="/doctor-details/:doctorId/appointmentdates"
+              element={<AppointmentDates />}
+            ></Route>
+            {/* <Route
+              path="/doctor-details/:doctorId/locationdetails"
+              element={<LocationDetails />}
+            ></Route> */}
+            <Route
+              path="/doctor-details/:doctorId/ratings&reviews"
+              element={<RatingsAndReviews />}
+            ></Route>
+          </Route>
+          <Route
+            exact
+            path="/my_appointments"
+            element={<MyAppointments />}
           ></Route>
           <Route
-            path="/doctor-details/:doctorId/locationdetails"
-            element={<LocationDetails />}
+            exact
+            path="/medical_history_list"
+            element={<MedicalHistoryList />}
+          ></Route>
+          <Route exact path="/home" element={<Home />}></Route>
+          <Route
+            exact
+            path="/post_checkup_form"
+            element={<DoctorForm />}
           ></Route>
           <Route
-            path="/doctor-details/:doctorId/ratings&reviews"
-            element={<RatingsAndReviews />}
+            path="/doctor-details/:doctorId/checkout-form"
+            element={<CheckoutForm></CheckoutForm>}
           ></Route>
-        </Route>
-        <Route
-          exact
-          path="/my_appointments"
-          element={<MyAppointments />}
-        ></Route>
-        <Route
-          exact
-          path="/medical_history_list"
-          element={<MedicalHistoryList />}
-        ></Route>
-        <Route exact path="/home" element={<Home />}></Route>
-        <Route exact path="/post_checkup_form" element={<DoctorForm />}></Route>
-        <Route
-          path="/doctor-details/:doctorId/checkout-form"
-          element={<CheckoutForm></CheckoutForm>}
-        ></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/signup" element={<SignUp></SignUp>}></Route>
-        <Route
-          path="/add-doctor"
-          element={<AddDoctorForm></AddDoctorForm>}
-        ></Route>
-        <Route
-          path="/proceed-to-add-doctor"
-          element={<ProceedToAddDoctor></ProceedToAddDoctor>}
-        >
-        </Route>
-      </Routes>
-      {/* <Footer></Footer> */}
-    </div>
-    </LoadScript>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/signup" element={<SignUp></SignUp>}></Route>
+          <Route
+            path="/add-doctor"
+            element={<AddDoctorForm></AddDoctorForm>}
+          ></Route>
+          {/* <Route
+            path="/proceed-to-add-doctor"
+            element={<ProceedToAddDoctor></ProceedToAddDoctor>}
+          ></Route> */}
+        </Routes>
+        {/* <Footer></Footer> */}
+      </div>
+    // </LoadScript>
   );
 }
 
