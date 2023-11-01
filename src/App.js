@@ -16,10 +16,53 @@ import CheckoutForm from "./Components/CheckOut/checkout_form";
 import AddDoctorForm from "./Components/AddDoctor/add_doctor";
 import ProceedToAddDoctor from "./Components/AddDoctor/proceed_to_add_doctor";
 import { LoadScript } from "@react-google-maps/api";
+import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getLoggedInState } from "./action-creators/auth_action";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLoggedInState());
+  }, [dispatch]);
+
   return (
-    // <LoadScript googleMapsApiKey="AIzaSyBuM5vSQxrCsjTNcX1CTInG3CU0feIL9L0">
+    <LoadScript googleMapsApiKey="AIzaSyBuM5vSQxrCsjTNcX1CTInG3CU0feIL9L0">
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+
+          error: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
       <div>
         <Header></Header>
         <Routes>
@@ -40,10 +83,10 @@ function App() {
               path="/doctor-details/:doctorId/appointmentdates"
               element={<AppointmentDates />}
             ></Route>
-            {/* <Route
+            <Route
               path="/doctor-details/:doctorId/locationdetails"
               element={<LocationDetails />}
-            ></Route> */}
+            ></Route>
             <Route
               path="/doctor-details/:doctorId/ratings&reviews"
               element={<RatingsAndReviews />}
@@ -75,14 +118,14 @@ function App() {
             path="/add-doctor"
             element={<AddDoctorForm></AddDoctorForm>}
           ></Route>
-          {/* <Route
+          <Route
             path="/proceed-to-add-doctor"
             element={<ProceedToAddDoctor></ProceedToAddDoctor>}
-          ></Route> */}
+          ></Route>
         </Routes>
         {/* <Footer></Footer> */}
       </div>
-    // </LoadScript>
+    </LoadScript>
   );
 }
 

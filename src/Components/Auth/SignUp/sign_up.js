@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { registerPatient } from "../../../action-creators/auth_action";
+import toast from "react-hot-toast";
+import { authSliceActions } from "../../../slices/auth_slice";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [imageFile, setImageFile] = useState("");
+
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
     email: Yup.string()
@@ -17,7 +25,6 @@ const SignUp = () => {
     address: Yup.string().required("Address is required"),
     dob: Yup.string().required("Date of Birth is required"),
     password: Yup.string().required("Password is required"),
-    image: Yup.mixed().required("File is required"),
   });
 
   return (
@@ -48,19 +55,6 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* Right Container */}
-        <ToastContainer
-          position="top-left"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
         <div className="w-4/5 bg-slate-300 rounded-e-2xl">
           <div className="mt-8">
             <div className="flex justify-around">
@@ -76,11 +70,37 @@ const SignUp = () => {
                 address: "",
                 dob: "",
                 password: "",
-                image: "",
               }}
               validationSchema={validationSchema}
               onSubmit={async (values, { setSubmitting }) => {
+                if (!imageFile) {
+                  return;
+                }
                 console.log("tada");
+                await registerPatient({
+                  username: values.username,
+                  email: values.email,
+                  address: values.address,
+                  dob: values.dob,
+                  password: values.password,
+                  image: imageFile,
+                })
+                  .then((data) => {
+                    toast.success('Signed in successfully.');
+                    
+                    dispatch(
+                      authSliceActions.replaceLoggedInState({
+                        loggedIn: true,
+                        role: data.result.role,
+                        user: data.result,
+                        token: data.token,
+                      })
+                    );
+                    navigate('/home');
+                  })
+                  .catch((e) => {
+                    toast.error(e.message);
+                  });
               }}
             >
               {() => (
@@ -196,21 +216,24 @@ const SignUp = () => {
                   <div className="relative mt-4 flex justify-center">
                     <div className="relative w-8/12">
                       <div className="flex items-center">
-                        <Field
+                        <input
                           type="file"
-                          name="image"
                           accept="image/*"
                           onChange={(event) => {
                             console.log("changed");
                             const file = event.target.files[0];
+                            setImageFile(file);
                           }}
                         />
                       </div>
-                      <ErrorMessage
+                      {!imageFile && (
+                        <div className="text-red-500">File is Required</div>
+                      )}
+                      {/* <ErrorMessage
                         name="image"
                         component="div"
                         className="text-red-500"
-                      />
+                      /> */}
                     </div>
                   </div>
 
