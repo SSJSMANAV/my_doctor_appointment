@@ -1,46 +1,66 @@
 // AddDoctorForm.js
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const AddDoctorForm = () => {
-
   const navigate = useNavigate();
 
+  const [imageFiles, setImageFiles] = useState([]);
+  const [showFields, setShowFields] = useState(false);
+  const [instituteName, setInstitution] = useState("");
+  const [grade, setGrade] = useState("");
+  const [educationList, setEducationList] = useState([]);
 
+  const handleAddEducation = () => {
+    if (instituteName.trim() && grade.trim()) {
+      const newEducation = { instituteName: instituteName, grade: grade };
+      setEducationList([...educationList, newEducation]);
+      setInstitution("");
+      setGrade("");
+    }
+  };
 
   const initialValues = {
-    fullName: "",
     age: "",
     gender: "",
-    dateOfBirth: "",
     speciality: "",
     currentlyWorkingAt: "",
     experience: "",
   };
 
   const validationSchema = Yup.object().shape({
-    fullName: Yup.string().required("Full name is required"),
     age: Yup.number()
-      .required("Age is required")
-      .positive("Age must be a positive number")
-      .integer("Age must be an integer"),
-    gender: Yup.string().required("Gender is required"),
-    dateOfBirth: Yup.date().required("Date of Birth is required"),
-    speciality: Yup.string().required("Speciality is required"),
+      .required("* Age is required.")
+      .positive("* Age must be a positive number.")
+      .integer("* Age must be an integer."),
+    gender: Yup.string().required("* Gender is required."),
+    speciality: Yup.string().required("* Speciality is required."),
     currentlyWorkingAt: Yup.string().required(
-      "Currently Working At is required"
+      "* Currently Working At is required."
     ),
     experience: Yup.number()
-      .required("Experience is required")
-      .positive("Experience must be a positive number")
-      .integer("Experience must be an integer"),
+      .required("* Experience is required.")
+      .positive("* Experience must be a positive number.")
+      .integer("* Experience must be an integer."),
   });
 
   const handleSubmit = (values) => {
-    // Handle form submission, e.g., send data to the server
-    console.log(values);
+    navigate("/proceed-doctor-fillup-form", {
+      state: {
+        ...values,
+        ...{ education: educationList },
+        ...{ imageFiles: imageFiles },
+      },
+    });
+  };
+
+  const handleDeleteEducation = (id) => {
+    const updatedEducationList = educationList.filter((edu) => edu.id !== id);
+    setEducationList(updatedEducationList);
   };
 
   return (
@@ -48,12 +68,14 @@ const AddDoctorForm = () => {
       <div className="bg-white p-8 rounded  flex w-2/3 mx-32 lin-grad shadow-2xl">
         <div className="w-1/2">
           <div className="flex flex-row justify-center items-center w-full h-full">
-            <div className="pr-3 text-2xl font-semibold text-orange-400">myDoctor</div>
-            <div className="text-2xl font-bold text-blue-600">Admin</div>
+            <div className="text-2xl font-semibold text-orange-400">my</div>
+            <div className="text-2xl font-bold text-blue-600">Doctor</div>
           </div>
         </div>
         <div className="w-1/2 pl-8 ">
-          <h1 className="text-end font-semibold mb-4 text-gray-500">* Add Doctor </h1>
+          <h1 className="text-end font-semibold mb-4 text-gray-500">
+            * Apply{" "}
+          </h1>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -61,20 +83,6 @@ const AddDoctorForm = () => {
           >
             <Form>
               <div className="flex flex-col gap-4">
-                <div>
-                  <label htmlFor="fullName">Full Name</label>
-                  <Field
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    className="w-full p-2 border bg-slate-100"
-                  />
-                  <ErrorMessage
-                    name="fullName"
-                    component="div"
-                    className="text-red-600"
-                  />
-                </div>
                 <div>
                   <label htmlFor="age">Age</label>
                   <Field
@@ -86,7 +94,7 @@ const AddDoctorForm = () => {
                   <ErrorMessage
                     name="age"
                     component="div"
-                    className="text-red-600"
+                    className="text-red-600 pt-1.5"
                   />
                 </div>
 
@@ -105,36 +113,43 @@ const AddDoctorForm = () => {
                   <ErrorMessage
                     name="gender"
                     component="div"
-                    className="text-red-600"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="dateOfBirth">Date of Birth</label>
-                  <Field
-                    type="date"
-                    id="dateOfBirth"
-                    name="dateOfBirth"
-                    className="w-full p-2 border bg-slate-100"
-                  />
-                  <ErrorMessage
-                    name="dateOfBirth"
-                    component="div"
-                    className="text-red-600"
+                    className="text-red-600 pt-1.5"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="speciality">Speciality</label>
                   <Field
-                    type="text"
+                    as="select"
                     id="speciality"
                     name="speciality"
                     className="w-full p-2 border bg-slate-100"
-                  />
+                  >
+                    <option value="">Select Speciality</option>
+                    <option value="male">Alltergist</option>
+                    <option value="female">Anesthesiologist</option>
+                    <option value="male">Cardiologist</option>
+                    <option value="female">Endocrinologist</option>
+                    <option value="male">Hemaologist</option>
+                    <option value="female">Immunologist</option>
+                    <option value="male">Internist</option>
+                    <option value="female">Neurologist</option>
+                    <option value="male">Pulmonologist</option>
+                    <option value="female">Oncologist</option>
+                    <option value="male">Otolaryngologist</option>
+                    <option value="female">Pediatrician</option>
+                    <option value="female">Rheumatologist</option>
+                    <option value="female">Clinical Pathologist</option>
+                    <option value="female">Gynecologist</option>
+                    <option value="female">Hepatologist</option>
+                    <option value="female">Pediatrist</option>
+                    <option value="female">Dentist</option>
+                    <option value="female">Physiotherapist</option>
+                  </Field>
                   <ErrorMessage
                     name="speciality"
                     component="div"
-                    className="text-red-600"
+                    className="text-red-600 pt-1.5"
                   />
                 </div>
 
@@ -151,7 +166,7 @@ const AddDoctorForm = () => {
                   <ErrorMessage
                     name="currentlyWorkingAt"
                     component="div"
-                    className="text-red-600"
+                    className="text-red-600 pt-1.5"
                   />
                 </div>
 
@@ -166,17 +181,90 @@ const AddDoctorForm = () => {
                   <ErrorMessage
                     name="experience"
                     component="div"
-                    className="text-red-600"
+                    className="text-red-600 pt-1.5"
                   />
                 </div>
+                <div className="flex items-center">
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={(event) => {
+                      console.log("changed");
+                      const files = event.target.files;
+                      setImageFiles(files);
+                    }}
+                  />
+                </div>
+                {imageFiles.length === 0 && (
+                  <div className="text-red-500 text-sm">File is Required</div>
+                )}
+                <button
+                  className="bg-blue-500 mt-5 text-white p-2 rounded-sm"
+                  onClick={() => setShowFields(!showFields)}
+                  type="button"
+                >
+                  Add Education
+                </button>
+
+                {showFields && (
+                  <div className="mt-2 ">
+                    <input
+                      type="text"
+                      placeholder="Institution"
+                      value={instituteName}
+                      onChange={(e) => setInstitution(e.target.value)}
+                      className="rounded-md p-2 border mr-3"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Grade"
+                      value={grade}
+                      onChange={(e) => setGrade(e.target.value)}
+                      className="rounded-md p-2 border mt-2"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAddEducation}
+                      className="bg-transparent px-8 border border-solid border-orange-500 text-orange-500 hover:text-white hover:bg-orange-500 p-2 rounded-md mt-2"
+                    >
+                      Add
+                    </button>
+                  </div>
+                )}
+                {educationList.length !== 0 && (
+                  <div className="mt-4 ">
+                    <h3>Education Details:</h3>
+                    <ul>
+                      {educationList.map((education) => (
+                        <li
+                          key={education.id}
+                          className="flex justify-between items-center border border-solid border-black rounded-sm p-2 mb-2"
+                        >
+                          {education.instituteName} - {education.grade}
+                          {/* <button
+                        onClick={() => handleDeleteEducation(education.id)}
+                        className="bg-red-500 text-white p-2 rounded-md ml-2"
+                      >
+                        Delete
+                      </button> */}
+                          <FontAwesomeIcon
+                            onClick={() => {
+                              handleDeleteEducation(education.id);
+                            }}
+                            icon={faTrash}
+                            className="cursor-pointer text-red-600"
+                          ></FontAwesomeIcon>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-      
+
               <button
                 type="submit"
-                // onClick={() => {
-                //   navigate('/proceed-to-add-doctor');
-                // }}
-                className="mt-4 bg-white text-blue-600 hover:bg-blue-600 border border-solid border-blue-600 hover:text-white rounded px-4 py-2"
+                className="mt-6 bg-white text-blue-600 hover:bg-blue-600 border border-solid border-blue-600 hover:text-white rounded px-4 py-2"
               >
                 Proceed
               </button>

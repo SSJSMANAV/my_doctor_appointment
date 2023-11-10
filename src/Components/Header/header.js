@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -18,6 +18,7 @@ function Header() {
 
   const isLoggedIn = authState.loggedIn;
   const user = authState.user;
+  console.log(authState.token);
 
   return (
     <header
@@ -42,18 +43,30 @@ function Header() {
           >
             Find Doctors
           </Link>
-          <Link
-            to="/my_appointments"
-            className="mr-7 hover:text-orange-400 transition-all duration-300"
-          >
-            My Appointments
-          </Link>
-          <Link
-            to="/medical_history_list"
-            className="mr-7 hover:text-orange-400 transition-all duration-300"
-          >
-            Medical History
-          </Link>
+          {user.role !== "admin" && (
+            <Link
+              to="/my_appointments"
+              className="mr-7 hover:text-orange-400 transition-all duration-300"
+            >
+              My Appointments
+            </Link>
+          )}
+          {user.role !== "admin" && (
+            <Link
+              to="/medical_history_list"
+              className="mr-7 hover:text-orange-400 transition-all duration-300"
+            >
+              Medical History
+            </Link>
+          )}
+          {user.role === "admin" && (
+            <Link
+              to="/doctor-applications"
+              className="mr-7 hover:text-orange-400 transition-all duration-300"
+            >
+              Doctor-Applications
+            </Link>
+          )}
         </div>
         {!isLoggedIn && (
           <Link
@@ -66,10 +79,9 @@ function Header() {
         {isLoggedIn && (
           <div className="relative w-52 pl-8">
             <img
-              src={process.env.PUBLIC_URL + `/assets/${user.image}`}
-              alt="alt"
-              style={{ height: "20%", width: "20%" }}
-              className="flex rounded-3xl  border border-gray-400 cursor-pointer justify-end"
+              src={`http://localhost:3009/assets/${user.image}`}
+              alt={user.name}
+              className="flex h-10 w-10 rounded-full  border border-gray-400 cursor-pointer justify-end"
               onClick={toggleOptions}
             />
             {showOptions && (

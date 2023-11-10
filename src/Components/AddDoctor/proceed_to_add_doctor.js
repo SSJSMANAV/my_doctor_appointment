@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useLocation } from "react-router-dom";
+import { registerDoctorRequest } from "../../action-creators/auth_action";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const containerStyle = {
   width: "100%",
@@ -12,6 +16,12 @@ const containerStyle = {
 // };
 
 const ProceedToAddDoctor = () => {
+  const authState = useSelector((state) => {
+    return state.auth;
+  });
+
+  const token = authState.token;
+  const location = useLocation();
   const [selectedDayFrom, setSelectedDayFrom] = React.useState("Monday");
   const [selectedDayTo, setSelectedDayTo] = React.useState("Saturday");
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -26,7 +36,7 @@ const ProceedToAddDoctor = () => {
   };
 
   const handleMapClick = (event) => {
-    console.log("Clicked location:", event.latLng);
+    setCenter({ lat: event.latLng.lat(), lng: event.latLng.lng() });
   };
 
   useEffect(() => {
@@ -40,10 +50,24 @@ const ProceedToAddDoctor = () => {
     }
   }, []);
 
+  const handleSubmit = async () => {
+    const doctorData = location.state;
+    doctorData.startDay = selectedDayFrom;
+    doctorData.endDay = selectedDayTo;
+    doctorData.location = { latitude: center.lat, longitude: center.lng };
+    await registerDoctorRequest(doctorData, token)
+      .then((data) => {
+        toast.success(data);
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      });
+  };
+
   return (
     <div className="flex flex-row justify-center">
       <div className="flex mt-24 w-2/3 ">
-        <div className="w-1/2 p-4 flex flex-col">   
+        <div className="w-1/2 p-4 flex flex-col">
           <div className="text-gray-500 font-semibold text-sm">
             Pin point doctor's location ( * Hospital)
           </div>
@@ -51,9 +75,10 @@ const ProceedToAddDoctor = () => {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={10} 
+              zoom={10}
               onClick={handleMapClick}
             >
+              {center !== null && <Marker position={center} />}
               {/* <Marker position={center} /> */}
             </GoogleMap>
           )}
@@ -98,7 +123,7 @@ const ProceedToAddDoctor = () => {
 
           <button
             type="submit"
-            onClick={() => {}}
+            onClick={handleSubmit}
             className="mt-4 bg-white text-blue-600 hover:bg-blue-600 border border-solid border-blue-600 hover:text-white rounded px-4 py-2"
           >
             Add Doctor
