@@ -21,21 +21,21 @@ const AddDoctorForm = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    // fullName: Yup.string().required("Full name is required"),
-    // age: Yup.number()
-    //   .required("Age is required")
-    //   .positive("Age must be a positive number")
-    //   .integer("Age must be an integer"),
-    // gender: Yup.string().required("Gender is required"),
-    // dateOfBirth: Yup.date().required("Date of Birth is required"),
-    // speciality: Yup.string().required("Speciality is required"),
-    // currentlyWorkingAt: Yup.string().required(
-    //   "Currently Working At is required"
-    // ),
-    // experience: Yup.number()
-    //   .required("Experience is required")
-    //   .positive("Experience must be a positive number")
-    //   .integer("Experience must be an integer"),
+    fullName: Yup.string().required("Full name is required"),
+    age: Yup.number()
+      .required("Age is required")
+      .positive("Age must be a positive number")
+      .integer("Age must be an integer"),
+    gender: Yup.string().required("Gender is required"),
+    dateOfBirth: Yup.date().required("Date of Birth is required"),
+    speciality: Yup.string().required("Speciality is required"),
+    currentlyWorkingAt: Yup.string().required(
+      "Currently Working At is required"
+    ),
+    experience: Yup.number()
+      .required("Experience is required")
+      .positive("Experience must be a positive number")
+      .integer("Experience must be an integer"),
   });
 
   const handleSubmit = (values) => {
@@ -173,9 +173,9 @@ const AddDoctorForm = () => {
       
               <button
                 type="submit"
-                onClick={() => {
-                  navigate('/proceed-to-add-doctor');
-                }}
+                // onClick={() => {
+                //   navigate('/proceed-to-add-doctor');
+                // }}
                 className="mt-4 bg-white text-blue-600 hover:bg-blue-600 border border-solid border-blue-600 hover:text-white rounded px-4 py-2"
               >
                 Proceed

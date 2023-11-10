@@ -43,23 +43,20 @@ const ProceedToAddDoctor = () => {
   return (
     <div className="flex flex-row justify-center">
       <div className="flex mt-24 w-2/3 ">
-        <div className="w-1/2 p-4 flex flex-col">
+        <div className="w-1/2 p-4 flex flex-col">   
           <div className="text-gray-500 font-semibold text-sm">
             Pin point doctor's location ( * Hospital)
           </div>
-          <LoadScript>
-            {mapLoaded && (
-              
-              <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={10}
-                onClick={handleMapClick}
-              >
-                {/* <Marker position={center} /> */}
-              </GoogleMap>
-            )}
-            </LoadScript>
+          {mapLoaded && (
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={center}
+              zoom={10} 
+              onClick={handleMapClick}
+            >
+              {/* <Marker position={center} /> */}
+            </GoogleMap>
+          )}
         </div>
         <div className="w-1/2 p-4">
           <div className="mb-4">

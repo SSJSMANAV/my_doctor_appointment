@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../../../src/App.css";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 function Header() {
   const [showOptions, setShowOptions] = useState(false);
@@ -10,6 +11,13 @@ function Header() {
   const toggleOptions = () => {
     setShowOptions(!showOptions);
   };
+
+  const authState = useSelector((state) => {
+    return state.auth;
+  });
+
+  const isLoggedIn = authState.loggedIn;
+  const user = authState.user;
 
   return (
     <header
@@ -41,38 +49,48 @@ function Header() {
             My Appointments
           </Link>
           <Link
-            to="medical_history_list"
+            to="/medical_history_list"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
           >
             Medical History
           </Link>
         </div>
-        <div className="relative w-52 pl-8">
-          <img
-            src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-            alt="alt"
-            style={{ height: "20%", width: "20%" }}
-            className="flex rounded-3xl  border border-gray-400 cursor-pointer justify-end"
-            onClick={toggleOptions}
-          />
-          {showOptions && (
-            <div
-              className={`absolute mt-2 right-12 bg-white border rounded-lg border-gray-400 shadow-lg text-left transition transition-max-h duration-500 ${
-                showOptions ? "max-h-screen" : "max-h-0"
-              }`}
-            >
-              <ul className="p-0 m-0">
-                <li className="p-2 hover:bg-orange-200 rounded-t-lg ">
-                  Profile
-                </li>
-                <li className="p-2 hover:bg-orange-200">Account Info</li>
-                <li className="p-2 hover:bg-orange-200 rounded-b-lg">
-                  Sign Out
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
+        {!isLoggedIn && (
+          <Link
+            to="/login"
+            className="bg-transparent text-orange-400 py-1.5 px-4 border border-solid border-orange-400 rounded-sm hover:bg-orange-400 hover:text-white transition-all duration-300  ease-in-out"
+          >
+            Login
+          </Link>
+        )}
+        {isLoggedIn && (
+          <div className="relative w-52 pl-8">
+            <img
+              src={process.env.PUBLIC_URL + `/assets/${user.image}`}
+              alt="alt"
+              style={{ height: "20%", width: "20%" }}
+              className="flex rounded-3xl  border border-gray-400 cursor-pointer justify-end"
+              onClick={toggleOptions}
+            />
+            {showOptions && (
+              <div
+                className={`absolute mt-2 right-12 bg-white border rounded-lg border-gray-400 shadow-lg text-left transition transition-max-h duration-500 ${
+                  showOptions ? "max-h-screen" : "max-h-0"
+                }`}
+              >
+                <ul className="p-0 m-0">
+                  <li className="p-2 hover:bg-orange-200 rounded-t-lg ">
+                    Profile
+                  </li>
+                  <li className="p-2 hover:bg-orange-200">Account Info</li>
+                  <li className="p-2 hover:bg-orange-200 rounded-b-lg">
+                    Sign Out
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
       </nav>
     </header>
   );
