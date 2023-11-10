@@ -20,6 +20,8 @@ import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoggedInState } from "./action-creators/auth_action";
+import Footer from "./Components/Footer/footer";
+import DoctorApplications from "./Components/Applications/doctor-applications";
 
 function App() {
   const dispatch = useDispatch();
@@ -102,6 +104,11 @@ function App() {
             path="/medical_history_list"
             element={<MedicalHistoryList />}
           ></Route>
+          <Route
+            exact
+            path="/doctor-applications"
+            element={<DoctorApplications />}
+          ></Route>
           <Route exact path="/home" element={<Home />}></Route>
           <Route
             exact
@@ -115,15 +122,15 @@ function App() {
           <Route path="/login" element={<Login></Login>}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
           <Route
-            path="/add-doctor"
+            path="/doctor-signup-request"
             element={<AddDoctorForm></AddDoctorForm>}
           ></Route>
           <Route
-            path="/proceed-to-add-doctor"
+            path="/proceed-doctor-fillup-form"
             element={<ProceedToAddDoctor></ProceedToAddDoctor>}
           ></Route>
         </Routes>
-        {/* <Footer></Footer> */}
+        <Footer></Footer>
       </div>
     </LoadScript>
   );

@@ -22,6 +22,7 @@ export const registerPatient = async (patient) => {
     });
     console.log(response.status);
     const jsonData = await response.json();
+    console.log(jsonData);
 
     if (response.status === 200) {
       localStorage.setItem("token", jsonData.token);
@@ -33,6 +34,55 @@ export const registerPatient = async (patient) => {
       throw Error(jsonData.message);
     }
   } catch (e) {
+    throw Error(e.message);
+  }
+};
+
+export const registerDoctorRequest = async (doctorData, token) => {
+  console.log(doctorData);
+  const url = "http://localhost:3009/user/applyasdoctor";
+
+  const formData = new FormData();
+  for (let i = 0; i < doctorData.education.length; i++) {
+    formData.append(
+      `education[${i}][instituteName]`,
+      doctorData.education[i].instituteName
+    );
+    formData.append(`education[${i}][grade]`, doctorData.education[i].grade);
+  }
+
+  for (let i = 0; i < doctorData.imageFiles; i++) {
+    formData.append("document", File([doctorData.imageFiles[i].image], doctorData.imageFiles[i].image.name));
+  }
+  formData.append("specialization", doctorData.speciality);
+  formData.append("experience", doctorData.experience);
+  formData.append("hospital", doctorData.currentlyWorkingAt);
+
+  formData.append("location[latitude]", doctorData.location.latitude);
+  formData.append("location[longitude]", doctorData.location.longitude);
+
+  try {
+    console.log("here");
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.status);
+    const jsonData = await response.json();
+    console.log(jsonData);
+
+    if (response.status === 200) {
+      return jsonData.message;
+    } else {
+      console.log(jsonData.message);
+      throw Error(jsonData.message);
+    }
+  } catch (e) {
+    console.log("error");
+    console.log(e.message);
     throw Error(e.message);
   }
 };
@@ -73,6 +123,7 @@ export const getLoggedInState = () => {
     const role = localStorage.getItem("role");
     const userData = localStorage.getItem("user");
     const user = JSON.parse(userData);
+    console.log("get loggedIn state.");
 
     if (!token) {
       dispatch(

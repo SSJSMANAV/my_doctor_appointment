@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import "./signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
-import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -18,17 +17,17 @@ const SignUp = () => {
   const [imageFile, setImageFile] = useState("");
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
+    username: Yup.string().required("* Username is required."),
     email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    address: Yup.string().required("Address is required"),
-    dob: Yup.string().required("Date of Birth is required"),
-    password: Yup.string().required("Password is required"),
+      .email("* Invalid email format.")
+      .required("* Email is required."),
+    address: Yup.string().required("* Address is required."),
+    dob: Yup.string().required("* Date of Birth is required."), 
+    password: Yup.string().required("* Password is required."),
   });
 
   return (
-    <main className="container flex bg-blue-500">
+    <main className=" flex lin-grad w-full">
       <div className="flex w-4/5 mx-auto my-16 border rounded-2xl mt-32">
         <div className="w-2/5 h-auto bg-cyan-700 pb-28 rounded-s-2xl">
           <div className="mt-44">
@@ -124,7 +123,7 @@ const SignUp = () => {
                       <ErrorMessage
                         name="username"
                         component="div"
-                        className="text-red-500"
+                        className="text-red-500 pt-2 text-sm"
                       />
                     </div>
                   </div>
@@ -148,7 +147,7 @@ const SignUp = () => {
                       <ErrorMessage
                         name="email"
                         component="div"
-                        className="text-red-500"
+                        className="text-red-500 pt-2 text-sm"
                       />
                     </div>
                   </div>
@@ -172,7 +171,7 @@ const SignUp = () => {
                       <ErrorMessage
                         name="address"
                         component="div"
-                        className="text-red-500"
+                        className="text-red-500 pt-2 text-sm"
                       />
                     </div>
                   </div>
@@ -190,7 +189,7 @@ const SignUp = () => {
                       <ErrorMessage
                         name="dob"
                         component="div"
-                        className="text-red-500"
+                        className="text-red-500 pt-2 text-sm"
                       />
                     </div>
                   </div>
@@ -208,7 +207,7 @@ const SignUp = () => {
                       <ErrorMessage
                         name="password"
                         component="div"
-                        className="text-red-500"
+                        className="text-red-500 pt-2 text-sm"
                       />
                     </div>
                   </div>
@@ -227,7 +226,7 @@ const SignUp = () => {
                         />
                       </div>
                       {!imageFile && (
-                        <div className="text-red-500">File is Required</div>
+                        <div className="text-red-500 pt-2 text-sm">File is Required</div>
                       )}
                       {/* <ErrorMessage
                         name="image"
@@ -238,8 +237,8 @@ const SignUp = () => {
                   </div>
 
                   <div className="flex justify-center ">
-                    <div className="mt-6  flex justify-center border border-gray-200 w-1/3 cursor-pointer shadow shadow-white  hover:shadow-cyan-300 hover:text-gray-600 ">
-                      <a href="hre">Forgot your Password</a>
+                    <div className="mt-6  flex justify-center  w-1/3 cursor-pointer hover:text-gray-600 ">
+                      <a href="hre">Forgot your Password ?</a>
                     </div>
                   </div>
                   <div className="flex justify-center mt-8 mb-20 ">
