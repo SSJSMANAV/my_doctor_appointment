@@ -4,8 +4,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../../../src/App.css";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useNavigate } from "react-router-dom/dist";
+import { useDispatch } from "react-redux";
+import { getLoggedInState } from "../../action-creators/auth_action";
 
 function Header() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState(false);
 
   const toggleOptions = () => {
@@ -95,7 +100,11 @@ function Header() {
                     Profile
                   </li>
                   <li className="p-2 hover:bg-orange-200">Account Info</li>
-                  <li className="p-2 hover:bg-orange-200 rounded-b-lg">
+                  <li onClick={() => {
+                     localStorage.clear();
+                     dispatch(getLoggedInState());
+                     navigate('/login');
+                  }} className="p-2 hover:bg-orange-200 rounded-b-lg cursor-pointer">
                     Sign Out
                   </li>
                 </ul>
