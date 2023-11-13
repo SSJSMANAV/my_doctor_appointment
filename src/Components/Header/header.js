@@ -30,7 +30,7 @@ function Header() {
           <FontAwesomeIcon icon={faPlus} className="pr-2 mt-1.5 text-2xl" />
           <p className="text-2xl">MEDICAL</p>
         </div>
-        {/* <div className="mt-1.5 font-semibold">
+        <div className="mt-1.5 font-semibold">
           <Link
             to="/"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
@@ -51,7 +51,7 @@ function Header() {
               My Appointments
             </Link>
           )}
-          {user.role !== "admin" && (
+          {user !== null && user.role !== "admin" && (
             <Link
               to="/medical_history_list"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
@@ -59,7 +59,7 @@ function Header() {
               Medical History
             </Link>
           )}
-          {user.role === "admin" && (
+          {user !== null && user.role === "admin" && (
             <Link
               to="/doctor-applications"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
@@ -67,9 +67,8 @@ function Header() {
               Doctor-Applications
             </Link>
           )}
-        </div> */}
-
-        {!isLoggedIn && (
+        </div>
+        {user !== null && !isLoggedIn && (
           <Link
             to="/login"
             className="bg-transparent text-orange-400 py-1.5 px-4 border border-solid border-orange-400 rounded-sm hover:bg-orange-400 hover:text-white transition-all duration-300  ease-in-out"
@@ -77,7 +76,7 @@ function Header() {
             Login
           </Link>
         )}
-        {isLoggedIn && (
+        {user !== null && isLoggedIn && (
           <div className="relative w-52 pl-8">
             <img
               src={`http://localhost:3009/assets/${user.image}`}

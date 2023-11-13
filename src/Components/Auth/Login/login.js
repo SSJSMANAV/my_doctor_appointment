@@ -167,5 +167,4 @@ const LogIn = () => {
     </main>
   );
 };
-
 export default LogIn;

@@ -1,67 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileCard from "./profile_card";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const doctor1 = {
-  id: 1,
-  name: "Sagar1",
-  speciality: "Eye Surgeon",
-  image: "/img/doctor-1.png",
-};
-
-const doctor2 = {
-  id: 2,
-  name: "Sagar2",
-  speciality: "Ear Surgeon",
-  image: "/img/doctor-1.png",
-};
-const doctor3 = {
-  id: 3,
-  name: "Sagar3",
-  speciality: "Ear Surgeon",
-  image: "/img/doctor-1.png",
-};
-
-const doctor4 = {
-  id: 4,
-  name: "Sagar4",
-  speciality: "Eye Surgeon",
-  image: "/img/doctor-1.png",
-};
-
-const doctor5 = {
-  id: 5,
-  name: "Sagar5",
-  speciality: "Ear Surgeon",
-  image: "/img/doctor-1.png",
-};
-const doctor6 = {
-  id: 6,
-  name: "Sagar6",
-  speciality: "Ear Surgeon",
-  image: "/img/doctor-1.png",
-};
-
-const DoctorsList1 = [doctor1, doctor2, doctor3, doctor4, doctor5, doctor6];
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDoctorsList } from "../../action-creators/doctors_list_action";
+import { doctorsListSliceActions } from "../../slices/doctors_slice";
+import { ClipLoader } from "react-spinners";
+let isInitial = true;
 
 const FindDoctors = () => {
-  const [selectedDoctor, setSelectedDoctor] = useState("All"); // Initialize with "Eye Surgeon"
+  const [selectedDoctor, setSelectedDoctor] = useState("All");
 
-  // Function to handle the doctor selection
+  const dispatch = useDispatch();
 
-  const [filteredList, setFilteredList] = useState(DoctorsList1);
+  const doctorsListState = useSelector((state) => {
+    return state.doctorslist;
+  });
 
-  const handleDoctorSelection = (doctorSpeciality) => {
-    setSelectedDoctor(doctorSpeciality);
-    if (doctorSpeciality === "All") {
-      setFilteredList(DoctorsList1);
-      return;
-    }
-    setFilteredList(
-      DoctorsList1.filter((doctor) => doctor.speciality === doctorSpeciality)
-    );
+  const doctorsList = doctorsListState.doctorsList;
+
+  // const handleDoctorSelection = (doctorSpeciality) => {
+
+  // };
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  const handleDoctorSelection = async (speciality) => {
+    console.log("here" + speciality);
+    setSelectedDoctor(speciality);
+    setIsLoading(true);
+    await fetchDoctorsList(speciality)
+      .then((data) => {
+        if (data === null) {
+          dispatch(
+            doctorsListSliceActions.replaceDoctorsList({
+              list: [],
+            })
+          );
+        } else {
+          console.log(data);
+          dispatch(
+            doctorsListSliceActions.replaceDoctorsList({
+              list: data,
+            })
+          );
+        }
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+      });
   };
+
+  useEffect(() => {
+    const getDoctorApplications = async () => {
+      setIsLoading(true);
+      await fetchDoctorsList("all")
+        .then((data) => {
+          if (data === null) {
+            dispatch(
+              doctorsListSliceActions.replaceDoctorsList({
+                list: [],
+              })
+            );
+          } else {
+            dispatch(
+              doctorsListSliceActions.replaceDoctorsList({
+                list: data,
+              })
+            );
+          }
+          setIsLoading(false);
+        })
+        .catch((e) => {
+          setIsLoading(false);
+        });
+    };
+    if (isInitial) {
+      getDoctorApplications();
+      isInitial = false;
+    }
+  }, [dispatch, selectedDoctor]);
 
   return (
     <main>
@@ -78,15 +98,30 @@ const FindDoctors = () => {
                 onChange={(e) => handleDoctorSelection(e.target.value)}
                 className="py-2 lg:px-4 sm:px-0.5 border border-solid border-gray-300 flex sm:text-sm lg:text-lg"
               >
-                <option value="All" className="px-2 py-2">
-                  {" "}
-                  Surgeon
+                <option value="all" className="px-2 py-2">
+                  All
                 </option>
-                <option value="Eye Surgeon" className="px-2 py-2">
-                  <p>Eye Surgeon</p>
+                <option value="Alltergist">Alltergist</option>
+                <option value="Anesthesiologist">Anesthesiologist</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Endocrinologist">Endocrinologist</option>
+                <option value="Hemaologist">Hemaologist</option>
+                <option value="Immunologist">Immunologist</option>
+                <option value="Immunologist">Internist</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Pulmonologist">Pulmonologist</option>
+                <option value="Oncologist">Oncologist</option>
+                <option value="Otolaryngologist">Otolaryngologist</option>
+                <option value="Pediatrician">Pediatrician</option>
+                <option value="Rheumatologist">Rheumatologist</option>
+                <option value="Clinical Pathologist">
+                  Clinical Pathologist
                 </option>
-                <option value="Ear Surgeon">Ear Surgeon</option>
-                <option value="Heart Surgeon">Heart Surgeon</option>
+                <option value="Gynecologist">Gynecologist</option>
+                <option value="Hepatologist">Hepatologist</option>
+                <option value="Pediatrist">Pediatrist</option>
+                <option value="Dentist">Dentist</option>
+                <option value="Physiotherapist">Physiotherapist</option>
               </select>
             </div>
             <div className="flex flex-row sm:mt-4">
@@ -102,11 +137,24 @@ const FindDoctors = () => {
               </button>
             </div>
           </div>
-          <div className="grid lg:grid-cols-3 sm:justify-center md:grid-cols-2 w-full mt-5 justify-between gap-x-10 gap-y-5 ">
-            {filteredList.map((doctorData) => (
-              <ProfileCard doctor={doctorData}></ProfileCard>
-            ))}
-          </div>
+          {isLoading && (
+            <div className="h-32 flex justify-center items-center">
+              <ClipLoader></ClipLoader>
+            </div>
+          )}
+          {!isLoading && !hasError && doctorsList.length === 0 && (
+            <div className="text-center"> No doctors Available.</div>
+          )}
+          {!isLoading && !hasError && doctorsList.length !== 0 && (
+            <div className="grid lg:grid-cols-3 sm:justify-center md:grid-cols-2 w-full mt-5 justify-between gap-x-10 gap-y-5 ">
+              {doctorsList.map((doctorData) => (
+                <ProfileCard
+                  key={doctorData.email}
+                  doctor={doctorData}
+                ></ProfileCard>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </main>
@@ -114,5 +162,3 @@ const FindDoctors = () => {
 };
 
 export default FindDoctors;
-
-// space between dropdown and the items

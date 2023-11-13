@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AddAppointmentButton from "./add_appointment_button";
-import MyAppointmentItem from "./my_apppointment_item";
+import { UseSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux";
 
 const MyAppointments = () => {
+  const authState = useSelector((state) => {
+    return state.auth;
+  });
+
+  const role = authState.user.role;
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
   const handleStartDateChange = (date) => {
-    setStartDate(date);
+    setStartDate(date); 
   };
 
   const handleEndDateChange = (date) => {
@@ -67,7 +73,7 @@ const MyAppointments = () => {
               <option value="Heart Surgeon">Completed</option>
             </select>
           </div>
-          <AddAppointmentButton></AddAppointmentButton>
+          {role === "doctor" && <AddAppointmentButton></AddAppointmentButton>}
         </div>
         <div className="bg-blue-200 mt-5 px-4 py-4 rounded-md w-full">
           <h1 className="text-black font-bold ">Appointments</h1>
@@ -79,10 +85,10 @@ const MyAppointments = () => {
             <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Status</div>
             <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Action</div>
           </div>
+          {/* <MyAppointmentItem></MyAppointmentItem>
           <MyAppointmentItem></MyAppointmentItem>
           <MyAppointmentItem></MyAppointmentItem>
-          <MyAppointmentItem></MyAppointmentItem>
-          <MyAppointmentItem></MyAppointmentItem>
+          <MyAppointmentItem></MyAppointmentItem> */}
         </div>
       </div>
     </div>

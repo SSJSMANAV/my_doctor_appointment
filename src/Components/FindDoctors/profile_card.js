@@ -1,26 +1,27 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ProfileCard = (props) => {
+const ProfileCard = ({doctor}) => {
   const navigate = useNavigate();
 
   const navigateToDetailsPage = () => {
-    navigate(`/doctor-details/${props.doctor.id}/appointmentdates`);
+    console.log('here' + doctor);
+    navigate(`/doctor-details/${doctor.doctorId}/appointmentdates`);
   };
   return (
     <div className="text-center bg-white-100 rounded-md  shadow-lg p-4 my-0 pt-12">
       <div className="rounded-full overflow-hidden mx-auto w-24 h-24 border border-solid  border-black ">
         <img
-          src={process.env.PUBLIC_URL + props.doctor.image}
-          alt={props.doctor.name}
+          src={`http://localhost:3009/assets/${doctor.image}`}
+          alt={doctor.name}
           className="object-cover w-full h-full"
         />
       </div>
       <div className="mt-4">
-        <h2 className="text-lg font-bold text-gray-700">{props.doctor.name}</h2>
+        <h2 className="text-lg font-bold text-gray-700">{doctor.name}</h2>
         <div className="flex flex-row justify-center">
           <p className="text-gray-400 pr-2 font-semibold"> Specialty: </p>
-          <p className="text-black font-semibold">{props.doctor.speciality}</p>
+          <p className="text-black font-semibold">{doctor.specialization}</p>
         </div>
       </div>
       <div
