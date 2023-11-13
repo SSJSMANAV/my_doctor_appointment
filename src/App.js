@@ -22,6 +22,7 @@ import { useDispatch } from "react-redux";
 import { getLoggedInState } from "./action-creators/auth_action";
 import Footer from "./Components/Footer/footer";
 import DoctorApplications from "./Components/Applications/doctor-applications";
+import AddSchedule from "./Components/MyAppointments/add_schedule_page";
 
 function App() {
   const dispatch = useDispatch();
@@ -129,7 +130,9 @@ function App() {
             path="/proceed-doctor-fillup-form"
             element={<ProceedToAddDoctor></ProceedToAddDoctor>}
           ></Route>
+          <Route path='/add-schedule' element={<AddSchedule></AddSchedule>}></Route>
         </Routes>
+
         <Footer></Footer>
       </div>
     </LoadScript>

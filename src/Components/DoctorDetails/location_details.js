@@ -6,7 +6,10 @@ const containerStyle = {
   height: "100vh",
 };
 
-const LocationDetails = () => {
+const LocationDetails = ({location}) => {
+  console.log('location');
+  console.log(location);
+  console.log('here');
   // const location = useLocation();
   // const locationData = location.state;
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -23,7 +26,7 @@ const LocationDetails = () => {
         console.log(currentLocation === null);
       });
     }
-  }, [currentLocation]);
+  }, []);
 
   return (
     <div style={{ height: "70vh", width: "100%" }}>
