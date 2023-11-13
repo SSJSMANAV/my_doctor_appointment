@@ -126,25 +126,25 @@ const AddDoctorForm = () => {
                     className="w-full p-2 border bg-slate-100"
                   >
                     <option value="">Select Speciality</option>
-                    <option value="male">Alltergist</option>
-                    <option value="female">Anesthesiologist</option>
-                    <option value="male">Cardiologist</option>
-                    <option value="female">Endocrinologist</option>
-                    <option value="male">Hemaologist</option>
+                    <option value="Alltergist">Alltergist</option>
+                    <option value="Anesthesiologist">Anesthesiologist</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Endocrinologist">Endocrinologist</option>
+                    <option value="Hemaologist">Hemaologist</option>
                     <option value="female">Immunologist</option>
-                    <option value="male">Internist</option>
-                    <option value="female">Neurologist</option>
-                    <option value="male">Pulmonologist</option>
-                    <option value="female">Oncologist</option>
-                    <option value="male">Otolaryngologist</option>
-                    <option value="female">Pediatrician</option>
-                    <option value="female">Rheumatologist</option>
-                    <option value="female">Clinical Pathologist</option>
-                    <option value="female">Gynecologist</option>
-                    <option value="female">Hepatologist</option>
-                    <option value="female">Pediatrist</option>
-                    <option value="female">Dentist</option>
-                    <option value="female">Physiotherapist</option>
+                    <option value="Immunologist">Internist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="Pulmonologist">Pulmonologist</option>
+                    <option value="Oncologist">Oncologist</option>
+                    <option value="Otolaryngologist">Otolaryngologist</option>
+                    <option value="Pediatrician">Pediatrician</option>
+                    <option value="Rheumatologist">Rheumatologist</option>
+                    <option value="Clinical Pathologist">Clinical Pathologist</option>
+                    <option value="Gynecologist">Gynecologist</option>
+                    <option value="Hepatologist">Hepatologist</option>
+                    <option value="Pediatrist">Pediatrist</option>
+                    <option value="Dentist">Dentist</option>
+                    <option value="Physiotherapist">Physiotherapist</option>
                   </Field>
                   <ErrorMessage
                     name="speciality"

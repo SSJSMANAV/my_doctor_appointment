@@ -39,6 +39,7 @@ export const registerPatient = async (patient) => {
 };
 
 export const registerDoctorRequest = async (doctorData, token) => {
+  console.log(doctorData.speciality);
   console.log(doctorData);
   const url = "http://localhost:3009/user/applyasdoctor";
 
@@ -124,8 +125,11 @@ export const getLoggedInState = () => {
     const userData = localStorage.getItem("user");
     const user = JSON.parse(userData);
     console.log("get loggedIn state.");
+    console.log(token);
+    console.log(user);
+    console.log("get loggedIn state.");
 
-    if (!token) {
+    if (!token) { 
       dispatch(
         authSliceActions.replaceLoggedInState({
           loggedIn: false,
