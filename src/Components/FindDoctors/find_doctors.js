@@ -76,7 +76,7 @@ const FindDoctors = () => {
               <select
                 value={selectedDoctor}
                 onChange={(e) => handleDoctorSelection(e.target.value)}
-                className="py-2 lg:px-4 sm:px-1 border border-solid border-gray-300 flex sm:text-sm lg:text-lg"
+                className="py-2 lg:px-4 sm:px-0.5 border border-solid border-gray-300 flex sm:text-sm lg:text-lg"
               >
                 <option value="All" className="px-2 py-2">
                   {" "}

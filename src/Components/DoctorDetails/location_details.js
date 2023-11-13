@@ -26,11 +26,11 @@ const LocationDetails = () => {
   }, [currentLocation]);
 
   return (
-    <div style={{ height: "70vh", width: "100%" }}>
+    <div className="sm:w-full sm:h-full sm:mb-12">
       {mapLoaded && (
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
           {currentLocation !== null && <Marker position={currentLocation} />}
-          {<Marker position={center}/>}
+          {<Marker position={center} />}
         </GoogleMap>
       )}
     </div>

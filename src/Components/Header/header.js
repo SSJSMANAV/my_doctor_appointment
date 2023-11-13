@@ -30,7 +30,7 @@ function Header() {
           <FontAwesomeIcon icon={faPlus} className="pr-2 mt-1.5 text-2xl" />
           <p className="text-2xl">MEDICAL</p>
         </div>
-        <div className="mt-1.5 font-semibold">
+        {/* <div className="mt-1.5 font-semibold">
           <Link
             to="/"
             className="mr-7 hover:text-orange-400 transition-all duration-300"
@@ -67,7 +67,8 @@ function Header() {
               Doctor-Applications
             </Link>
           )}
-        </div>
+        </div> */}
+
         {!isLoggedIn && (
           <Link
             to="/login"

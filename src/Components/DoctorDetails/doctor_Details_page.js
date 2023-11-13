@@ -104,14 +104,14 @@ const DoctorDetailsPage = () => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col lg:w-3/5 sm:w-full">
-          <div className="flex flex-row gap-x-0 w-full ">
+        <div className="flex flex-col lg:w-3/5 sm:w-full sm:mb-12">
+          <div className="flex flex-row  lg:w-full sm:w-full ">
             <NavLink
               to={`/doctor-details/${doctorId}/appointmentdates`}
               className={(navData) =>
                 navData.isActive
-                  ? "w-1/3  text-center inline-block px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200 "
-                  : "w-1/3 text-center inline-block px-12 py-5 border-b-0 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-50"
+                  ? "w-1/3  text-center inline-block lg:px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200 "
+                  : "w-1/3 text-center inline-block  lg:px-12 py-5 border-b-0 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-50"
               }
             >
               <FontAwesomeIcon icon={items[0].icon} className="text-lg" />
@@ -120,8 +120,8 @@ const DoctorDetailsPage = () => {
               to={`/doctor-details/${doctorId}/locationdetails`}
               className={(navData) =>
                 navData.isActive
-                  ? "w-1/3 text-center inline-block px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200"
-                  : "w-1/3 text-center inline-block px-12 py-5 border-b-0 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-50"
+                  ? "w-1/3 text-center inline-block lg:px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200"
+                  : "w-1/3 text-center inline-block lg:px-12 py-5 border-b-0 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-50"
               }
             >
               <FontAwesomeIcon icon={items[1].icon} className="text-lg" />
@@ -130,8 +130,8 @@ const DoctorDetailsPage = () => {
               to={`/doctor-details/${doctorId}/ratings&reviews`}
               className={(navData) =>
                 navData.isActive
-                  ? "w-1/3 text-center inline-block px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200"
-                  : "w-1/3 text-center inline-block px-12 py-5 border-b-0 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-50"
+                  ? "w-1/3 text-center inline-block lg:px-12 py-5 border-b-4 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-200"
+                  : "w-1/3 text-center inline-block lg:px-12 py-5 border-b-0 border-blue-700 text-gray-500 transition-all duration-300  ease-in-out hover:bg-blue-100 hover:text-black bg-blue-50"
               }
             >
               <FontAwesomeIcon icon={items[2].icon} className="text-lg" />

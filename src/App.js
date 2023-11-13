@@ -26,9 +26,9 @@ import DoctorApplications from "./Components/Applications/doctor-applications";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getLoggedInState());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getLoggedInState());
+  // }, [dispatch]);
 
   return (
     <LoadScript googleMapsApiKey="AIzaSyBuM5vSQxrCsjTNcX1CTInG3CU0feIL9L0">
@@ -66,7 +66,7 @@ function App() {
         }}
       />
       <div>
-        <Header></Header>
+        {/* <Header></Header> */}
         <Routes>
           <Route
             exact
