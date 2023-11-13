@@ -43,7 +43,7 @@ function Header() {
           >
             Find Doctors
           </Link>
-          {user.role !== "admin" && (
+          {user !== null && authState.role !== "admin" && (
             <Link
               to="/my_appointments"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
@@ -51,7 +51,7 @@ function Header() {
               My Appointments
             </Link>
           )}
-          {user !== null && user.role !== "admin" && (
+          {user !== null && authState.role === "admin" && (
             <Link
               to="/medical_history_list"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
@@ -59,7 +59,7 @@ function Header() {
               Medical History
             </Link>
           )}
-          {user !== null && user.role === "admin" && (
+          {user !== null && authState.role === "admin" && (
             <Link
               to="/doctor-applications"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
@@ -68,7 +68,7 @@ function Header() {
             </Link>
           )}
         </div>
-        {user !== null && !isLoggedIn && (
+        {user === null && !isLoggedIn && (
           <Link
             to="/login"
             className="bg-transparent text-orange-400 py-1.5 px-4 border border-solid border-orange-400 rounded-sm hover:bg-orange-400 hover:text-white transition-all duration-300  ease-in-out"

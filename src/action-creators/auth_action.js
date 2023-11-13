@@ -130,6 +130,7 @@ export const getLoggedInState = () => {
     console.log("get loggedIn state.");
 
     if (!token) { 
+      console.log('bad');
       dispatch(
         authSliceActions.replaceLoggedInState({
           loggedIn: false,
@@ -139,6 +140,7 @@ export const getLoggedInState = () => {
         })
       );
     } else {
+      console.log('good');
       dispatch(
         authSliceActions.replaceLoggedInState({
           loggedIn: true,

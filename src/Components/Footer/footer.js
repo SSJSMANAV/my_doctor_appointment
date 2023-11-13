@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="text-left">
             <h2>myDoctor</h2>
             <p className=" text-xs  text-gray-700">
-              Copyright @2023 developed by Everest Hostelers All rights reserved
+              Copyright @2023 developed by Barsha Ramtel. All rights reserved.
             </p>
             <div className="mt-4 cursor-pointer">
               <FontAwesomeIcon
@@ -86,7 +86,15 @@ const Footer = () => {
               <div className="flex flex-col h-40 justify-between mt-3 text-gray-700">
                 <p className=" hover:text-slate-950 cursor-pointer">Donate</p>
                 <p className=" hover:text-slate-950 cursor-pointer">About Us</p>
-                <p></p>
+                <p
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                  className=" hover:text-slate-950 cursor-pointer"
+                >
+                  {" "}
+                  Login
+                </p>
                 <p></p>
                 <p></p>
                 <p></p>
