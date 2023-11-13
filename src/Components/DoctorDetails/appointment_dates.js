@@ -16,11 +16,9 @@ const AppointmentDates = () => {
   const token = authState.token;
   const { doctorId } = useParams();
   console.log(doctorId);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(Date.now());
   const [isLoading, setIsLoading] = useState(false);
   const [schedule, setSchedule] = useState([]);
-
-  
 
   const fetchDoctorSchedule = async (date) => {
     // const formattedDate = date.toISOString().split("T")[0];
@@ -37,19 +35,15 @@ const AppointmentDates = () => {
       console.log(e.message);
     }
   };
-
-  // useEffect(() => {
-  //   fetchDoctorSchedule(selectedDate);
-  // });
-  // const handleNextDay = () => {
+  const handleNextDay = () => {
     // setSelectedDate(addDays(selectedDate, 1));
     // fetchDoctorSchedule(selectedDate.toISOString().split("T")[0]);
-  // };
+  };
 
-  // const handlePreviousDay = () => {
+  const handlePreviousDay = () => {
     // setSelectedDate(subDays(selectedDate, 1));
     // fetchDoctorSchedule(selectedDate.toISOString().split("T")[0]);
-  // };
+  };
 
   useEffect(() => {
     fetchDoctorSchedule(Date.now());
@@ -66,12 +60,10 @@ const AppointmentDates = () => {
         </button> */}
         <DatePicker
           selected={selectedDate}
-          onChange={async (date) => {
-            await fetchDoctorSchedule(date.toISOString().split("T")[0]).then(
-              () => {
-                setSelectedDate(date);
-              }
-            );
+          onChange={async (date) =>  {
+            setSelectedDate(date);
+
+            fetchDoctorSchedule(date.toISOString().split("T")[0]);
           }}
           dateFormat="yyyy-MM-dd"
         />
@@ -95,7 +87,7 @@ const AppointmentDates = () => {
           &#8250;
         </button> */}
       </div>
-      {!isLoading && schedule.length === 0 && (
+      {(!isLoading && schedule.length === 0) && (
         <p className="text-center"> No schedule found.</p>
       )}
 
