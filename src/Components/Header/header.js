@@ -51,7 +51,7 @@ function Header() {
               My Appointments
             </Link>
           )}
-          {user !== null && authState.role === "admin" && (
+          {user !== null && authState.role !== "admin" && (
             <Link
               to="/medical_history_list"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
