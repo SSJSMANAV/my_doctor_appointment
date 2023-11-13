@@ -27,9 +27,9 @@ import AddSchedule from "./Components/MyAppointments/add_schedule_page";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getLoggedInState());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getLoggedInState());
+  // }, [dispatch]);
 
   return (
     <LoadScript googleMapsApiKey="AIzaSyBuM5vSQxrCsjTNcX1CTInG3CU0feIL9L0">
@@ -67,7 +67,7 @@ function App() {
         }}
       />
       <div>
-        <Header></Header>
+        {/* <Header></Header> */}
         <Routes>
           <Route
             exact

@@ -24,23 +24,27 @@ const LogIn = () => {
   });
 
   return (
-    <main className="main-container flex bg-white lin-grad">
-      <div className="w-3/5 bg-slate-300 mt-12">
-        <div className="mt-16">
-          <div className="flex justify-around">
-            <div className="flex flex-row">
-              <h1 className="text-cyan-700 font-bold text-3xl pr-3">
-                Sign in to
-              </h1>
-              <h1 className="text-orange-400 font-bold text-3xl"> myDoctor</h1>
+    <main className="lg:main-container lg:justify-center lg:items-center flex lg:flex-row bg-white lin-grad sm:flex-col  ">
+      <div className="flex lg:flex-row mt-20 sm:flex-col lg:items-start lg:h-full sm:items-center sm:flex-col-reverse">
+        <div className="lg:w-3/5 bg-slate-300 h-1/2 lg:pb-20 lg:mt-0 sm:w-4/5 sm:pb-12 lg:pb-0 sm:mb-20">
+          <div className="mt-16">
+            <div className="flex justify-around">
+              <div className="flex lg:flex-row sm:flex-col">
+                <h1 className="text-cyan-700 font-bold text-3xl pr-3">
+                  Sign in to
+                </h1>
+                <h1 className="text-orange-400 font-bold text-3xl">
+                  {" "}
+                  myDoctor
+                </h1>
+              </div>
             </div>
-          </div>
 
-          <div className="flex justify-center mt-4">
-            <p>Use your email account</p>
-          </div>
-          <div className="relative mt-4 flex justify-center">
-            {/* <div className="relative w-8/12"> */}
+            <div className="flex justify-center mt-4">
+              <p>Use your email account</p>
+            </div>
+            <div className="relative mt-4 flex justify-center">
+              {/* <div className="relative w-8/12"> */}
               <div className="flex items-center">
                 <Formik
                   initialValues={{
@@ -136,29 +140,31 @@ const LogIn = () => {
                 </Formik>
               </div>
             </div>
-          {/* </div> */}
+            {/* </div> */}
+          </div>
         </div>
-      </div>
-      <div className="2/5 bg-cyan-700 mt-12">
-        <div className="flex flex-col my-40 h-1/2">
-          <div className="text-3xl flex justify-center mb-8 text-gray-200 font-semibold">
-            <h1>Hello, Friend!</h1>
-          </div>
-          <div className="w-2/4 ml-24 text-center flex justify-center text-gray-100">
-            <p>Enter your personal details and start the journey with us.</p>
-          </div>
-          <div className="flex justify-center mt-10">
-            <Link
-              to={"/signup"}
-              className="px-10 py-2 bg-transparent rounded-3xl font-semibold text-gray-200 border-gray-200 border-2"
-            >
-              Sign Up
-            </Link>
+        <div className="lg:2/5 bg-cyan-700  sm:w-4/5 lg:pb-1.5 ">
+          <div className="flex flex-col lg:my-28 sm:my-24 lg:h-60  ">
+            <div className="text-3xl flex justify-center mb-8 text-gray-200 font-semibold">
+              <h1>Hello, Friend!</h1>
+            </div>
+            <div className="lg:w-2/4 sm:w-full lg:ml-24 text-center flex sm:justify-center sm:items-center text-gray-100 sm">
+              <p className="sm:w-3/4 ">
+                Enter your personal details and start the journey with us.
+              </p>
+            </div>
+            <div className="flex justify-center mt-10">
+              <Link
+                to={"/signup"}
+                className="px-10 py-2 bg-transparent rounded-3xl font-semibold text-gray-200 border-gray-200 border-2"
+              >
+                Sign Up
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </main>
   );
 };
-
 export default LogIn;

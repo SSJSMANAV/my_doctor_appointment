@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import "./signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faHouse, faCalendar, faLock } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -22,28 +23,27 @@ const SignUp = () => {
       .email("* Invalid email format.")
       .required("* Email is required."),
     address: Yup.string().required("* Address is required."),
-    dob: Yup.string().required("* Date of Birth is required."), 
+    dob: Yup.string().required("* Date of Birth is required."),
     password: Yup.string().required("* Password is required."),
   });
 
   return (
     <main className=" flex lin-grad w-full">
-      <div className="flex w-4/5 mx-auto my-16 border rounded-2xl mt-32">
-        <div className="w-2/5 h-auto bg-cyan-700 pb-28 rounded-s-2xl">
-          <div className="mt-44">
+      <div className="flex lg:flex-row sm:flex-col lg:w-4/5 mx-auto my-16 border rounded-2xl mt-16 lg:items-start  sm:items-center">
+        <div className="lg:w-2/5 h-auto sm:w-4/5 lg:h-full bg-cyan-700  sm:rounded-t-2xl lg:rounded-t-none lg:rounded-tl-2xl lg:rounded-bl-2xl  flex  ">
+          <div className="lg:h-1/2  sm:h-full sm:py-32">
             <div className="flex justify-around">
               <h1 className="text-slate-300 font-bold text-3xl">
                 Welcome Back!
               </h1>
             </div>
-
             <div className="w-2/3 my-0 mx-auto flex justify-center mt-4">
               <p className="text-center">
                 To keep connected with us, please login with your personal info
               </p>
             </div>
 
-            <div className="flex justify-center mt-8 mb-20 ">
+            <div className="flex justify-center mt-8  ">
               <Link
                 to="/login"
                 className="px-12 py-3 text-white font-semibold bg-cyan-700 rounded-3xl border border-white  hover:border-cyan-200 hover:shadow hover:shadow-cyan-200"
@@ -53,8 +53,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-
-        <div className="w-4/5 bg-slate-300 rounded-e-2xl">
+        <div className="w-4/5 bg-slate-300  lg:rounded-none lg:rounded-tr-2xl lg:rounded-br-2xl sm:rounded-b-2xl">
           <div className="mt-8">
             <div className="flex justify-around">
               <h1 className="text-cyan-700 font-bold text-3xl">
@@ -85,8 +84,8 @@ const SignUp = () => {
                   image: imageFile,
                 })
                   .then((data) => {
-                    toast.success('Signed in successfully.');
-                    
+                    toast.success("Signed in successfully.");
+
                     dispatch(
                       authSliceActions.replaceLoggedInState({
                         loggedIn: true,
@@ -95,7 +94,7 @@ const SignUp = () => {
                         token: data.token,
                       })
                     );
-                    navigate('/home');
+                    navigate("/home");
                   })
                   .catch((e) => {
                     toast.error(e.message);
@@ -162,10 +161,10 @@ const SignUp = () => {
                           placeholder="Address"
                         />
                         <div className="absolute pl-3 flex items-center">
-                          {/* <FontAwesomeIcon
-                          icon={faHouse}
-                          className="text-gray-500"
-                        /> */}
+                          <FontAwesomeIcon
+                            icon={faHouse}
+                            className="text-gray-500"
+                          />
                         </div>
                       </div>
                       <ErrorMessage
@@ -185,6 +184,12 @@ const SignUp = () => {
                           className="w-full border font-light text-gray-400 border-gray-300 rounded pl-10 py-2 pr-3 focus:outline-none focus:ring focus:border-blue-300"
                           placeholder="Date of Birth"
                         />
+                        <div className="absolute pl-3 flex items-center">
+                          <FontAwesomeIcon
+                            icon={faCalendar}
+                            className="text-gray-500"
+                          />
+                        </div>
                       </div>
                       <ErrorMessage
                         name="dob"
@@ -203,6 +208,12 @@ const SignUp = () => {
                           className="w-full border border-gray-300 rounded pl-10 py-2 pr-3 focus:outline-none focus:ring focus:border-blue-300"
                           placeholder="Password"
                         />
+                        <div className="absolute pl-3 flex items-center">
+                          <FontAwesomeIcon
+                            icon={faLock}
+                            className="text-gray-500"
+                          />
+                        </div>
                       </div>
                       <ErrorMessage
                         name="password"
@@ -226,7 +237,9 @@ const SignUp = () => {
                         />
                       </div>
                       {!imageFile && (
-                        <div className="text-red-500 pt-2 text-sm">File is Required</div>
+                        <div className="text-red-500 pt-2 text-sm">
+                          File is Required
+                        </div>
                       )}
                       {/* <ErrorMessage
                         name="image"
@@ -237,11 +250,11 @@ const SignUp = () => {
                   </div>
 
                   <div className="flex justify-center ">
-                    <div className="mt-6  flex justify-center  w-1/3 cursor-pointer hover:text-gray-600 ">
+                    <div className=" flex justify-center  lg:w-1/3 cursor-pointer hover:text-gray-600 sm:mt-2 ">
                       <a href="hre">Forgot your Password ?</a>
                     </div>
                   </div>
-                  <div className="flex justify-center mt-8 mb-20 ">
+                  <div className="flex justify-center mt-4  mb-8 ">
                     <button
                       className="px-12 py-3 text-white font-semibold bg-cyan-700 rounded-3xl"
                       type="submit"
