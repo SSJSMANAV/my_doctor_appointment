@@ -447,7 +447,7 @@ const Home = () => {
       {/* SEVENTH CONTAINER */}
       <div class="seventh_container" className="flex pb-32">
         <div className="w-4/6 flex my-0 mx-auto">
-          <div className="w-1/3 pt-12">
+          <div className="lg:w-1/3 pt-12 sm:hidden">
             <img
               src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
               style={{ width: "100%", height: "26rem" }}
@@ -455,7 +455,7 @@ const Home = () => {
               className="object-cover"
             />
           </div>
-          <div className="ml-36 mt-14 text-left">
+          <div className="lg:ml-36 mt-14 text-left">
             <div className="mb-6">
               <h1 className="text-3xl font-semibold">
                 Most questions by our beloved patients
