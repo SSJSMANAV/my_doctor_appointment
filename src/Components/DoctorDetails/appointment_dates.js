@@ -60,8 +60,9 @@ const AppointmentDates = () => {
         </button> */}
         <DatePicker
           selected={selectedDate}
-          onChange={(date) => {
+          onChange={async (date) =>  {
             setSelectedDate(date);
+
             fetchDoctorSchedule(date.toISOString().split("T")[0]);
           }}
           dateFormat="yyyy-MM-dd"

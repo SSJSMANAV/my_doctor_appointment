@@ -4,6 +4,9 @@ import { faPlus, faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../../../src/App.css";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useNavigate } from "react-router-dom/dist";
+import { useDispatch } from "react-redux";
+import { getLoggedInState } from "../../action-creators/auth_action";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -62,13 +65,13 @@ function Header() {
         </div>
         {windowWidth >= 800 && (
           <div className="mt-1.5 font-semibold">
+
             <Link
               to="/"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
             >
               Home
             </Link>
-            <Link
               to="/find-doctors"
               className="mr-7 hover:text-orange-400 transition-all duration-300"
             >
@@ -94,6 +97,7 @@ function Header() {
         )}
 
         {user !== null && !isLoggedIn && (
+
           <Link
             to="/login"
             className="bg-transparent text-orange-400 py-1.5 px-4 border border-solid border-orange-400 rounded-sm hover:bg-orange-400 hover:text-white transition-all duration-300  ease-in-out"
@@ -120,7 +124,11 @@ function Header() {
                     Profile
                   </li>
                   <li className="p-2 hover:bg-orange-200">Account Info</li>
-                  <li className="p-2 hover:bg-orange-200 rounded-b-lg">
+                  <li onClick={() => {
+                     localStorage.clear();
+                     dispatch(getLoggedInState());
+                     navigate('/login');
+                  }} className="p-2 hover:bg-orange-200 rounded-b-lg cursor-pointer">
                     Sign Out
                   </li>
                 </ul>

@@ -57,7 +57,7 @@ const SignUp = () => {
           <div className="mt-8">
             <div className="flex justify-around">
               <h1 className="text-cyan-700 font-bold text-3xl">
-                Sign Up to Diprella
+                Sign Up to myDoctor
               </h1>
             </div>
 

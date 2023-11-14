@@ -14,10 +14,10 @@ const BookingDateItem = ({ schedule }) => {
             {" "}
             {schedule.startTime} - {schedule.endTime}
           </p>
-          <p className="text-sm text-gray-400 font-bold">
+          {/* <p className="text-sm text-gray-400 font-bold">
             {" "}
             ABC Hospital, Kathmandu
-          </p>
+          </p> */}
         </div>
         <button
           disabled={schedule.booked}
