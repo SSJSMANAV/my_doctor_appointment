@@ -65,9 +65,9 @@ const ProceedToAddDoctor = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center">
-      <div className="flex mt-24 w-2/3 ">
-        <div className="w-1/2 p-4 flex flex-col">
+    <div className=" sm:flex lg:flex-row sm:w-full sm:justify-center  ">
+      <div className="flex lg:flex-row sm:flex-col mt-12 lg:w-2/3 sm:w-11/12  ">
+        <div className="lg:w-1/2 sm:w-full lg:p-4 flex flex-col">
           <div className="text-gray-500 font-semibold text-sm">
             Pin point doctor's location ( * Hospital)
           </div>
@@ -83,7 +83,7 @@ const ProceedToAddDoctor = () => {
             </GoogleMap>
           )}
         </div>
-        <div className="w-1/2 p-4">
+        <div className="lg:w-1/2 p-4">
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Working Days ( * From )

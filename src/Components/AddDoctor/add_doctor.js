@@ -64,15 +64,15 @@ const AddDoctorForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center mt-24 mb-5">
-      <div className="bg-white p-8 rounded  flex w-2/3 mx-32 lin-grad shadow-2xl">
-        <div className="w-1/2">
+    <div className="min-h-screen w-full flex items-center justify-center mt-24 mb-5">
+      <div className="bg-white p-8 rounded  flex lg:w-2/3 sm:w-4/5   sm:justify-center  lin-grad shadow-2xl">
+        <div className="lg:w-1/2 sm:hidden lg:flex ">
           <div className="flex flex-row justify-center items-center w-full h-full">
             <div className="text-2xl font-semibold text-orange-400">my</div>
             <div className="text-2xl font-bold text-blue-600">Doctor</div>
           </div>
         </div>
-        <div className="w-1/2 pl-8 ">
+        <div className="lg:w-1/2 sm:w-11/12 lg:pl-8 ">
           <h1 className="text-end font-semibold mb-4 text-gray-500">
             * Apply{" "}
           </h1>
@@ -139,7 +139,9 @@ const AddDoctorForm = () => {
                     <option value="Otolaryngologist">Otolaryngologist</option>
                     <option value="Pediatrician">Pediatrician</option>
                     <option value="Rheumatologist">Rheumatologist</option>
-                    <option value="Clinical Pathologist">Clinical Pathologist</option>
+                    <option value="Clinical Pathologist">
+                      Clinical Pathologist
+                    </option>
                     <option value="Gynecologist">Gynecologist</option>
                     <option value="Hepatologist">Hepatologist</option>
                     <option value="Pediatrist">Pediatrist</option>
