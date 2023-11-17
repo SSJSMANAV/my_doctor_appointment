@@ -31,7 +31,7 @@ const Home = () => {
                 molestiae sapiente temporibus non ipsam voluptatibus nisi sunt.
               </p>
               <div className="text-left">
-                <button className="lg:p-3 lg:px-6 sm:p-3 sm:text-sm mt-6 font-semibold bg-orange-500 rounded-3xl text-white hover:bg-blue-500 transition-all duration-300">
+                <button className="lg:p-3 lg:px-6 sm:p-3 sm:text-sm mt-6 font-semibold bg-orange-500 rounded-3xl text-white hover:scale-105 transition-all duration-300">
                   Request an Appointment
                 </button>
               </div>

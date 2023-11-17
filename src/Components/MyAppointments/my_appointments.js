@@ -2,20 +2,35 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AddAppointmentButton from "./add_appointment_button";
-import { UseSelector } from "react-redux/es/hooks/useSelector";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchMyAppointments } from "../../action-creators/my_appointments_action";
+import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
+import { useDispatch } from "react-redux";
+import { myAppointmentsSliceActions } from "../../slices/my_appointments_slice";
+import MyAppointmentItem from "./my_appointment_item";
 
 const MyAppointments = () => {
   const authState = useSelector((state) => {
     return state.auth;
   });
+  const token = authState.token;
+
+  const myApppointmentsState = useSelector((state) => {
+    return state.myappointments;
+  });
+
+  const appointmentsList = myApppointmentsState.myappointments;
+
+  const dispatch = useDispatch();
 
   const role = authState.user.role;
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
   const handleStartDateChange = (date) => {
-    setStartDate(date); 
+    setStartDate(date);
   };
 
   const handleEndDateChange = (date) => {
@@ -29,6 +44,30 @@ const MyAppointments = () => {
   const handleDoctorSelection = (status) => {
     setAppointmentStatus(status);
   };
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, sethasError] = useState(null);
+
+  const fetchAppointments = async () => {
+    setIsLoading(true);
+    await fetchMyAppointments(token)
+      .then((data) => {
+        console.log(data.result);
+        dispatch(
+          myAppointmentsSliceActions.replaceMyAppointments({
+            appointments: data.result,
+          })
+        );
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
   return (
     <div className="pb-24 flex  pt-24">
       <div className="w-4/6 flex my-0 mx-auto pt-4 flex-col">
@@ -46,7 +85,7 @@ const MyAppointments = () => {
               />
               <h1> - </h1>
               <DatePicker
-                selected={endDate}        
+                selected={endDate}
                 onChange={handleEndDateChange}
                 selectsEnd
                 startDate={startDate}
@@ -79,16 +118,36 @@ const MyAppointments = () => {
           <h1 className="text-black font-bold ">Appointments</h1>
 
           <div className="flex w-full justify-between mb-5">
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-start">Booking Id. #</div>
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Doctor</div>
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Gender</div>
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Status</div>
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">Action</div>
+            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-start">
+              Doctor
+            </div>
+            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+              Patient
+            </div>
+            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+              Start Time
+            </div>
+            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+              Status
+            </div>
+            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+              Action
+            </div>
           </div>
-          {/* <MyAppointmentItem></MyAppointmentItem>
-          <MyAppointmentItem></MyAppointmentItem>
-          <MyAppointmentItem></MyAppointmentItem>
-          <MyAppointmentItem></MyAppointmentItem> */}
+          {isLoading && (
+            <div className="text-center">
+              {" "}
+              <ClipLoader></ClipLoader>
+            </div>
+          )}
+          {!isLoading &&
+            appointmentsList.length > 0 &&
+            appointmentsList.map((appointment) => (
+              <MyAppointmentItem appointment={appointment}></MyAppointmentItem>
+            ))}
+          {!isLoading && appointmentsList.length <= 0 && (
+            <div className="text-center"> No appointments till date !</div>
+          )}
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { fetchDoctorApplications } from "../../action-creators/doctor-applications_action";
-import DoctorRequestItem from "../MyAppointments/my_apppointment_item";
+import DoctorRequestItem from "../MyAppointments/doctor_request_item";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { doctorapplicationsactions } from "../../slices/doctor_application_slice";
@@ -93,7 +93,7 @@ const DoctorApplications = () => {
   };
 
   return (
-    <div>
+    <div >
       {isOpen && (
         <div
           onClick={toggleSidebar}
@@ -106,7 +106,7 @@ const DoctorApplications = () => {
         doctorData={data}
       />
 
-      <div className="pb-24 flex pt-24">
+      <div className="pb-24 flex pt-24 overflow-y-auto">
         <div className="w-4/6 flex my-0 mx-auto pt-4 flex-col">
           <div className="flex flex-row justify-between items-center w-full"> 
             <div className=" border border-solid border-black flex">

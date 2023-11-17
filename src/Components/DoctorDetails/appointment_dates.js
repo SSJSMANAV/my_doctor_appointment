@@ -46,7 +46,8 @@ const AppointmentDates = () => {
   };
 
   useEffect(() => {
-    fetchDoctorSchedule(Date.now());
+    const timeStamp = Date.now();
+    fetchDoctorSchedule(new Date(timeStamp).toISOString().split("T")[0]);
   }, []);
 
   return (
@@ -60,7 +61,8 @@ const AppointmentDates = () => {
         </button> */}
         <DatePicker
           selected={selectedDate}
-          onChange={async (date) =>  {
+          onChange={async (date) => {
+            console.log(date);
             setSelectedDate(date);
 
             fetchDoctorSchedule(date.toISOString().split("T")[0]);
@@ -87,14 +89,19 @@ const AppointmentDates = () => {
           &#8250;
         </button> */}
       </div>
-      {(!isLoading && schedule.length === 0) && (
+      {!isLoading && schedule.length === 0 && (
         <p className="text-center"> No schedule found.</p>
       )}
 
       <div className="shadow-md w-full">
         {schedule.length !== 0 &&
           schedule.map((schedule) => {
-            return <BookingDateItem schedule={schedule}></BookingDateItem>;
+            return (
+              <BookingDateItem
+                date={selectedDate}
+                schedule={schedule}
+              ></BookingDateItem>
+            );
           })}
       </div>
     </div>

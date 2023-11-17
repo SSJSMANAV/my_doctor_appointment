@@ -11,7 +11,8 @@ const AddSchedule = () => {
     return state.auth;
   });
   const token = authState.token;
-  const [startDate, setStartDate] = useState(Date.now());
+  const timeStamp = Date.now();
+  const [startDate, setStartDate] = useState(new Date(timeStamp));
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [appointments, setAppointments] = useState([]);

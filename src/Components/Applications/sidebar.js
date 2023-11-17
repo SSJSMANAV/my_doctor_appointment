@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Sidebar = ({ isOpen, toggleSidebar, doctorData }) => {
   return (
     <div
-      className={`fixed  h-full w-96 bg-gray-700 top-0 left-0 transition-transform transform z-10 ${
+      className={`fixed overflow-y-auto overflow-hidden h-full w-96 bg-gray-700 top-0 left-0 transition-transform transform z-10 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -60,6 +60,8 @@ const Sidebar = ({ isOpen, toggleSidebar, doctorData }) => {
               ))}
             </ul>
           </li>
+          <div className="h-48 bg-red-600 w-full mb-3"></div>
+          <div className="h-48 bg-red-500 w-full mb-3"></div>
           <li className="px-4 py-2 text-white">
             Document Images:
             <ul className="ml-4">
