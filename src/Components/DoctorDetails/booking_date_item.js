@@ -47,8 +47,8 @@ const BookingDateItem = ({ schedule, date }) => {
   };
 
   return (
-    <div className="flex flex-col mt-3">
-      <div className="flex flex-row justify-between items-center px-6">
+    <div className="flex flex-col mt-3 cursor-pointer">
+      <div className="flex flex-row justify-between items-center px-6 transition-all hover:translate-x-2 ">
         <div className="flex flex-col mb-3">
           <p className="text-sm font-semibold">
             {" "}

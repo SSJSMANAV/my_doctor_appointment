@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { fetchDoctorApplications } from "../../action-creators/doctor-applications_action";
-import DoctorRequestItem from "../MyAppointments/doctor_request_item";
+import DoctorRequestItem from "../Applications/doctor_request_item";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { doctorapplicationsactions } from "../../slices/doctor_application_slice";

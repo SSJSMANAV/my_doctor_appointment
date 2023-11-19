@@ -2,29 +2,69 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Questions from "../Questions/question";
 import Review from "../Review/review";
-
-import Header from "../Header/header";
 import { useEffect } from "react";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import "../../css/home/home.css";
+
 import {
   faMinus,
   faArrowRight,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
+import Section2 from "./section_two";
 library.add(faFacebookF);
 
 const Home = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        console.log(entries);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(
+              "heading-text-1-active",
+              "heading-text-2-active",
+              "header-image-1-active",
+              "header-image-2-active",
+              "header-image-3-active",
+              "header-data-active",
+              "block1-active",
+              "block2-active",
+              "block3-active"
+            );
+          } else {
+            entry.target.classList.remove(
+              "heading-text-1-active",
+              "heading-text-2-active",
+              "header-image-1-active",
+              "header-image-2-active",
+              "header-image-3-active",
+              "header-data-active",
+              "block1-active",
+              "block2-active",
+              "block3-active"
+            );
+          }
+        });
+      },
+      { threshold: 0.5, root: null }
+    );
+    const hiddenElements = document.querySelectorAll(
+      ".heading-text-1, .heading-text-2, .header-image-1, .header-image-2, .header-image-3, .header-data, .block1, .block2, .block3"
+    );
+    hiddenElements.forEach((el) => observer.observe(el));
+  }, []);
+
   return (
     <main className="App my-0 mr-auto ml-auto mt-2">
-      <Header />
       <section className="pb-24 flex lin-grad pt-16  ">
         <div className="w-4/6 flex my-0 mx-auto">
           <div class="left_container lg:w-2/5 lg:pt-8 sm:w-full sm:pt-20">
             <div class="lft_con_first">
-              <h1 className="font-bold text-left lg:text-5xl lg:leading-snug sm:text-4xl sm:leading-snug sm:pb-4">
+              <h1 className="heading-text-1 font-bold text-left lg:text-5xl lg:leading-snug sm:text-4xl sm:leading-snug sm:pb-4">
                 We help patients live a healthy, longer life
               </h1>
-              <p className="text-left">
+              <p className="heading-text-2 text-left">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam
                 adipisci molestias quod sequi distinctio numquam architecto
                 dignissimos, consectetur, consequuntur enim dolores facere
@@ -36,23 +76,23 @@ const Home = () => {
                 </button>
               </div>
             </div>
-            <div className="lg:flex lg:flex-row mt-10  sm:flex-col sm:items-center">
-              <div className="lg:mr-8 sm:mb-4">
+            <div className="header-data flex flex-row items-start  lg:flex lg:flex-row mt-10  sm:flex-col sm:items-center">
+              <div className="lg:mr-8 sm:mb-4 cursor-pointer transition-all hover:scale-105 ">
                 <p className="text-5xl font-semibold">30+</p>
-                <p className="text-xs font-normal mt-2">Years of Experience</p>
+                <p className="text-xs font-normal mt-2">Years of Service </p>
               </div>
-              <div className="lg:mr-8 sm:mb-4">
+              <div className="lg:mr-8 sm:mb-4 cursor-pointer transition-all hover:scale-105">
                 <p className="text-5xl font-semibold">15+</p>
                 <p className="text-xs font-normal mt-2">Clinic Location</p>
               </div>
-              <div className="lg:mr-8 sm:mb-4">
+              <div className="lg:mr-8 sm:mb-4 cursor-pointer transition-all hover:scale-105">
                 <p className="text-5xl font-semibold">100%</p>
                 <p className="text-xs font-normal mt-2">Patient Satisfaction</p>
               </div>
             </div>
           </div>
           <div className="lg:flex sm:hidden">
-            <div className="mt-20 mr-8 ml-12">
+            <div className=" header-image-1  mt-20 mr-8 ml-12">
               <img
                 src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                 alt="alt"
@@ -60,20 +100,20 @@ const Home = () => {
                 className="object-cover"
               />
             </div>
-            <div className="mt-28 ">
-              <div className="mb-8">
+            <div className="mt-28">
+              <div className="mb-8  ">
                 <img
                   src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                   alt="alt"
                   style={{ height: "30%", width: "15rem" }}
-                  className="object-cover"
+                  className="header-image-2 object-cover "
                 />
               </div>
-              <div>
+              <div className="header-image-3">
                 <img
                   src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                   alt="alt"
-                  className="object-cover"
+                  className="header-image-3 object-cover"
                 />
               </div>
             </div>
@@ -81,66 +121,13 @@ const Home = () => {
         </div>
       </section>
       {/* SECOND CONTAINER */}
-      <section class="second_container" className="pb-32 pt-12">
-        <div className="lg:w-4/6 my-0 mx-auto">
-          <div className="w-5/12 my-0 mr-auto ml-auto">
-            <h1 className="text-4xl font-semibold">
-              Providing the best medical Services
-            </h1>
-            <p className="mt-4">
-              World class care for everyone. Our health system offers unmatched
-              , expert health care.
-            </p>
-          </div>
-          <div className="grid grid-cols-3 mt-20">
-            <div className="mr-4 w-10/12">
-              <img
-                src="https://img.freepik.com/free-photo/image-asian-woman-doctor-nurse-found-smth-looking-through-magnifying-glass-stare-surprised_1258-83265.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1697241600&semt=ais"
-                alt="alt"
-                className="h-3/5 object-cover"
-              />
-              <h3 className="text-2xl mt-5">Find a Doctor</h3>
-              <p className="w-full mt-4">
-                World-class for everyone. Our health System offers unmatched
-                expert health care. From the lab to the clinic
-              </p>
-              <button className="bg-orange-200 text-gray-500  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                <FontAwesomeIcon icon={faArrowRight} />
-              </button>
-            </div>
-            <div className="mr-16 w-10/12 ">
-              <img
-                src="https://www.lifewire.com/thmb/YBQuRMKxxhx3Zb3uJ1x-QOT6VsM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Maplocation_-5a492a4e482c52003601ea25.jpg"
-                alt="alt"
-                className="h-3/5 object-cover"
-              />
-              <h3 className="text-2xl mt-5">Find a Location</h3>
-              <p className="w-full mt-4">
-                World-class care for everyone. Our health System offers
-                unmatched,expert health care. From the lab to the clinic
-              </p>
-              <button className="bg-orange-200 text-gray-500  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                <FontAwesomeIcon icon={faArrowRight} />
-              </button>
-            </div>
-            <div className="mr-16 w-10/12 ">
-              <img
-                src="https://www.rsny.org/wp-content/uploads/2020/02/make-an-appointment.png"
-                alt="alt"
-                className="h-3/5 object-cover"
-              />
-              <h3 className="text-2xl mt-5">Book Appointment</h3>
-              <p className="w-full mt-4">
-                World-class care for everyone. Our health System offers
-                unmatched,expert health care. From the lab to the clinic
-              </p>
-              <button className="bg-orange-200 text-gray-500  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                <FontAwesomeIcon icon={faArrowRight} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Section2
+        firstClassName="heading-text-1"
+        secondClassName="heading-text-2"
+        thirdClassName="block1"
+        fourthClassName="block2"
+        fifthClassName="block3"
+      ></Section2>
 
       {/* FOURTH CONTAINER */}
       <div class="fourth_container pb-32">

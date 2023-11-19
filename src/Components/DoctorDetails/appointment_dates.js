@@ -60,6 +60,8 @@ const AppointmentDates = () => {
           &#8249;
         </button> */}
         <DatePicker
+        className="text-center border-2 border-solid border-orange-400 py-1 rounded-sm"
+
           selected={selectedDate}
           onChange={async (date) => {
             console.log(date);

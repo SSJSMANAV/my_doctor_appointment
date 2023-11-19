@@ -5,11 +5,11 @@ import AddAppointmentButton from "./add_appointment_button";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchMyAppointments } from "../../action-creators/my_appointments_action";
-import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { myAppointmentsSliceActions } from "../../slices/my_appointments_slice";
 import MyAppointmentItem from "./my_appointment_item";
+import "../../css/my_appointments.css";
 
 const MyAppointments = () => {
   const authState = useSelector((state) => {
@@ -48,24 +48,41 @@ const MyAppointments = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, sethasError] = useState(null);
 
-  const fetchAppointments = async () => {
-    setIsLoading(true);
-    await fetchMyAppointments(token)
-      .then((data) => {
-        console.log(data.result);
-        dispatch(
-          myAppointmentsSliceActions.replaceMyAppointments({
-            appointments: data.result,
-          })
-        );
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-      });
-  };
-
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        console.log(entries);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("item-enter-active");
+          } else {
+            entry.target.classList.remove("item-enter-active");
+          }
+        });
+      },
+      { threshold: 0.5, root: null }
+    );
+
+    const fetchAppointments = async () => {
+      setIsLoading(true);
+      await fetchMyAppointments(token)
+        .then((data) => {
+          console.log(data.result);
+          dispatch(
+            myAppointmentsSliceActions.replaceMyAppointments({
+              appointments: data.result,
+            })
+          );
+          const hiddenElements = document.querySelectorAll(
+            ".my-appointment-item"
+          );
+          hiddenElements.forEach((el) => observer.observe(el));
+          setIsLoading(false);
+        })
+        .catch((e) => {
+          setIsLoading(false);
+        });
+    };
     fetchAppointments();
   }, []);
   return (
@@ -143,7 +160,10 @@ const MyAppointments = () => {
           {!isLoading &&
             appointmentsList.length > 0 &&
             appointmentsList.map((appointment) => (
-              <MyAppointmentItem appointment={appointment}></MyAppointmentItem>
+              <MyAppointmentItem
+                className="my-appointment-item"
+                appointment={appointment}
+              ></MyAppointmentItem>
             ))}
           {!isLoading && appointmentsList.length <= 0 && (
             <div className="text-center"> No appointments till date !</div>

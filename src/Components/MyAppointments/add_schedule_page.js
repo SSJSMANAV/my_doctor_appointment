@@ -71,6 +71,7 @@ const AddSchedule = () => {
           Date
         </label>
         <DatePicker
+        className="py-1 border-2 border-solid border-orange-400 text-center"
           selected={startDate}
           onChange={(date) => {
             setStartDate(date);

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDoctorsList } from "../../action-creators/doctors_list_action";
 import { doctorsListSliceActions } from "../../slices/doctors_slice";
 import { ClipLoader } from "react-spinners";
-let isInitial = true;
+import "../../css/find_doctors.css";
 
 const FindDoctors = () => {
   const [selectedDoctor, setSelectedDoctor] = useState("All");
@@ -18,6 +18,7 @@ const FindDoctors = () => {
   });
 
   const doctorsList = doctorsListState.doctorsList;
+  // const doctorsList = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2];
 
   // const handleDoctorSelection = (doctorSpeciality) => {
 
@@ -54,6 +55,20 @@ const FindDoctors = () => {
   };
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        console.log(entries);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("card-enter-active");
+          } else {
+            entry.target.classList.remove("card-enter-active");
+          }
+        });
+      },
+      { threshold: 0.8, root: null }
+    );
+
     const getDoctorApplications = async () => {
       setIsLoading(true);
       await fetchDoctorsList("all")
@@ -71,17 +86,24 @@ const FindDoctors = () => {
               })
             );
           }
+          const hiddenElements = document.querySelectorAll(".profile-card");
+          hiddenElements.forEach((el) => observer.observe(el));
           setIsLoading(false);
         })
         .catch((e) => {
           setIsLoading(false);
         });
     };
-    if (isInitial) {
-      getDoctorApplications();
-      isInitial = false;
-    }
-  }, [dispatch, selectedDoctor]);
+    // if (isInitial) {
+    getDoctorApplications();
+    //   isInitial = false;
+    // }
+    // Cleanup observer when component unmounts
+    return () => {
+      console.log("observer cleanup");
+      observer.disconnect();
+    };
+  }, [dispatch]);
 
   return (
     <main>
@@ -151,6 +173,7 @@ const FindDoctors = () => {
                 <ProfileCard
                   key={doctorData.email}
                   doctor={doctorData}
+                  className="profile-card"
                 ></ProfileCard>
               ))}
             </div>
