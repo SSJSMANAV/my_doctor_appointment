@@ -10,11 +10,6 @@ const containerStyle = {
   height: "100vh",
 };
 
-// const center = {
-//   lat: 0, // Replace with the default latitude
-//   lng: 0, // Replace with the default longitude
-// };
-
 const ProceedToAddDoctor = () => {
   const authState = useSelector((state) => {
     return state.auth;
@@ -22,25 +17,30 @@ const ProceedToAddDoctor = () => {
 
   const token = authState.token;
   const location = useLocation();
-  const doctorData = location.state;
-  console.log(doctorData);
 
   const [mapLoaded, setMapLoaded] = useState(false);
 
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  const [currentLocation, setCurrentLocation] = useState(null);
 
   const handleMapClick = (event) => {
     setCenter({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+    setCurrentLocation({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+    console.log(center);
   };
 
   useEffect(() => {
-    // Get the user's current location and update the map's center
+    console.log('use effect');
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         setCenter({ lat: latitude, lng: longitude });
+        setCurrentLocation({ lat: latitude, lng: longitude });
+        setMapLoaded(true);
+        console.log("the value is");
+        // console.log(  currentLocation === null);
+        console.log('ldskj');
       });
-      setMapLoaded(true);
     }
   }, []);
 
@@ -48,6 +48,8 @@ const ProceedToAddDoctor = () => {
     const doctorData = location.state;
 
     doctorData.location = { latitude: center.lat, longitude: center.lng };
+    console.log("sent data");
+    console.log(doctorData.location);
     await registerDoctorRequest(doctorData, token)
       .then((data) => {
         toast.success(data);
@@ -58,7 +60,7 @@ const ProceedToAddDoctor = () => {
   };
 
   return (
-    <div className=" sm:flex lg:flex-row sm:w-full sm:justify-center  ">
+    <div className=" sm:flex lg:flex-row mt-6  sm:w-full sm:justify-center">
       <div className="flex lg:flex-row sm:flex-col mt-12 lg:w-2/3 sm:w-11/12  ">
         <div className="lg:w-1/2 sm:w-full lg:p-4 flex flex-col">
           <div className="text-gray-500 font-semibold text-sm">
@@ -66,17 +68,21 @@ const ProceedToAddDoctor = () => {
           </div>
           {mapLoaded && (
             <GoogleMap
+              onClick={handleMapClick}
               mapContainerStyle={containerStyle}
               center={center}
               zoom={10}
-              onClick={handleMapClick}
             >
-              {center !== null && <Marker position={center} />}
-              <Marker position={center} />
+              {currentLocation !== null && (
+                <Marker position={currentLocation} />
+              )}
             </GoogleMap>
           )}
         </div>
         <div className="lg:w-1/2 p-4">
+          {currentLocation !== null && (
+            <p> current longitude: {currentLocation.lng}</p>
+          )}
           <p> * Apply for Doctor</p>
 
           <button

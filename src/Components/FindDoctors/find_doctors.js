@@ -13,16 +13,25 @@ const FindDoctors = () => {
 
   const dispatch = useDispatch();
 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      console.log(entries);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("card-enter-active");
+        } else {
+          entry.target.classList.remove("card-enter-active");
+        }
+      });
+    },
+    { threshold: 0.8, root: null }
+  );
+    
   const doctorsListState = useSelector((state) => {
     return state.doctorslist;
   });
 
   const doctorsList = doctorsListState.doctorsList;
-  // const doctorsList = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2];
-
-  // const handleDoctorSelection = (doctorSpeciality) => {
-
-  // };
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -47,6 +56,8 @@ const FindDoctors = () => {
             })
           );
         }
+        const hiddenElements = document.querySelectorAll(".profile-card");
+        hiddenElements.forEach((el) => observer.observe(el));
         setIsLoading(false);
       })
       .catch((e) => {
@@ -55,20 +66,7 @@ const FindDoctors = () => {
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        console.log(entries);
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("card-enter-active");
-          } else {
-            entry.target.classList.remove("card-enter-active");
-          }
-        });
-      },
-      { threshold: 0.8, root: null }
-    );
-
+    console.log("running useEffect");
     const getDoctorApplications = async () => {
       setIsLoading(true);
       await fetchDoctorsList("all")
@@ -94,16 +92,14 @@ const FindDoctors = () => {
           setIsLoading(false);
         });
     };
-    // if (isInitial) {
     getDoctorApplications();
-    //   isInitial = false;
-    // }
+
     // Cleanup observer when component unmounts
     return () => {
       console.log("observer cleanup");
       observer.disconnect();
     };
-  }, [dispatch]);
+  }, []);
 
   return (
     <main>

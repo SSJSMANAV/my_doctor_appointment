@@ -18,6 +18,7 @@ import { isValidDateValue } from "@testing-library/user-event/dist/utils";
 import { useEffect } from "react";
 import { fetchDoctorById } from "../../action-creators/doctors_list_action";
 import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
 let isInitial = false;
 
@@ -44,7 +45,7 @@ const DoctorDetailsPage = () => {
         console.log(data.result);
         setDoctorData(data.result);
         console.log("here again");
-        console.log(data.result.location);
+        console.log(doctorData);
         console.log("here again");
         setIsLoading(false);
         setError(null);
@@ -52,6 +53,7 @@ const DoctorDetailsPage = () => {
       .catch((e) => {
         setIsLoading(false);
         setError(e.message);
+        toast.error(e.message);
         console.log(e.message);
       });
   };
@@ -72,16 +74,16 @@ const DoctorDetailsPage = () => {
           <div className=" lft_con lg:w-2/5 sm:w-full ">
             <div className="lg:w-10/12 shadow-sm shadow-slate-300 sm:w-full sm:mt-12">
               <div className="bg-slate-100">
-                <div>
+                <div className=" py-6">
                   <img
                     alt={doctorData.image}
                     src={`http://localhost:3009/assets/${doctorData.image}`}
-                    style={{
-                      width: "30%",
-                      height: "20%",
-                      borderRadius: "100%",
-                    }}
-                    className=" mx-auto lg:justify-center py-6 rounded-full sm:justify-center  "
+                    // style={{
+                    //   width: "30%",
+                    //   height: "20%",
+                    //   borderRadius: "100%",
+                    // }}
+                    className=" mx-auto lg:justify-center sm:justify-center object-cover h-24 w-24 rounded-full"
                   />
                 </div>
                 <div>
@@ -183,7 +185,7 @@ const DoctorDetailsPage = () => {
                 <FontAwesomeIcon icon={items[2].icon} className="text-lg" />
               </NavLink>
             </div>
-            <Outlet location={doctorData.location}></Outlet>
+            <Outlet context={[doctorData]}></Outlet>
           </div>
         </div>
       )}
@@ -192,3 +194,17 @@ const DoctorDetailsPage = () => {
 };
 
 export default DoctorDetailsPage;
+
+// const [doctorData] = useOutletContext();
+//   // const location = useLocation();
+//   // const locationData = location.state;
+//   console.log('helksdkldsl');
+//   console.log(doctorData.location);
+//   const currentLocation = {
+//     lat: doctorData.location.latitude,
+//     lng: doctorData.location.longitude,
+//   };
+//   const center = {
+//     lat: doctorData.location.latitude,
+//     lng: doctorData.location.longitude,
+//   };

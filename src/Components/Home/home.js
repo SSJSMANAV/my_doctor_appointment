@@ -5,16 +5,29 @@ import Review from "../Review/review";
 import { useEffect } from "react";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import "../../css/home/home.css";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { doctorsListSliceActions } from "../../slices/doctors_slice";
+import { fetchDoctorsList } from "../../action-creators/doctors_list_action";
+import "../../css/find_doctors.css";
 
-import {
-  faMinus,
-  faArrowRight,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Section2 from "./section_two";
+import ImageSlider from "./image_slider";
 library.add(faFacebookF);
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const doctorsListState = useSelector((state) => {
+    return state.doctorslist;
+  });
+
+  const doctorsList = doctorsListState.doctorsList;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,6 +66,31 @@ const Home = () => {
       ".heading-text-1, .heading-text-2, .header-image-1, .header-image-2, .header-image-3, .header-data, .block1, .block2, .block3"
     );
     hiddenElements.forEach((el) => observer.observe(el));
+
+    const getDoctorApplications = async () => {
+      await fetchDoctorsList("all")
+        .then((data) => {
+          if (data === null) {
+            dispatch(
+              doctorsListSliceActions.replaceDoctorsList({
+                list: [],
+              })
+            );
+          } else {
+            dispatch(
+              doctorsListSliceActions.replaceDoctorsList({
+                list: data,
+              })
+            );
+          }
+          const hiddenElements = document.querySelectorAll(
+            ".header-image-1, .heading-text-2"
+          );
+          hiddenElements.forEach((el) => observer.observe(el));
+        })
+        .catch((e) => {});
+    };
+    getDoctorApplications();
   }, []);
 
   return (
@@ -71,7 +109,12 @@ const Home = () => {
                 molestiae sapiente temporibus non ipsam voluptatibus nisi sunt.
               </p>
               <div className="text-left">
-                <button className="lg:p-3 lg:px-6 sm:p-3 sm:text-sm mt-6 font-semibold bg-orange-500 rounded-3xl text-white hover:scale-105 transition-all duration-300">
+                <button
+                  onClick={() => {
+                    navigate("/find-doctors");
+                  }}
+                  className="lg:p-3 lg:px-6 sm:p-3 sm:text-sm mt-6 font-semibold bg-orange-500 rounded-3xl text-white hover:scale-105 transition-all duration-300"
+                >
                   Request an Appointment
                 </button>
               </div>
@@ -120,6 +163,89 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {doctorsList.length !== 0 && (
+        <div>
+          <div className="w-5/12  mr-auto ml-auto my-7">
+            <h3 className="heading-text-2 text-4xl font-semibold">
+              Our Best doctors
+            </h3>
+            <p className="heading-text-2 mt-3 font-normal">
+              World class for everyone. Our health System offers unmatched,
+              expert healthcare
+            </p>
+          </div>
+          <div className="header-image-1 w-full">
+            <ImageSlider doctors={doctorsList}></ImageSlider>
+          </div>
+        </div>
+      )}
+
+      {/* {doctorsList.length !== 0 && (
+        <div container="sixth_container" className="pb-32">
+          <div className="w-4/6  mt-20 mx-auto">
+            <div className="w-5/12 my-0 mr-auto ml-auto ">
+              <h3 className="text-4xl font-semibold">Our great doctors</h3>
+              <p className="mt-3 font-normal">
+                World class for everyone. Our health System offers unmatched,
+                expert healthcare
+              </p>
+            </div> */}
+
+      {/* GRID CONTAINER */}
+      {/* <div className="mt-24 grid grid-cols-3 gap-10">
+              {doctorsList.map((doctor) => {
+                return (
+                  <div className="profile-card">
+                    <div>
+                      <img
+                        src={`http://localhost:3009/assets/${doctor.image}`}
+                        style={{ width: "90%", height: "22rem" }}
+                        className="object-cover shadow-sm border border-solid border-slate-300"
+                        alt="alt"
+                      />
+                    </div>
+                    <div
+                      className="mt-4 text-left px-2"
+                      style={{ width: "90%" }}
+                    >
+                      <h1 className="font-semibold text-xl text-gray-700">
+                        Dr. {doctor.name}
+                      </h1>
+                      <div className="flex justify-between">
+                        <button className="mt-4 px-6 py-1 bg-sky-200 text-sky-700 rounded-xl font-semibold ">
+                          {doctor.specialization}
+                        </button>
+                        <p className="mt-5">
+                          {doctor.rating} <span className="font-light"></span>
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            className="text-yellow-400"
+                          />
+                        </p>
+                      </div>
+                      <div className="flex justify-between">
+                        <p className="text-xs font-semibold  mt-5">
+                          {doctor.hospital}
+                        </p>
+                        <button
+                          onClick={() => {
+                            navigate(
+                              `/doctor-details/${doctor.doctorId}/appointmentdates`
+                            );
+                          }}
+                          className="border border-black rounded-full px-3 py-1 mt-3 hover:transform hover:translate-x-2 transition-transform duration-300 ease-in-out"
+                        >
+                          <FontAwesomeIcon icon={faArrowRight} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )} */}
       {/* SECOND CONTAINER */}
       <Section2
         firstClassName="heading-text-1"
@@ -141,7 +267,7 @@ const Home = () => {
           </div>
 
           {/* Grid Container */}
-          <div className="grid grid-cols-3 gird-rows-2 gap-10 mt-20  ">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3  gap-10 mt-20  ">
             <div className=" bg-slate-300 p-4 rounded-2xl">
               <h1 className="text-xl text-left font-medium">Cancer Care</h1>
               <p className="text-left mt-2 text-sm font-normal w-4/5">
@@ -311,126 +437,7 @@ const Home = () => {
         </div>
       </div>
       {/* SIXTH CONTAINER */}
-      <div container="sixth_container" className="pb-32">
-        <div className="w-4/6  my-0 mx-auto">
-          <div className="w-5/12 my-0 mr-auto ml-auto ">
-            <h3 className="text-4xl font-semibold">Our great doctors</h3>
-            <p className="mt-3 font-normal">
-              World class for everyone. Our health System offers unmatched,
-              expert healthcare
-            </p>
-          </div>
 
-          {/* GRID CONTAINER */}
-          <div className="mt-24 grid grid-cols-3 gap-10">
-            <div>
-              <div>
-                <img
-                  src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-                  style={{ width: "90%", height: "22rem" }}
-                  className="object-cover"
-                  alt="alt"
-                />
-              </div>
-              <div className="mt-4 text-left px-2" style={{ width: "90%" }}>
-                <h1 className="font-semibold text-xl text-gray-700">
-                  Dr. Sagar Prajapati
-                </h1>
-                <div className="flex justify-between">
-                  <button className="mt-4 px-6 py-1 bg-sky-200 text-sky-700 rounded-xl font-semibold ">
-                    Surgeon
-                  </button>
-                  <p className="mt-5">
-                    4.5 <span className="font-light"></span>
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      className="text-yellow-400"
-                    />
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-xs font-semibold  mt-5">
-                    Grande Hospital, Tokha
-                  </p>
-                  <button className="border border-black rounded-full px-3 py-1 mt-3 hover:transform hover:translate-x-2 transition-transform duration-300 ease-in-out">
-                    <FontAwesomeIcon icon={faArrowRight} />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div>
-                <img
-                  src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-                  style={{ width: "90%", height: "22rem" }}
-                  alt="alt"
-                  className="object-cover"
-                />
-              </div>
-              <div className="mt-4 text-left px-2" style={{ width: "90%" }}>
-                <h1 className="font-semibold text-xl text-gray-700">
-                  Dr. Sagar Prajapati
-                </h1>
-                <div className="flex justify-between">
-                  <button className="mt-4 px-6 py-1 bg-sky-200 text-sky-700 rounded-xl font-semibold ">
-                    Surgeon
-                  </button>
-                  <p className="mt-5">
-                    4.5 <span className="font-light"></span>
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      className="text-yellow-400"
-                    />
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-xs font-semibold  mt-5">
-                    Grande Hospital, Tokha
-                  </p>
-                  <button className="border border-black rounded-full px-3 py-1 mt-3 hover:transform hover:translate-x-2 transition-transform duration-300 ease-in-out">
-                    <FontAwesomeIcon icon={faArrowRight} />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div>
-                <img
-                  src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-                  style={{ width: "90%", height: "22rem" }}
-                  className="object-cover"
-                  alt="alt"
-                />
-              </div>
-              <div className="mt-4 text-left px-2" style={{ width: "90%" }}>
-                <h1 className="font-semibold text-xl text-gray-700">
-                  Dr. Sagar Prajapati
-                </h1>
-                <div className="flex justify-between">
-                  <button className="mt-4 px-6 py-1 bg-sky-200 text-sky-700 rounded-xl font-semibold ">
-                    Surgeon
-                  </button>
-                  <p className="mt-5">
-                    4.5 <span className="font-light"></span>
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      className="text-yellow-400"
-                    />
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-xs font-semibold  mt-5">
-                    Grande Hospital, Tokha
-                  </p>
-                  <button className="border border-black rounded-full px-3 py-1 mt-3 hover:transform hover:translate-x-2 transition-transform duration-300 ease-in-out">
-                    <FontAwesomeIcon icon={faArrowRight} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       {/* SEVENTH CONTAINER */}
       <div class="seventh_container" className="flex pb-32">
         <div className="w-4/6 flex my-0 mx-auto">

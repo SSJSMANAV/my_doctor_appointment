@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 const containerStyle = {
   width: "100%",
   height: "100vh",
 };
 
-const LocationDetails = ({location}) => {
-  console.log('location');
-  console.log(location);
-  console.log('here');
+const LocationDetails = ({ location }) => {
+  // console.log("location");
+  // console.log(location);
+  // console.log("here");
   // const location = useLocation();
   // const locationData = location.state;
-  const [currentLocation, setCurrentLocation] = useState(null);
-  const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  // const [currentLocation, setCurrentLocation] = useState(null);
+  // const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [doctorData] = useOutletContext();
+  const currentLocation = {
+    lat: doctorData.location.latitude,
+    lng: doctorData.location.longitude,
+  };
+  const center = {
+    lat: doctorData.location.latitude,
+    lng: doctorData.location.longitude,
+  };
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        setCenter({ lat: latitude, lng: longitude });
-        setCurrentLocation({ lat: latitude, lng: longitude });
-        setMapLoaded(true);
-        console.log(currentLocation === null);
-      });
-    }
+    
+    
+    setMapLoaded(true);
   }, []);
 
   return (

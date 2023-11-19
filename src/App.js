@@ -32,7 +32,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyBuM5vSQxrCsjTNcX1CTInG3CU0feIL9L0">
+    <LoadScript googleMapsApiKey="AIzaSyAQJQLycBvTM9-X1QGIzhKJxZ5eIuHtqN0">
       <Toaster
         position="top-right"
         reverseOrder={false}
