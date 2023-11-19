@@ -59,7 +59,9 @@ const AddDoctorForm = () => {
   };
 
   const handleDeleteEducation = (id) => {
-    const updatedEducationList = educationList.filter((edu) => edu.id !== id);
+    const updatedEducationList = educationList.filter(
+      (edu, index) => index !== id
+    );
     setEducationList(updatedEducationList);
   };
 
@@ -194,7 +196,13 @@ const AddDoctorForm = () => {
                     onChange={(event) => {
                       console.log("changed");
                       const files = event.target.files;
-                      setImageFiles(files);
+                      const theFiles = Array.from(files);
+                      const fileList = [];
+                      theFiles.forEach((file) => {
+                        const newFile = new File([file], file.name);
+                        fileList.push(newFile);
+                      });
+                      setImageFiles(fileList);
                     }}
                   />
                 </div>
@@ -220,7 +228,7 @@ const AddDoctorForm = () => {
                     />
                     <input
                       type="text"
-                      placeholder="Grade"
+                      placeholder="Degree"
                       value={grade}
                       onChange={(e) => setGrade(e.target.value)}
                       className="rounded-md p-2 border mt-2"
@@ -238,12 +246,18 @@ const AddDoctorForm = () => {
                   <div className="mt-4 ">
                     <h3>Education Details:</h3>
                     <ul>
-                      {educationList.map((education) => (
+                      {educationList.map((education, index) => (
                         <li
                           key={education.id}
                           className="flex justify-between items-center border border-solid border-black rounded-sm p-2 mb-2"
                         >
-                          {education.instituteName} - {education.grade}
+                          <div className="flex flex-row">
+                            <p className="pr-1">
+                              {" "}
+                              {education.instituteName} -{" "}
+                            </p>
+                            <p className="font-bold"> {education.grade}</p>
+                          </div>
                           {/* <button
                         onClick={() => handleDeleteEducation(education.id)}
                         className="bg-red-500 text-white p-2 rounded-md ml-2"
@@ -252,7 +266,7 @@ const AddDoctorForm = () => {
                       </button> */}
                           <FontAwesomeIcon
                             onClick={() => {
-                              handleDeleteEducation(education.id);
+                              handleDeleteEducation(index);
                             }}
                             icon={faTrash}
                             className="cursor-pointer text-red-600"

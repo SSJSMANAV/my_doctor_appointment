@@ -85,7 +85,7 @@ const DoctorRequestItem = (props) => {
                 e.stopPropagation();
                 handleApplicantsVerifiedState("approved");
               }}
-              className=" border border-solid border-orange-400 transition-all cursor-pointer duration-200  ease-in-out border-spacing-2 flex flex-row gap-x-3 text-orange-400 items-center py-1 rounded-sm px-2 hover:bg-orange-400 hover:text-white"
+              className=" border border-solid border-green-400 transition-all cursor-pointer duration-200  ease-in-out border-spacing-2 flex flex-row gap-x-3 text-green-400 items-center py-1 rounded-sm px-2 hover:bg-green-400 hover:text-white"
             >
               <p className="text-sm">Verify</p>
 

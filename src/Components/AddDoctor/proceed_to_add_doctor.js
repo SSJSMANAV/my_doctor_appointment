@@ -22,18 +22,12 @@ const ProceedToAddDoctor = () => {
 
   const token = authState.token;
   const location = useLocation();
-  const [selectedDayFrom, setSelectedDayFrom] = React.useState("Monday");
-  const [selectedDayTo, setSelectedDayTo] = React.useState("Saturday");
+  const doctorData = location.state;
+  console.log(doctorData);
+
   const [mapLoaded, setMapLoaded] = useState(false);
 
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
-  const handleDayChange = (e) => {
-    setSelectedDayFrom(e.target.value);
-  };
-
-  const handleDayChange1 = (e) => {
-    setSelectedDayTo(e.target.value);
-  };
 
   const handleMapClick = (event) => {
     setCenter({ lat: event.latLng.lat(), lng: event.latLng.lng() });
@@ -52,8 +46,7 @@ const ProceedToAddDoctor = () => {
 
   const handleSubmit = async () => {
     const doctorData = location.state;
-    doctorData.startDay = selectedDayFrom;
-    doctorData.endDay = selectedDayTo;
+
     doctorData.location = { latitude: center.lat, longitude: center.lng };
     await registerDoctorRequest(doctorData, token)
       .then((data) => {
@@ -79,54 +72,19 @@ const ProceedToAddDoctor = () => {
               onClick={handleMapClick}
             >
               {center !== null && <Marker position={center} />}
-              {/* <Marker position={center} /> */}
+              <Marker position={center} />
             </GoogleMap>
           )}
         </div>
         <div className="lg:w-1/2 p-4">
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Working Days ( * From )
-            </label>
-            <select
-              value={selectedDayFrom}
-              onChange={handleDayChange}
-              className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            >
-              <option value="Sunday">Sunday</option>
-              <option value="Monday">Monday</option>
-              <option value="Tuesday">Tuesday</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-              <option value="Saturday">Saturday</option>
-            </select>
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Working Days ( * To )
-            </label>
-            <select
-              value={selectedDayTo}
-              onChange={handleDayChange1}
-              className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            >
-              <option value="Sunday">Sunday</option>
-              <option value="Monday">Monday</option>
-              <option value="Tuesday">Tuesday</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-              <option value="Saturday">Saturday</option>
-            </select>
-          </div>
+          <p> * Apply for Doctor</p>
 
           <button
             type="submit"
             onClick={handleSubmit}
             className="mt-4 bg-white text-blue-600 hover:bg-blue-600 border border-solid border-blue-600 hover:text-white rounded px-4 py-2"
           >
-            Add Doctor
+            Apply
           </button>
         </div>
       </div>

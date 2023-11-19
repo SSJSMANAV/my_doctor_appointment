@@ -53,8 +53,12 @@ export const registerDoctorRequest = async (doctorData, token) => {
   }
 
   for (let i = 0; i < doctorData.imageFiles; i++) {
-    formData.append("document", File([doctorData.imageFiles[i].image], doctorData.imageFiles[i].image.name));
+    formData.append("document", doctorData.imageFiles[i]);
   }
+
+  doctorData.imageFiles.forEach((file, index) => {
+    formData.append("document", file);
+  });
   formData.append("specialization", doctorData.speciality);
   formData.append("experience", doctorData.experience);
   formData.append("hospital", doctorData.currentlyWorkingAt);
@@ -129,8 +133,8 @@ export const getLoggedInState = () => {
     console.log(user);
     console.log("get loggedIn state.");
 
-    if (!token) { 
-      console.log('bad');
+    if (!token) {
+      console.log("bad");
       dispatch(
         authSliceActions.replaceLoggedInState({
           loggedIn: false,
@@ -140,7 +144,7 @@ export const getLoggedInState = () => {
         })
       );
     } else {
-      console.log('good');
+      console.log("good");
       dispatch(
         authSliceActions.replaceLoggedInState({
           loggedIn: true,
