@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "../../css/home/section2.css";
+import MobileCarousel from "../Mobile/Mobile";
 
 const Section2 = ({
   firstClassName,
@@ -22,8 +23,9 @@ const Section2 = ({
             expert health care.
           </p>
         </div>
-        <div className="grid grid-cols-3 mt-20">
-          <div className={`${thirdClassName} mr-4 w-10/12`}>
+        {/* <MobileCarousel></MobileCarousel> */}
+        <div className="lg:grid lg:grid-cols-3 lg:gap-x-2 sm:flex sm:flex-col sm:w-full sm:justify-center mt-20">
+          <div className={`${thirdClassName} w-10/12 sm:mx-auto sm:mb-10  `}>
             <img
               src="https://img.freepik.com/free-photo/image-asian-woman-doctor-nurse-found-smth-looking-through-magnifying-glass-stare-surprised_1258-83265.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1697241600&semt=ais"
               alt="alt"
@@ -38,7 +40,7 @@ const Section2 = ({
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </div>
-          <div className={`${fourthClassName} mr-16 w-10/12`}>
+          <div className={`${fourthClassName} w-10/12 sm:mx-auto sm:mb-10`}>
             <img
               src="https://www.lifewire.com/thmb/YBQuRMKxxhx3Zb3uJ1x-QOT6VsM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Maplocation_-5a492a4e482c52003601ea25.jpg"
               alt="alt"
@@ -53,7 +55,7 @@ const Section2 = ({
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </div>
-          <div className={`${fifthClassName} mr-16 w-10/12`}>
+          <div className={`${fifthClassName}  w-10/12 sm:mx-auto sm:mb-10`}>
             <img
               src="https://www.rsny.org/wp-content/uploads/2020/02/make-an-appointment.png"
               alt="alt"

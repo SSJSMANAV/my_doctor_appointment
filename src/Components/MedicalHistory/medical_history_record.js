@@ -38,22 +38,20 @@ const MedicalHistoryRecord = ({ record }) => {
     doc.save("medical_history.pdf");
   };
 
-
   return (
-    <div className="bg-white p-4 mb-4 shadow-md shadow-gray-200 rounded-sm">
-      <div className="flex justify-between items-center">
-        <div className="flex flex-row items-center">
+    <div className="bg-white lg:p-4 sm:p-2 mb-4 shadow-md shadow-gray-200 rounded-sm">
+      <div className="flex  justify-between items-center">
+        <div className="flex flex-row items-center ">
           <h2 className="font-semibold pr-3 text-gray-400">Diagnosis: </h2>
           <h2 className="font-semibold">{record.diseaseName}</h2>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex sm:ml-2  flex-row items-center">
           <FontAwesomeIcon
             icon={faFileDownload}
-            className="text-2xl text-blue-400 pr-5 cursor-pointer"
+            className="sm:hidden lg:flex text-2xl text-blue-400 pr-5 cursor-pointer"
             onClick={handleDownloadPDF}
           ></FontAwesomeIcon>
-          <p className=" pr-3 text-orange-400 font-semibold text-sm">
-            {" "}
+          <p className="sm:hidden lg:flex pr-3 text-orange-400 font-semibold text-sm ">
             12 | 12 | 2023
           </p>
           <button
@@ -67,7 +65,17 @@ const MedicalHistoryRecord = ({ record }) => {
 
       {expanded && (
         <div className={`medical-record ${expanded ? "expanded" : ""}`}>
-          <div className="mt-4">
+          <div className="lg:hidden mt-3 flex justify-between">
+            <p className="lg:flex pr-3 text-orange-400 font-semibold text-sm ">
+              12 | 12 | 2023
+            </p>
+            <FontAwesomeIcon
+              icon={faFileDownload}
+              className=" text-2xl text-blue-400 cursor-pointer"
+              onClick={handleDownloadPDF}
+            ></FontAwesomeIcon>
+          </div>
+          <div className=" mt-4">
             <p className="font-semibold pr-3 text-gray-400"> Description: </p>
             <p className="text-gray-500 mb-3 text-sm font-semibold">
               {record.description}

@@ -53,14 +53,14 @@ function Header() {
       className="my-0 mr-auto ml-auto fixed inset-x-0 top-0 py-2 pb-4 lin-grad bg-gray-100"
       style={{ zIndex: 1 }}
     >
-      <nav className="w-4/6 flex justify-around my-0 mx-auto items-center">
+      <nav className="w-10/12 flex justify-around my-0 mx-auto items-center">
         {windowWidth < 800 && (
           <div className=" mt-1.5 pr-4">
             <FontAwesomeIcon
               icon={faBars}
               className="text-2xl cursor-pointer transition-transform duration-500 ease-in-out"
               style={{
-                transform: showMenu ? "rotate(90deg)" : "rotate(0deg)",
+                transform: showMenu ? "rotate(90deg) " : "rotate(0deg)",
               }}
               onClick={toggleMenu}
             />
@@ -132,7 +132,10 @@ function Header() {
             </div>
 
             <div className="flex flex-row items-center border border-solid border-red-500 rounded-sm hover:bg-red-500 bg-transparent text-red-500 py-1.5 px-4   hover:text-white transition-all duration-300  ease-in-out">
-              <FontAwesomeIcon className="pr-3" icon={faRightToBracket}></FontAwesomeIcon>
+              <FontAwesomeIcon
+                className="pr-3"
+                icon={faRightToBracket}
+              ></FontAwesomeIcon>
               <Link to="/signup" className="">
                 Sign Up
               </Link>
@@ -196,31 +199,34 @@ function Header() {
       </nav>
       {windowWidth < 800 && (
         <div
-          className={`bg-white w-4/6 mx-auto rounded shadow text-center lin-grad text-slate-200 transition-all   duration-500 ease-in-out ${
-            showMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          } overflow-hidden`}
+          style={{ backgroundColor: "#7179B5" }}
+          className={`absolute w-fit mx-auto rounded shadow text-center text-white ml-10 transition-all duration-1000 
+         ${showMenu ? "max-h-screen opacity-100 " : "max-h-0 opacity-0"}
+         overflow-hidden`}
         >
           <div
-            className={`transition-all duration-500 ease-in-out  ${
-              showMenu ? "flex flex-col " : "hidden"
+            className={`text-left ${
+              showMenu
+                ? "flex flex-col opacity-100 delay-200 transition-all ease-in-out "
+                : "max-h-0 opacity-0  "
             }`}
           >
             <Link
               to="/"
-              className=" pt-0.5 hover:text-orange-400 transition-all duration-300 text-slate-400"
+              className="hover:text-orange-400 transition-all duration-300 pb-1.5 pt-1.5 px-2"
             >
               Home
             </Link>
             <Link
               to="/find-doctors"
-              className=" py-0.5 text-center hover:text-orange-400 transition-all duration-300 text-slate-400"
+              className="hover:text-orange-400 transition-all duration-300 py-1.5 px-2"
             >
               Find Doctors
             </Link>
             {user !== null && authState.role !== "admin" && (
               <Link
                 to="/my_appointments"
-                className=" py-0.5 hover:text-orange-400 transition-all duration-300 text-slate-400"
+                className="hover:text-orange-400 transition-all duration-300 py-1.5 px-2"
               >
                 My Appointments
               </Link>
@@ -228,7 +234,7 @@ function Header() {
             {user !== null && authState.role !== "admin" && (
               <Link
                 to="/medical_history_list"
-                className=" py-0.5 hover:text-orange-400 transition-all duration-300 text-slate-400"
+                className="hover:text-orange-400 transition-all duration-300 py-1.5 pb-3 px-2"
               >
                 Medical History
               </Link>
@@ -236,7 +242,7 @@ function Header() {
             {user !== null && authState.role === "admin" && (
               <Link
                 to="/doctor-applications"
-                className="mr-7 py-1 hover:text-orange-400 transition-all duration-300"
+                className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
               >
                 Doctor-Applications
               </Link>

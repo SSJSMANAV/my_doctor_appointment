@@ -86,50 +86,60 @@ const MyAppointments = () => {
     fetchAppointments();
   }, []);
   return (
-    <div className="pb-24 flex  pt-24">
-      <div className="w-4/6 flex my-0 mx-auto pt-4 flex-col">
-        <div className="flex flex-row justify-between items-center w-full">
-          <div>
-            <div className="border border-solid border-black p-2 flex flex-row">
-              <DatePicker
-                selected={startDate}
-                onChange={handleStartDateChange}
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                placeholderText="Start Date"
-                className="text-center bg-transparent"
-              />
-              <h1> - </h1>
-              <DatePicker
-                selected={endDate}
-                onChange={handleEndDateChange}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                placeholderText="End Date"
-                className="text-center bg-transparent"
-              />
+    <div className="pb-24 flex pt-24">
+      <div className="lg:w-4/6 flex my-0 mx-auto pt-4 flex-col">
+        <div className="flex sm:flex-col lg:flex-row justify-between items-center w-full">
+          <div className="w-full">
+            <div className="lg:w-fit sm:w-min">
+              <div className="sm:w-fit border border-solid border-black sm:py-2 flex flex-row">
+                <DatePicker
+                  selected={startDate}
+                  onChange={handleStartDateChange}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate}
+                  placeholderText="Start Date"
+                  className="text-center text-md bg-transparent"
+                />
+                <h1> - </h1>
+                <DatePicker
+                  selected={endDate}
+                  onChange={handleEndDateChange}
+                  selectsEnd
+                  startDate={startDate}
+                  endDate={endDate}
+                  minDate={startDate}
+                  placeholderText="End Date"
+                  className="text-center text-md bg-transparent"
+                />
+              </div>
             </div>
           </div>
-          <div className=" border border-solid border-black flex">
-            <select
-              value={selectedAppointmentStatus}
-              onChange={(e) => handleDoctorSelection(e.target.value)}
-              className="px-2 py-2 "
-            >
-              <option value="Surgeon" className="px-2 py-2">
-                Booked
-              </option>
-              <option value="Eye Surgeon" className="px-2 py-2">
-                <p>Pending</p>
-              </option>
-              <option value="Ear Surgeon">Cancelled</option>
-              <option value="Heart Surgeon">Completed</option>
-            </select>
+          <div className="flex w-full justify-between">
+            <div className="sm:mt-5 lg:mt-0 sm:w-full lg:w-fit">
+              <div className=" border border-solid border-black flex justify-start sm:w-max  ">
+                <select
+                  value={selectedAppointmentStatus}
+                  onChange={(e) => handleDoctorSelection(e.target.value)}
+                  className="px-2 py-2 "
+                >
+                  <option value="Surgeon" className="px-1 py-2">
+                    Booked
+                  </option>
+                  <option value="Eye Surgeon" className="px-1 py-2">
+                    <p>Pending</p>
+                  </option>
+                  <option value="Ear Surgeon">Cancelled</option>
+                  <option value="Heart Surgeon">Completed</option>
+                </select>
+              </div>
+            </div>
+            <div className="sm:w-full lg:w-fit sm:mt-5 lg:mt-0 sm:text-sm lg:text-md flex sm:justify-end">
+              {role === "doctor" && (
+                <AddAppointmentButton></AddAppointmentButton>
+              )}
+            </div>
           </div>
-          {role === "doctor" && <AddAppointmentButton></AddAppointmentButton>}
         </div>
         <div className="bg-blue-200 mt-5 px-4 py-4 rounded-md w-full">
           <h1 className="text-black font-bold ">Appointments</h1>
