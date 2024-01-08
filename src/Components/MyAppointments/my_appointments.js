@@ -68,7 +68,7 @@ const MyAppointments = () => {
               appointments: data.result,
             })
           );
-
+          setAppointmentsList(data.result);
           setIsLoading(false);
         })
         .catch((e) => {

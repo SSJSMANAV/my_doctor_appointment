@@ -23,6 +23,7 @@ import { getLoggedInState } from "./action-creators/auth_action";
 import Footer from "./Components/Footer/footer";
 import DoctorApplications from "./Components/Applications/doctor-applications";
 import AddSchedule from "./Components/MyAppointments/add_schedule_page";
+import ChatPage from "./Components/Chat/chat";
 
 function App() {
   const dispatch = useDispatch();
@@ -133,6 +134,10 @@ function App() {
           <Route
             path="/add-schedule"
             element={<AddSchedule></AddSchedule>}
+          ></Route>
+          <Route
+            path="/chats"
+            element={<ChatPage></ChatPage>}
           ></Route>
         </Routes>
 

@@ -60,8 +60,7 @@ const AppointmentDates = () => {
           &#8249;
         </button> */}
         <DatePicker
-        className="text-center border-2 border-solid border-orange-400 py-1 rounded-sm"
-
+          className="z-0 text-center border-2 border-solid border-orange-400 py-1 rounded-sm"
           selected={selectedDate}
           onChange={async (date) => {
             console.log(date);
@@ -70,6 +69,7 @@ const AppointmentDates = () => {
             fetchDoctorSchedule(date.toISOString().split("T")[0]);
           }}
           dateFormat="yyyy-MM-dd"
+          
         />
         {/* <ReactDatePicker
           className="text-center text-orange-500 font-semibold text-sm border-none focus:outline-none hover:outline-none"

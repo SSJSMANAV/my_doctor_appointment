@@ -4,23 +4,21 @@ import Rating from "@mui/material/Rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "react-calendar/dist/Calendar.css";
 import "./calendar.css";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import {
-  faHeart,
-  faShareNodes,
   faCircleExclamation,
   faCalendarDays,
   faLocationDot,
   faStar,
+  faMessage,
 } from "@fortawesome/free-solid-svg-icons";
-import { isValidDateValue } from "@testing-library/user-event/dist/utils";
 import { useEffect } from "react";
 import { fetchDoctorById } from "../../action-creators/doctors_list_action";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
+import RatingPopup from "./rating_pop_up";
 
-let isInitial = false;
 
 const DoctorDetailsPage = () => {
   const { doctorId } = useParams();
@@ -58,12 +56,30 @@ const DoctorDetailsPage = () => {
       });
   };
 
+  const [isPopupVisible, setPopupVisible] = useState(false);
+  const navigate = useNavigate();
+
+
   useEffect(() => {
     fetchDoctorDetails();
   }, []);
 
   return (
     <main>
+      {isPopupVisible && (
+        <div
+          onClick={() => setPopupVisible(false)}
+          className="fixed inset-0 bg-black opacity-50"
+        ></div>
+      )}
+
+      {isPopupVisible && (
+        <RatingPopup
+          doctorId={doctorId}
+          isPopupVisible={isPopupVisible}
+          onClose={() => setPopupVisible(false)}
+        />
+      )}
       {isLoading && (
         <div className="h-28 w-full text-center mt-20">
           <ClipLoader></ClipLoader>
@@ -114,17 +130,18 @@ const DoctorDetailsPage = () => {
                   <div className="flex justify-around border border-t-slate-200 pb-4 pt-4 mt-2">
                     <div className="flex">
                       <FontAwesomeIcon
-                        icon={faHeart}
-                        color={isFavourited ? "orange" : "white"}
+                        icon={faMessage}
                         onClick={() => {
-                          setIsFavourited(!isFavourited);
+                          navigate('/chats');
+                          // setIsFavourited(!isFavourited);
                         }}
-                        className="pr-2 bg-slate-300 mt-1.5 lg:text-2xl sm:text-lg sm:ml-2 border border-slate-200 py-2 px-2 rounded-full lg:mr-8 sm:mr-4 cursor-pointer shadow-sm shadow-slate-200"
+                        className="pr-2 text-white bg-sky-200 mt-1.5 lg:text-2xl sm:text-lg sm:ml-2 border border-slate-200 py-2 px-2 rounded-full lg:mr-8 sm:mr-4 cursor-pointer shadow-sm shadow-slate-200"
                       />
                       <FontAwesomeIcon
-                        icon={faShareNodes}
+                        icon={faStar}
                         color="white"
-                        className="pr-2 mt-1.5 bg-gray-300 lg:text-2xl sm:text-lg  border border-slate-200 py-2 px-2 rounded-full cursor-pointer shadow-sm shadow-slate-200"
+                        onClick={() => setPopupVisible(true)}
+                        className="pr-2 mt-1.5 text-white bg-orange-400 lg:text-2xl sm:text-lg  border border-slate-200 py-2 px-2 rounded-full cursor-pointer shadow-sm shadow-slate-200"
                       />
                     </div>
                     <div className="mt-2">

@@ -22,6 +22,32 @@ export const fetchDoctorsList = async (speciality) => {
   }
 };
 
+export const fetchDoctorsByName = async (name, token) => {
+  console.log(name);
+  try {
+    const url = `http://localhost:3009/doctor/serchdoctor?name=${name}`;
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.status);
+    const jsonData = await response.json();
+    if (response.status === 200) {
+      console.log("al;sdfsjdlfskjfsldk");
+      console.log(jsonData);
+      console.log("al;sdfsjdlfskjfsldk");
+      return jsonData.result;
+    } else {
+      throw Error(jsonData.message);
+    }
+  } catch (e) {
+    throw Error(e.message);
+  }
+};
+
 export const fetchDoctorById = async (id) => {
   console.log(id);
   try {
@@ -47,7 +73,7 @@ export const fetchDoctorById = async (id) => {
 };
 
 export const fetchSchedules = async (date, token, doctorId) => {
-  console.log('fetch Schedule');
+  console.log("fetch Schedule");
   console.log(date);
   try {
     const url = `http://localhost:3009/schedule/get-all-schedule/${doctorId}?date=${date}`;
@@ -61,7 +87,7 @@ export const fetchSchedules = async (date, token, doctorId) => {
     console.log(response.status);
     const jsonData = await response.json();
     if (response.status === 200) {
-      console.log('all good');
+      console.log("all good");
       console.log(jsonData);
       return jsonData;
     } else {
