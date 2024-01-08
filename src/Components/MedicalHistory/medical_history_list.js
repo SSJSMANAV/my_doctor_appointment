@@ -66,7 +66,7 @@ const MedicalHistoryList = () => {
           </button>
         </div>
       </div>
-      <div className="w-4/6">
+      <div className="sm:w-4/6">
         {medicalHistory.map((record, index) => (
           <MedicalHistoryRecord key={index} record={record} />
         ))}

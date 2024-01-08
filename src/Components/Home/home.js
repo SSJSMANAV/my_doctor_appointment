@@ -15,6 +15,7 @@ import "../../css/find_doctors.css";
 import { faMinus, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Section2 from "./section_two";
 import ImageSlider from "./image_slider";
+import MedicalServices from "../Mobile/medicalservices";
 library.add(faFacebookF);
 
 const Home = () => {
@@ -257,8 +258,8 @@ const Home = () => {
 
       {/* FOURTH CONTAINER */}
       <div class="fourth_container pb-32">
-        <div className="w-4/6 my-0 mx-auto">
-          <div className="w-5/12 my-0 mr-auto ml-auto ">
+        <div className="sm:w-4/6 my-0 mx-auto">
+          <div className="lg:w-5/12 my-0 mr-auto ml-auto ">
             <h3 className="text-4xl font-semibold">Our medical services</h3>
             <p className="mt-3 font-normal">
               World class for everyone. Our health System offers unmatched,
@@ -267,7 +268,8 @@ const Home = () => {
           </div>
 
           {/* Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3  gap-10 mt-20  ">
+          <MedicalServices></MedicalServices>
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3  gap-10 mt-20  ">
             <div className=" bg-slate-300 p-4 rounded-2xl">
               <h1 className="text-xl text-left font-medium">Cancer Care</h1>
               <p className="text-left mt-2 text-sm font-normal w-4/5">
@@ -392,15 +394,15 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* FIFTH CONTAINER */}
       <div class="fifth_container" className=" pb-32">
-        <div className="w-4/6 flex my-0 mx-auto">
-          <div className="w-1/2 text-left pt-16">
-            <div>
-              <h1 className="text-3xl font-semibold">
+        <div className="w-4/6 lg:flex my-0 mx-auto">
+          <div className=" sm:w-full  lg:w-1/2 text-left pt-16">
+            <div className="sm:w-full">
+              <h1 className="text-3xl font-semibold sm:text-center lg:text-left">
                 Get virtual treatment anytime
               </h1>
             </div>
@@ -425,12 +427,13 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 sm:hidden lg:flex ">
             <div className=" pl-40">
               <img
                 src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
                 style={{ width: "90%", height: "25rem" }}
                 alt="alt"
+                className="object-cover"
               />
             </div>
           </div>
@@ -440,8 +443,8 @@ const Home = () => {
 
       {/* SEVENTH CONTAINER */}
       <div class="seventh_container" className="flex pb-32">
-        <div className="w-4/6 flex my-0 mx-auto">
-          <div className="lg:w-1/3 pt-12 sm:hidden">
+        <div className="w-4/6 lg:flex my-0 mx-auto">
+          <div className="lg:w-1/3 pt-12 sm:hidden lg:flex ">
             <img
               src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
               style={{ width: "100%", height: "26rem" }}
@@ -455,40 +458,41 @@ const Home = () => {
                 Most questions by our beloved patients
               </h1>
             </div>
-
-            <Questions
-              question={"What is your medical care"}
-              answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
-            />
-            <Questions
-              question={"What is your medical care"}
-              answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
-            />
-            <Questions
-              question={"What is your medical care"}
-              answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
-            />
-            <Questions
-              question={"What is your medical care"}
-              answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
-            />
+            <div className="w-full sm:text-sm">
+              <Questions
+                question={"What is your medical care"}
+                answer={
+                  "lsfjdslfkdsjlfjdsjkfjdsksassssssssssssssssssssssssssssssssssssssssssssssssss "
+                }
+              />
+              <Questions
+                question={"What is your medical care"}
+                answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
+              />
+              <Questions
+                question={"What is your medical care"}
+                answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
+              />
+              <Questions
+                question={"What is your medical care"}
+                answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
+              />
+            </div>
           </div>
         </div>
       </div>
       {/* EIGHT CONTAINER */}
       <div class="eight_container" className="pb-32">
-        <div className="w-4/6 my-0 mx-auto">
-          <div className="w-5/12 my-0 mr-auto ml-auto ">
+        <div className="sm:w-4/6 mx-auto">
+          <div className="lg:w-5/12 lg:my-0 lg:mx-auto ">
             <h3 className="text-4xl font-semibold">Our medical services</h3>
             <p className="mt-3 font-normal">
               World class for everyone. Our health System offers unmatched,
               expert healthcare
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-10 mt-20">
-            <Review />
-            <Review />
-            <Review />
+          <div className="">
+            <Review></Review>
           </div>
         </div>
       </div>

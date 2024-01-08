@@ -26,7 +26,7 @@ const FindDoctors = () => {
     },
     { threshold: 0.8, root: null }
   );
-    
+
   const doctorsListState = useSelector((state) => {
     return state.doctorslist;
   });
@@ -161,7 +161,7 @@ const FindDoctors = () => {
             </div>
           )}
           {!isLoading && !hasError && doctorsList.length === 0 && (
-            <div className="text-center"> No doctors Available.</div>
+            <div className="text-center mt-5"> No doctors Available.</div>
           )}
           {!isLoading && !hasError && doctorsList.length !== 0 && (
             <div className="grid lg:grid-cols-3 sm:justify-center md:grid-cols-2 w-full mt-5 justify-between gap-x-10 gap-y-5 ">

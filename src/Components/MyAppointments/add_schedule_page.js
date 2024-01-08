@@ -64,14 +64,14 @@ const AddSchedule = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8 w-1/4">
+    <div className="container mx-auto mt-20 lg:w-1/4 sm:w-4/6">
       <h2 className="text-2xl font-bold mb-4">Add Appointment</h2>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
           Date
         </label>
         <DatePicker
-        className="py-1 border-2 border-solid border-orange-400 text-center"
+          className="py-1 border-2 border-solid border-orange-400 text-center"
           selected={startDate}
           onChange={(date) => {
             setStartDate(date);

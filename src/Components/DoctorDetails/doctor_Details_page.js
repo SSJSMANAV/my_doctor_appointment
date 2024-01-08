@@ -70,8 +70,8 @@ const DoctorDetailsPage = () => {
         </div>
       )}
       {!isLoading && doctorData !== null && (
-        <div className="w-4/6 flex my-0 mx-auto mt-24 sm:flex-col lg:flex-row ">
-          <div className=" lft_con lg:w-2/5 sm:w-full ">
+        <div className="sm:w-5/6 lg:w-4/6 flex my-0 mx-auto mt-24 sm:flex-col lg:flex-row  ">
+          <div className=" lft_con lg:w-2/5 sm:w-11/12 mx-auto">
             <div className="lg:w-10/12 shadow-sm shadow-slate-300 sm:w-full sm:mt-12">
               <div className="bg-slate-100">
                 <div className=" py-6">
@@ -90,8 +90,8 @@ const DoctorDetailsPage = () => {
                   <p className="text-center lg:text-xl sm:text-md">
                     Dr. {doctorData.username}
                   </p>
-                  <div className="flex justify-center mt-2 text-sm">
-                    <p className="bg-blue-300 text-blue-500 px-2 rounded-lg align-center mr-4">
+                  <div className="flex lg:flex-row  justify-center mt-2 text-sm">
+                    <p className="bg-blue-300 text-blue-500 lg:px-2 sm:px-1 rounded-lg align-center mr-4 w-fit">
                       {doctorData.specialization}
                     </p>
                     <p className=" text-gray-400">
@@ -136,7 +136,7 @@ const DoctorDetailsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex  mt-10  px-4 py-4  lg:w-10/12 sm:w-full sm:mb-4 bg-slate-100 justify-between items-center shadow-sm shadow-slate-400">
+            <div className="flex sm:hidden lg:flex mt-10  px-4 py-4  lg:w-10/12 sm:w-full sm:mb-4 bg-slate-100 justify-between items-center shadow-sm shadow-slate-400">
               <div className="pr-4 ">
                 <FontAwesomeIcon
                   icon={faCircleExclamation}
@@ -153,7 +153,7 @@ const DoctorDetailsPage = () => {
             </div>
           </div>
           <div className="flex flex-col lg:w-3/5 sm:w-full">
-            <div className="flex flex-row gap-x-0 w-full ">
+            <div className="flex flex-row mt-5 gap-x-0 w-full ">
               <NavLink
                 to={`/doctor-details/${doctorId}/appointmentdates`}
                 className={(navData) =>
@@ -186,6 +186,21 @@ const DoctorDetailsPage = () => {
               </NavLink>
             </div>
             <Outlet context={[doctorData]}></Outlet>
+          </div>
+          <div className="flex sm:flex lg:hidden lg:mt-10  px-4 py-4  lg:w-10/12 sm:w-full sm:mb-4 bg-slate-100 justify-between items-center shadow-sm shadow-slate-400">
+            <div className="pr-4 ">
+              <FontAwesomeIcon
+                icon={faCircleExclamation}
+                className=" text-yellow-400  text-lg "
+              ></FontAwesomeIcon>
+            </div>
+            <p className="px-4 w-2/3 text-sm">
+              Help Lorem to have a better service by reporting an issue on this
+              medical facilities.
+            </p>
+            <button className="border border-gray-400 px-2 text-sm text-red-400 font-semibold">
+              Report
+            </button>
           </div>
         </div>
       )}

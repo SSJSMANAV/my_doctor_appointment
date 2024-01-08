@@ -160,13 +160,13 @@ img {
 .transition-height1 {
   max-height: 0;
   overflow: hidden;
-  transition: min-height 09s ease-in-out;
+  transition: max-height 01s ease-in-out; /* Corrected the property and duration */
 }
 
 .max-height {
-  max-height: 1000px; /* Adjust this value based on your content */
+  max-height: 100px; /* Adjust this value based on your content */
 }
 
 .min-height {
-  min-height: 0px;
+  min-height: 1px;
 }
