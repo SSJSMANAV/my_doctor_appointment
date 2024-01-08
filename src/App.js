@@ -113,7 +113,7 @@ function App() {
           <Route exact path="/home" element={<Home />}></Route>
           <Route
             exact
-            path="/post_checkup_form"
+            path="/my_appointments/:appointmentId/post_checkup_form"
             element={<DoctorForm />}
           ></Route>
           <Route

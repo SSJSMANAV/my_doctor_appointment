@@ -104,14 +104,14 @@ function Header() {
                 My Appointments
               </Link>
             )}
-            {user !== null && authState.role !== "admin" && (
+            {/* {user !== null && authState.role !== "admin" && (
               <Link
                 to="/medical_history_list"
                 className="mr-7 hover:text-orange-400 transition-all duration-300"
               >
                 Medical History
               </Link>
-            )}
+            )} */}
             {user !== null && authState.role === "admin" && (
               <Link
                 to="/doctor-applications"
@@ -231,14 +231,14 @@ function Header() {
                 My Appointments
               </Link>
             )}
-            {user !== null && authState.role !== "admin" && (
+            {/* {user !== null && authState.role !== "admin" && (
               <Link
                 to="/medical_history_list"
                 className="hover:text-orange-400 transition-all duration-300 py-1.5 pb-3 px-2"
               >
                 Medical History
               </Link>
-            )}
+            )} */}
             {user !== null && authState.role === "admin" && (
               <Link
                 to="/doctor-applications"

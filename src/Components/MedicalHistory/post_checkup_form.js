@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import { postMedicalReport } from "../../action-creators/medical_report_action";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 const DoctorForm = () => {
+  const { appointmentId } = useParams();
+
+  const authState = useSelector((state) => {
+    return state.auth;
+  });
+
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const patientId = location.state.patientId;
+  const token = authState.token;
+
   const [diagnosis, setDiagnosis] = useState("");
   const [description, setDescription] = useState("");
   const [recommends, setRecommended] = useState("");
   const [recommendedList, setRecommendedList] = useState([]);
   const [notRecommendeds, setNotRecommended] = useState("");
   const [notRecommendedList, setNotRecommendedList] = useState([]);
-  const [medicalReports, setMedicalReports] = useState([]);
 
   const handleAddRecommendedFood = () => {
     if (recommends.trim() !== "") {
@@ -33,15 +50,10 @@ const DoctorForm = () => {
     setNotRecommendedList(updatedList);
   };
 
-  const handleFileUpload = (e) => {
-    const files = e.target.files;
-    setMedicalReports([...medicalReports, ...files]);
-  };
-
   const [diagnosisError, setDiagnosisError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     // Validate diagnosis and description fields
@@ -67,10 +79,18 @@ const DoctorForm = () => {
     const formData = {
       diagnosis,
       description,
-      recommendedFoods: recommendedList,
-      notRecommendedFoods: notRecommendedList,
-      medicalReports,
+      recommends: recommendedList,
+      nonrecommendeds: notRecommendedList,
     };
+
+    await postMedicalReport(token, patientId, appointmentId, formData)
+      .then((data) => {
+        toast.success(data);
+        navigate('/my_appointments');
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      });
 
     console.log(formData); // Replace this with your logic for handling the form data.
   };
@@ -193,20 +213,6 @@ const DoctorForm = () => {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div>
-            <label htmlFor="medicalReport" className="text-gray-600">
-              Medical Reports (PDF)
-            </label>
-            <input
-              type="file"
-              id="medicalReport"
-              onChange={handleFileUpload}
-              multiple
-              accept=".pdf"
-              className="mt-1 p-2 rounded-md border border-gray-300 w-full"
-            />
           </div>
 
           <div>

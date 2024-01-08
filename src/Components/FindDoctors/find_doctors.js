@@ -7,25 +7,12 @@ import { fetchDoctorsList } from "../../action-creators/doctors_list_action";
 import { doctorsListSliceActions } from "../../slices/doctors_slice";
 import { ClipLoader } from "react-spinners";
 import "../../css/find_doctors.css";
+import DoctorsList from "./doctors_list";
 
 const FindDoctors = () => {
   const [selectedDoctor, setSelectedDoctor] = useState("All");
 
   const dispatch = useDispatch();
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      console.log(entries);
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("card-enter-active");
-        } else {
-          entry.target.classList.remove("card-enter-active");
-        }
-      });
-    },
-    { threshold: 0.8, root: null }
-  );
 
   const doctorsListState = useSelector((state) => {
     return state.doctorslist;
@@ -56,8 +43,6 @@ const FindDoctors = () => {
             })
           );
         }
-        const hiddenElements = document.querySelectorAll(".profile-card");
-        hiddenElements.forEach((el) => observer.observe(el));
         setIsLoading(false);
       })
       .catch((e) => {
@@ -84,8 +69,6 @@ const FindDoctors = () => {
               })
             );
           }
-          const hiddenElements = document.querySelectorAll(".profile-card");
-          hiddenElements.forEach((el) => observer.observe(el));
           setIsLoading(false);
         })
         .catch((e) => {
@@ -97,7 +80,6 @@ const FindDoctors = () => {
     // Cleanup observer when component unmounts
     return () => {
       console.log("observer cleanup");
-      observer.disconnect();
     };
   }, []);
 
@@ -164,15 +146,7 @@ const FindDoctors = () => {
             <div className="text-center mt-5"> No doctors Available.</div>
           )}
           {!isLoading && !hasError && doctorsList.length !== 0 && (
-            <div className="grid lg:grid-cols-3 sm:justify-center md:grid-cols-2 w-full mt-5 justify-between gap-x-10 gap-y-5 ">
-              {doctorsList.map((doctorData) => (
-                <ProfileCard
-                  key={doctorData.email}
-                  doctor={doctorData}
-                  className="profile-card"
-                ></ProfileCard>
-              ))}
-            </div>
+            <DoctorsList doctors={doctorsList}></DoctorsList>
           )}
         </div>
       </div>

@@ -8,7 +8,7 @@ import { fetchMyAppointments } from "../../action-creators/my_appointments_actio
 import { ClipLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { myAppointmentsSliceActions } from "../../slices/my_appointments_slice";
-import MyAppointmentItem from "./my_appointment_item";
+import AppointmentList from "./appointment_list";
 import "../../css/my_appointments.css";
 
 const MyAppointments = () => {
@@ -22,6 +22,7 @@ const MyAppointments = () => {
   });
 
   const appointmentsList = myApppointmentsState.myappointments;
+  const [theAppointmentsList, setAppointmentsList] = useState(appointmentsList);
 
   const dispatch = useDispatch();
 
@@ -37,32 +38,26 @@ const MyAppointments = () => {
     setEndDate(date);
   };
 
-  const [selectedAppointmentStatus, setAppointmentStatus] = useState("Surgeon"); // Initialize with "Eye Surgeon"
+  const [selectedAppointmentStatus, setAppointmentStatus] = useState("All"); // Initialize with "Eye Surgeon"
 
   // Function to handle the doctor selection
 
   const handleDoctorSelection = (status) => {
     setAppointmentStatus(status);
+    if (status === "All") {
+      setAppointmentsList(appointmentsList);
+    } else {
+      let appointments = appointmentsList.filter(
+        (appointment) => appointment.status === status
+      );
+      setAppointmentsList(appointments);
+    }
   };
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, sethasError] = useState(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        console.log(entries);
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("item-enter-active");
-          } else {
-            entry.target.classList.remove("item-enter-active");
-          }
-        });
-      },
-      { threshold: 0.5, root: null }
-    );
-
     const fetchAppointments = async () => {
       setIsLoading(true);
       await fetchMyAppointments(token)
@@ -73,10 +68,7 @@ const MyAppointments = () => {
               appointments: data.result,
             })
           );
-          const hiddenElements = document.querySelectorAll(
-            ".my-appointment-item"
-          );
-          hiddenElements.forEach((el) => observer.observe(el));
+
           setIsLoading(false);
         })
         .catch((e) => {
@@ -84,7 +76,7 @@ const MyAppointments = () => {
         });
     };
     fetchAppointments();
-  }, []);
+  }, [dispatch, token]);
   return (
     <div className="pb-24 flex pt-24">
       <div className="lg:w-4/6 flex my-0 mx-auto pt-4 flex-col">
@@ -123,14 +115,14 @@ const MyAppointments = () => {
                   onChange={(e) => handleDoctorSelection(e.target.value)}
                   className="px-2 py-2 "
                 >
-                  <option value="Surgeon" className="px-1 py-2">
-                    Booked
+                  <option value="All" className="px-1 py-2">
+                    <p>All</p>
                   </option>
-                  <option value="Eye Surgeon" className="px-1 py-2">
+                  <option value="Pending" className="px-1 py-2">
                     <p>Pending</p>
                   </option>
-                  <option value="Ear Surgeon">Cancelled</option>
-                  <option value="Heart Surgeon">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                  <option value="completed">Completed</option>
                 </select>
               </div>
             </div>
@@ -167,15 +159,12 @@ const MyAppointments = () => {
               <ClipLoader></ClipLoader>
             </div>
           )}
-          {!isLoading &&
-            appointmentsList.length > 0 &&
-            appointmentsList.map((appointment) => (
-              <MyAppointmentItem
-                className="my-appointment-item"
-                appointment={appointment}
-              ></MyAppointmentItem>
-            ))}
-          {!isLoading && appointmentsList.length <= 0 && (
+          {!isLoading && theAppointmentsList.length > 0 && (
+            <AppointmentList
+              appointments={theAppointmentsList}
+            ></AppointmentList>
+          )}
+          {!isLoading && theAppointmentsList.length <= 0 && (
             <div className="text-center"> No appointments till date !</div>
           )}
         </div>

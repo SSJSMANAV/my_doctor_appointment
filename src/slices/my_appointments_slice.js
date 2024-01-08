@@ -9,6 +9,7 @@ const myAppointmentsSlice = createSlice({
     replaceMyAppointments: (state, action) => {
       state.myappointments = action.payload.appointments;
     },
+    
   },
 });
 
