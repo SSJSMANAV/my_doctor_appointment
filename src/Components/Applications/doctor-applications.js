@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { fetchDoctorApplications } from "../../action-creators/doctor-applications_action";
 import DoctorRequestItem from "../Applications/doctor_request_item";
-import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { doctorapplicationsactions } from "../../slices/doctor_application_slice";
 import { ClipLoader } from "react-spinners";
@@ -11,6 +10,8 @@ import Sidebar from "./sidebar";
 const DoctorApplications = () => {
   const dispatch = useDispatch();
   const scrollRef = useRef(0);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const authState = useSelector((state) => {
     return state.auth;
@@ -80,6 +81,16 @@ const DoctorApplications = () => {
     };
     getDoctorApplications();
     window.scrollTo(0, scrollRef.current);
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [dispatch, selectedStatus, token]);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -95,7 +106,7 @@ const DoctorApplications = () => {
   };
 
   return (
-    <div >
+    <div>
       {isOpen && (
         <div
           onClick={toggleSidebar}
@@ -109,8 +120,8 @@ const DoctorApplications = () => {
       />
 
       <div className="pb-24 flex pt-24 overflow-y-auto">
-        <div className="w-4/6 flex my-0 mx-auto pt-4 flex-col">
-          <div className="flex flex-row justify-between items-center w-full"> 
+        <div className="w-full flex my-0 pt-4 flex-col sm:px-3 md:px-24 lg:px-52">
+          <div className="flex flex-row justify-between items-center w-full">
             <div className=" border border-solid border-black flex">
               <select
                 value={selectedStatus}
@@ -140,18 +151,22 @@ const DoctorApplications = () => {
               <h1 className="text-black font-bold ">Doctor-Applications</h1>
 
               <div className="flex w-full justify-between mb-5">
-                <div className="text-gray-200 font-normal w-1/4 flex flex-row justify-start">
-                  Email. #
-                </div>
+                {windowWidth >= 800 && (
+                  <div className="text-gray-200 font-normal w-1/4 flex flex-row justify-start">
+                    Email. #
+                  </div>
+                )}
                 <div className="text-gray-200 font-normal w-1/4 flex flex-row justify-center">
                   Doctor
                 </div>
                 <div className="text-gray-200 font-normal w-1/4 flex flex-row justify-center">
                   Specialization
                 </div>
-                <div className="text-gray-200 font-normal w-1/4 flex flex-row justify-center">
-                  Rating
-                </div>
+                {windowWidth >= 800 && (
+                  <div className="text-gray-200 font-normal w-1/4 flex flex-row justify-center">
+                    Rating
+                  </div>
+                )}
                 <div className="text-gray-200 font-normal w-1/4 flex flex-row justify-center">
                   Action
                 </div>

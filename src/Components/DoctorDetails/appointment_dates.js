@@ -16,7 +16,9 @@ const AppointmentDates = () => {
   const token = authState.token;
   const { doctorId } = useParams();
   console.log(doctorId);
-  const [selectedDate, setSelectedDate] = useState(Date.now());
+  const timeStamp = Date.now();
+  const dateObject = new Date(timeStamp);
+const [selectedDate, setSelectedDate] = useState(dateObject);
   const [isLoading, setIsLoading] = useState(false);
   const [schedule, setSchedule] = useState([]);
 
@@ -35,15 +37,7 @@ const AppointmentDates = () => {
       console.log(e.message);
     }
   };
-  const handleNextDay = () => {
-    // setSelectedDate(addDays(selectedDate, 1));
-    // fetchDoctorSchedule(selectedDate.toISOString().split("T")[0]);
-  };
-
-  const handlePreviousDay = () => {
-    // setSelectedDate(subDays(selectedDate, 1));
-    // fetchDoctorSchedule(selectedDate.toISOString().split("T")[0]);
-  };
+  
 
   useEffect(() => {
     const timeStamp = Date.now();
@@ -95,7 +89,7 @@ const AppointmentDates = () => {
         <p className="text-center"> No schedule found.</p>
       )}
 
-      <div className="shadow-md w-full">
+      <div className="shadow-md w-full h-96 overflow-y-auto overflow-hidden">
         {schedule.length !== 0 &&
           schedule.map((schedule) => {
             return (

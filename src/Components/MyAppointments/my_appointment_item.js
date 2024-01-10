@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNotesMedical, faPenNib } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,9 @@ const MyAppointmentItem = ({ appointment, className }) => {
   const authState = useSelector((state) => {
     return state.auth;
   });
+
+  
+  console.log(appointment);
 
   const token = authState.token;
 
@@ -27,17 +30,19 @@ const MyAppointmentItem = ({ appointment, className }) => {
   };
 
   const viewReport = async () => {
-    await fetchMedicalReportById(token, appointmentId).then((data) => {
-      setReport(data.result);
-      setIsReportOpen(true);
-    }).catch((e) => {
-      toast.error(e.message);
-    })
+    await fetchMedicalReportById(token, appointmentId)
+      .then((data) => {
+        setReport(data.result);
+        setIsReportOpen(true);
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      });
   };
 
   const toggleIsOpen = () => {
     setIsReportOpen(!isReportOpen);
-  }
+  };
 
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [report, setReport] = useState(null);
@@ -59,12 +64,16 @@ const MyAppointmentItem = ({ appointment, className }) => {
       <div
         className={` ${className} flex flex-row justify-between items-center bg-gray-100 cursor-pointer hover:bg-gray-200 shadow-sm px-2 py-3 mb-2 rounded-md`}
       >
-        <div className="w-1/4 flex flex-row justify-start">
-          {appointment.doctorName}{" "}
-        </div>
-        <div className="flex flex-row items-center font-bold w-1/4 px-2 justify-center">
-          {appointment.patientName}
-        </div>
+        {/* {windowWidth >= 800 && authState.user.role === "patient" && ( */}
+          <div className="w-1/4 flex flex-row justify-start">
+            {appointment.doctorName}{" "}
+          </div>
+        {/* )} */}
+        {/* {windowWidth >= 800 && authState.user.role === "doctor" && ( */}
+          <div className="flex flex-row items-center font-bold w-1/4 px-2 justify-center">
+            {appointment.patientName}
+          </div>
+        {/* )} */}
         <div className="w-1/4 flex flex-row justify-center">
           {appointment.startTime}
         </div>
@@ -79,8 +88,13 @@ const MyAppointmentItem = ({ appointment, className }) => {
           >
             <div className=" justify-center w-28 border border-solid border-red-400 transition-all cursor-pointer duration-200  ease-in-out border-spacing-2 flex flex-row gap-x-3 text-red-400 items-center py-1 rounded-sm px-2 hover:bg-red-400 hover:text-white">
               <p className="text-sm">Fill Report</p>
-
-              <FontAwesomeIcon icon={faPenNib}></FontAwesomeIcon>
+            </div>
+          </div>
+        )}
+        {authState.role === "patient" && appointment.status === "Pending" && (
+          <div className="w-1/4 flex justify-center">
+            <div className=" justify-center w-28 border border-solid border-red-400 transition-all cursor-pointer duration-200  ease-in-out border-spacing-2 flex flex-row gap-x-3 text-red-400 items-center py-1 rounded-sm px-2 hover:bg-red-400 hover:text-white">
+              <p className="text-sm">No Actions</p>
             </div>
           </div>
         )}
@@ -88,8 +102,6 @@ const MyAppointmentItem = ({ appointment, className }) => {
           <div onClick={viewReport} className="w-1/4 flex justify-center">
             <div className=" justify-center w-28 border border-solid border-red-400 transition-all cursor-pointer duration-200  ease-in-out border-spacing-2 flex flex-row gap-x-3 text-red-400 items-center py-1 rounded-sm px-2 hover:bg-red-400 hover:text-white">
               <p className="text-sm">View Report</p>
-
-              <FontAwesomeIcon icon={faNotesMedical}></FontAwesomeIcon>
             </div>
           </div>
         )}

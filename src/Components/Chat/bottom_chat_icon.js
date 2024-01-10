@@ -21,7 +21,7 @@ const BottomChatIcon = () => {
       {isLoggedIn && role !== "admin" && (
         <div
           onClick={navigateToChatsPage}
-          className="fixed bottom-6 left-6 bg-blue-500 rounded-full h-16 w-16 flex flex-col justify-center items-center transition-all cursor-pointer hover:scale-110 ease-in-out"
+          className="z- fixed bottom-6 left-6 bg-blue-500 rounded-full h-16 w-16 flex flex-col justify-center items-center transition-all cursor-pointer hover:scale-110 ease-in-out"
         >
           <FontAwesomeIcon
             className="text-white text-3xl "

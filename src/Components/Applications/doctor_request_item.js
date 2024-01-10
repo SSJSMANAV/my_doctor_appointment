@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,8 @@ const DoctorRequestItem = (props) => {
     return state.auth;
   });
   const token = authState.token;
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleApplicantsVerifiedState = async (state) => {
     await changeApplicantVerifiedState(props.data.doctorId, token, state)
@@ -57,16 +59,30 @@ const DoctorRequestItem = (props) => {
     window.location.href = mailtoLink;
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div>
       <div
         onClick={handleSetDoctorData}
         className="flex flex-row justify-between items-center bg-gray-100 cursor-pointer hover:bg-gray-200 shadow-sm px-2 py-3 mb-2 rounded-md"
       >
-        <div className="w-1/4 flex flex-row justify-start">
-          {" "}
-          {props.data.email}
-        </div>
+        {windowWidth >= 800 && (
+          <div className="w-1/4 flex flex-row justify-start">
+            {" "}
+            {props.data.email}
+          </div>
+        )}
         <div className="flex flex-row items-center font-bold w-1/4 px-2 justify-center">
           {props.data.name}
         </div>
@@ -74,10 +90,12 @@ const DoctorRequestItem = (props) => {
           {" "}
           {props.data.specialization}
         </div>
-        <div className="w-1/4 flex flex-row justify-center">
-          {" "}
-          {props.data.rating}
-        </div>
+        {windowWidth >= 800 && (
+          <div className="w-1/4 flex flex-row justify-center">
+            {" "}
+            {props.data.rating}
+          </div>
+        )}
         {props.data.verified === "pending" && (
           <div className="w-1/4 flex flex-row justify-between gap-x-2 items-center">
             <div

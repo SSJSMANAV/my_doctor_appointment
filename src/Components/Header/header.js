@@ -38,7 +38,7 @@ function Header() {
   }, []);
 
   const toggleMenu = () => {
-    setShowMenu((prev) => !prev); // Corrected the toggle logic
+    setShowMenu(!showMenu); // Corrected the toggle logic
   };
   const authState = useSelector((state) => {
     return state.auth;
@@ -197,41 +197,51 @@ function Header() {
           </div>
         )}
       </nav>
+      {showMenu && (
+        <div
+          onClick={toggleMenu}
+          className="fixed h-full w-full bg-black opacity-30 top-0 left-0"
+        ></div>
+      )}
       {windowWidth < 800 && (
         <div
-          style={{ backgroundColor: "#7179B5" }}
-          className={`absolute w-fit mx-auto rounded shadow text-center text-white ml-10 transition-all duration-1000 
-         ${showMenu ? "max-h-screen opacity-100 " : "max-h-0 opacity-0"}
-         overflow-hidden`}
+          style={{
+            transition: "all 0.6s ease",
+            height: showMenu ? "160px" : "0px",
+            // opacity: showMenu ? "100%" : "0%",
+          }}
+          className={`flex flex-col w-fit text-white overflow-hidden items-center justify-around absolute top-12 left-10 shadow-sm bg-zinc-700 px-2  rounded-md transition-all duration-200 ease-in-out`}
         >
-          <div
-            className={`text-left ${
-              showMenu
-                ? "flex flex-col opacity-100 delay-200 transition-all ease-in-out "
-                : "max-h-0 opacity-0  "
-            }`}
+          <Link
+            onClick={() => {
+              toggleMenu();
+            }}
+            to="/"
+            className="hover:text-orange-400 transition-all duration-300 pb-1.5 pt-1.5 px-2"
           >
+            Home
+          </Link>
+          <Link
+            onClick={() => {
+              toggleMenu();
+            }}
+            to="/find-doctors"
+            className="hover:text-orange-400 transition-all duration-300 py-1.5 px-2"
+          >
+            Find Doctors
+          </Link>
+          {user !== null && authState.role !== "admin" && (
             <Link
-              to="/"
-              className="hover:text-orange-400 transition-all duration-300 pb-1.5 pt-1.5 px-2"
-            >
-              Home
-            </Link>
-            <Link
-              to="/find-doctors"
+              onClick={() => {
+                toggleMenu();
+              }}
+              to="/my_appointments"
               className="hover:text-orange-400 transition-all duration-300 py-1.5 px-2"
             >
-              Find Doctors
+              My Appointments
             </Link>
-            {user !== null && authState.role !== "admin" && (
-              <Link
-                to="/my_appointments"
-                className="hover:text-orange-400 transition-all duration-300 py-1.5 px-2"
-              >
-                My Appointments
-              </Link>
-            )}
-            {/* {user !== null && authState.role !== "admin" && (
+          )}
+          {/* {user !== null && authState.role !== "admin" && (
               <Link
                 to="/medical_history_list"
                 className="hover:text-orange-400 transition-all duration-300 py-1.5 pb-3 px-2"
@@ -239,15 +249,14 @@ function Header() {
                 Medical History
               </Link>
             )} */}
-            {user !== null && authState.role === "admin" && (
-              <Link
-                to="/doctor-applications"
-                className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
-              >
-                Doctor-Applications
-              </Link>
-            )}
-          </div>
+          {user !== null && authState.role === "admin" && (
+            <Link
+              to="/doctor-applications"
+              className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
+            >
+              Doctor-Applications
+            </Link>
+          )}
         </div>
       )}
     </header>

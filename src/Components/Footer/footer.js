@@ -48,7 +48,7 @@ const Footer = () => {
             {/* 1 */}
             <div className="flex flex-col lg:pt-1  items-start lg:text-left sm:justify-center sm:pt-10">
               <h1 className="font-semibold text-lg pb-4">Quick Links</h1>
-              <div className="flex flex-col h-40 justify-start gap-y-5 mt-3 text-gray-700">
+              <div className="flex flex-col sm:h-fit md:h-40 justify-start gap-y-5 mt-3 text-gray-700">
                 <p
                   onClick={() => {
                     navigate("/home");
@@ -71,7 +71,7 @@ const Footer = () => {
             {/* 2 */}
             <div className="flex flex-col lg:pt-1  items-start lg:text-left sm:justify-center sm:pt-10">
               <h1 className="font-semibold text-lg pb-4">I want to: </h1>
-              <div className="flex flex-col h-40 justify-start mt-3 gap-y-5 text-gray-700">
+              <div className="flex flex-col sm:h-fit md:h-40 justify-start mt-3 gap-y-5 text-gray-700">
                 <p
                   onClick={() => {
                     navigate("/find-doctors");
@@ -102,7 +102,7 @@ const Footer = () => {
             {/* 3 */}
             <div className="flex flex-col lg:pt-1  items-start lg:text-left sm:justify-center sm:pt-10">
               <h1 className="font-semibold text-lg pb-4">Support</h1>
-              <div className="flex flex-col h-40 justify-start gap-y-5 mt-3 text-gray-700">
+              <div className="flex flex-col sm:h-fit md:h-40 justify-start gap-y-5 mt-3 text-gray-700">
                 <p
                   onClick={() => {
                     navigate("/checkout-form");

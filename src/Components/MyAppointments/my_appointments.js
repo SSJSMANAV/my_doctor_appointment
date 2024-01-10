@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AddAppointmentButton from "./add_appointment_button";
 import { useSelector } from "react-redux";
@@ -27,16 +26,6 @@ const MyAppointments = () => {
   const dispatch = useDispatch();
 
   const role = authState.user.role;
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
-  };
-
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
 
   const [selectedAppointmentStatus, setAppointmentStatus] = useState("All"); // Initialize with "Eye Surgeon"
 
@@ -56,6 +45,7 @@ const MyAppointments = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, sethasError] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const scrollRef = useRef(0);
 
@@ -78,39 +68,21 @@ const MyAppointments = () => {
         });
     };
     fetchAppointments();
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
     window.scrollTo(0, scrollRef.current);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [dispatch, token]);
   return (
     <div className="pb-24 flex pt-24">
-      <div className="lg:w-4/6 flex my-0 mx-auto pt-4 flex-col">
+      <div className="lg:w-full flex my-0  sm:px-2 md:px-20 lg:px-56 pt-4 flex-col w-full">
         <div className="flex sm:flex-col lg:flex-row justify-between items-center w-full">
-          <div className="w-full">
-            <div className="lg:w-fit sm:w-min">
-              <div className="sm:w-fit border border-solid border-black sm:py-2 flex flex-row">
-                <DatePicker
-                  selected={startDate}
-                  onChange={handleStartDateChange}
-                  selectsStart
-                  startDate={startDate}
-                  endDate={endDate}
-                  placeholderText="Start Date"
-                  className="text-center text-md bg-transparent"
-                />
-                <h1> - </h1>
-                <DatePicker
-                  selected={endDate}
-                  onChange={handleEndDateChange}
-                  selectsEnd
-                  startDate={startDate}
-                  endDate={endDate}
-                  minDate={startDate}
-                  placeholderText="End Date"
-                  className="text-center text-md bg-transparent"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex w-full justify-between">
+          <div className="flex flex-row w-full justify-between">
             <div className="sm:mt-5 lg:mt-0 sm:w-full lg:w-fit">
               <div className=" border border-solid border-black flex justify-start sm:w-max  ">
                 <select
@@ -136,16 +108,20 @@ const MyAppointments = () => {
             </div>
           </div>
         </div>
-        <div className="bg-blue-200 mt-5 px-4 py-4 rounded-md w-full">
+        <div className="bg-blue-200 mt-5  px-2 md:px-5 py-3 rounded-md w-full">
           <h1 className="text-black font-bold ">Appointments</h1>
 
           <div className="flex w-full justify-between mb-5">
+            {/* {windowWidth >= 800 && role !== "patient" && ( */}
             <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-start">
               Doctor
             </div>
+            {/* )}  */}
+            {/* {windowWidth >= 800 && role !== "doctor" && ( */}
             <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
               Patient
             </div>
+            {/* )}  */}
             <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
               Start Time
             </div>
