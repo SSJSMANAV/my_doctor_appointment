@@ -98,7 +98,7 @@ const Home = () => {
 
     return () => {
       observer.disconnect();
-    }
+    };
   }, []);
 
   return (
@@ -467,29 +467,41 @@ const Home = () => {
             </div>
             <div className="w-full sm:text-sm">
               <Questions
-                question={"What is your medical care"}
+                question={"How can I book an appointment with a doctor?"}
                 answer={
-                  "lsfjdslfkdsjlfjdsjkfjdsksassssssssssssssssssssssssssssssssssssssssssssssssss "
+                  "Simply log in to our app, browse available doctors, and choose a convenient time for your appointment."
                 }
               />
               <Questions
-                question={"What is your medical care"}
-                answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
+                question={
+                  "Is my personal information secure when booking through your app?"
+                }
+                answer={
+                  " Absolutely! We prioritize your privacy and use industry-standard security measures to protect your data."
+                }
               />
               <Questions
-                question={"What is your medical care"}
-                answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
+                question={
+                  "What if I need to cancel or reschedule my appointment?"
+                }
+                answer={
+                  "No problem! You can easily manage your appointments in the app, and we offer a hassle-free cancellation and rescheduling process."
+                }
               />
               <Questions
-                question={"What is your medical care"}
-                answer={"lsfjdslfkdsjlfjdsjkfjdsk "}
+                question={
+                  "Are there any fees for using the doctor booking service?"
+                }
+                answer={
+                  "Our basic booking service is free. Any additional charges, if applicable, will be clearly communicated during the booking process. "
+                }
               />
             </div>
           </div>
         </div>
       </div>
       {/* EIGHT CONTAINER */}
-      <div class="eight_container" className="pb-32">
+      {/* <div class="eight_container" className="pb-32">
         <div className="sm:w-4/6 mx-auto">
           <div className="lg:w-5/12 lg:my-0 lg:mx-auto ">
             <h3 className="text-4xl font-semibold">Our medical services</h3>
@@ -502,7 +514,7 @@ const Home = () => {
             <Review></Review>
           </div>
         </div>
-      </div>
+      </div> */}
     </main>
   );
 };

@@ -110,7 +110,7 @@ const DoctorApplications = () => {
       {isOpen && (
         <div
           onClick={toggleSidebar}
-          className="h-full w-full bg-slate-500 absolute top-0 left-0 opacity-25"
+          className="h-full w-full bg-slate-500 fixed top-0 left-0 opacity-25"
         ></div>
       )}
       <Sidebar

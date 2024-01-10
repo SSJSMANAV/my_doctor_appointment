@@ -20,26 +20,41 @@ const Footer = () => {
               Copyright @2023 developed by Barsha Ramtel. All rights reserved.
             </p>
             <div className="mt-4 cursor-pointer">
-              <FontAwesomeIcon
-                icon={faFacebookF}
-                className="border-2 border-black px-3.5 py-2 rounded-sm hover:text-blue-500 hover:border-blue-500"
-                style={{}}
-              />
-              <FontAwesomeIcon
-                icon={faInstagram}
-                className="border-2 border-black ml-2 px-3 py-2 rounded-sm hover:text-red-600 hover:border-red-600"
-                style={{}}
-              />
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                className="border-2 border-black ml-2 px-3 py-2 rounded-sm  hover:border-blue-500 hover:text-blue-500"
-                style={{}}
-              />
-              <FontAwesomeIcon
-                icon={faReddit}
-                className="border-2 border-black ml-2 px-3 py-2 rounded-sm  hover:text-orange-500 hover:border-orange-500"
-                style={{}}
-              />
+              <a
+                href="https://www.facebook.com/srabjarin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon
+                  icon={faFacebookF}
+                  className="border-2 border-black px-3.5 py-2 rounded-sm hover:text-blue-500 hover:border-blue-500"
+                  style={{}}
+                />
+              </a>
+
+              <a
+                href="https://www.instagram.com/barsha.ramtel/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  className="border-2 border-black ml-2 px-3 py-2 rounded-sm hover:text-red-600 hover:border-red-600"
+                  style={{}}
+                />
+              </a>
+              <a
+                href="https://www.facebook.com/srabjarin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  className="border-2 border-black ml-2 px-3 py-2 rounded-sm  hover:border-blue-500 hover:text-blue-500"
+                  style={{}}
+                />
+              </a>
+              
             </div>
           </div>
         </div>

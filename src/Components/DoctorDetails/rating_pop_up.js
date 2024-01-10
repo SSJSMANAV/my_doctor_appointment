@@ -16,6 +16,8 @@ const RatingPopup = ({ doctorId, isPopupVisible, onClose }) => {
   const token = authState.token;
 
   const handlePostRating = async () => {
+    console.log(rating);
+    console.log(comment);
     const url = `http://localhost:3009/feedback/${doctorId}`;
     try {
       const response = await fetch(url, {
@@ -33,6 +35,7 @@ const RatingPopup = ({ doctorId, isPopupVisible, onClose }) => {
       const jsonData = await response.json();
       console.log(jsonData);
       if (response.status === 200) {
+        console.log(jsonData);
         toast.success(jsonData.message);
         onClose();
       } else {
@@ -40,6 +43,7 @@ const RatingPopup = ({ doctorId, isPopupVisible, onClose }) => {
         onClose();
       }
     } catch (e) {
+      console.log(e.message);
       toast.error(e.message);
       onClose();
     }
@@ -74,7 +78,9 @@ const RatingPopup = ({ doctorId, isPopupVisible, onClose }) => {
         className="w-full mb-4 p-2 border border-gray-300 rounded"
       ></textarea>
       <button
-        onClick={handlePostRating}
+        onClick={() => {
+          handlePostRating();
+        }}
         className="bg-blue-500 text-white px-4 py-2 rounded"
       >
         Post

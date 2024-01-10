@@ -255,11 +255,6 @@ const SignUp = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-center ">
-                    <div className=" flex justify-center  lg:w-1/3 cursor-pointer hover:text-gray-600 sm:mt-2 ">
-                      <a href="hre">Forgot your Password ?</a>
-                    </div>
-                  </div>
                   <div className="flex justify-center mt-4  mb-8 ">
                     <button
                       className="px-12 py-3 text-white font-semibold bg-cyan-700 rounded-3xl"

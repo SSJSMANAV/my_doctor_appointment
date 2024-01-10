@@ -57,10 +57,9 @@ const DoctorDetailsPage = () => {
     await fetchDoctorById(doctorId)
       .then((data) => {
         console.log(data.result);
+        console.log("the doctor");
         setDoctorData(data.result);
-        console.log("here again");
-        console.log(doctorData);
-        console.log("here again");
+        
         setIsLoading(false);
         setError(null);
       })

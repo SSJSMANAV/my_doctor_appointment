@@ -33,8 +33,8 @@ const LogIn = () => {
   return (
     <main className="lg:main-container lg:justify-center lg:items-center flex lg:flex-row bg-white lin-grad sm:flex-col  ">
       <div className="flex lg:flex-row mt-20 sm:flex-col lg:items-start lg:h-full sm:items-center sm:flex-col-reverse">
-        <div className="lg:w-3/5 bg-slate-300 h-1/2 lg:pb-20 lg:mt-0 sm:w-4/5 sm:pb-12 lg:pb-0 sm:mb-20">
-          <div className="mt-16">
+        <div className="lg:w-3/5 bg-slate-300 lg:h-96 lg:pb-20 lg:mt-0 sm:w-4/5 sm:pb-12 lg:pb-0 sm:mb-20">
+          <div className="mt-10">
             <div className="flex justify-around">
               <div className="flex lg:flex-row sm:flex-col">
                 <h1 className="text-cyan-700 font-bold text-3xl pr-3">
@@ -47,7 +47,7 @@ const LogIn = () => {
               </div>
             </div>
 
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-1">
               <p>Use your email account</p>
             </div>
             <div className="relative mt-4 flex justify-center">
@@ -124,11 +124,7 @@ const LogIn = () => {
                           className="text-red-500 text-sm pt-2"
                         />
                       </div>
-                      <div className="flex justify-center">
-                        <div className="mt-6  px-2 py-1 cursor-pointer hover:shadow-cyan-300 hover:text-gray-600">
-                          <div>Forgot your Password ?</div>
-                        </div>
-                      </div>
+                      
                       <div className="flex justify-center mt-8">
                         <button
                           type="submit"
@@ -150,7 +146,7 @@ const LogIn = () => {
             {/* </div> */}
           </div>
         </div>
-        <div className="lg:2/5 bg-cyan-700  sm:w-4/5 lg:pb-1.5 ">
+        <div className="lg:h-96 bg-cyan-700  sm:w-4/5 lg:pb-1.5 ">
           <div className="flex flex-col lg:my-28 sm:my-24 lg:h-60  ">
             <div className="text-3xl flex justify-center mb-8 text-gray-200 font-semibold">
               <h1>Hello, Friend!</h1>

@@ -32,7 +32,7 @@ const MedicalReport = ({ isOpen, report, toggleIsOpen }) => {
   };
   return (
     <div
-      className={`z-40 fixed right-0 overflow-y-auto overflow-hidden h-full w-96 bg-gray-700 top-0 transition-transform transform ${
+      className={`z-40 fixed right-0 overflow-y-auto overflow-hidden h-full w-96 bg-slate-600 top-0 transition-transform transform ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
@@ -42,7 +42,10 @@ const MedicalReport = ({ isOpen, report, toggleIsOpen }) => {
           <div className="fixed bottom-2 right-2 cursor-pointer">
             <p> myDoctor</p>
           </div>
-          <div onClick={handleDownloadPDF} className="fixed bottom-2 left-2 cursor-pointer text-lg">
+          <div
+            onClick={handleDownloadPDF}
+            className="fixed bottom-2 left-2 cursor-pointer text-lg"
+          >
             <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
           </div>
           <div className="flex flex-row justify-between">
@@ -57,6 +60,7 @@ const MedicalReport = ({ isOpen, report, toggleIsOpen }) => {
             <strong>Date:</strong>
             <p className="text-sm">{report.date.substring(0, 10)}</p>
           </div>
+          <div className="h-0.5 w-full bg-white my-2"></div>
           <div className="mb-2 flex flex-row justify-between">
             <strong>Diagnosis:</strong>
             <p>{report.diagnosis}</p>
@@ -65,6 +69,7 @@ const MedicalReport = ({ isOpen, report, toggleIsOpen }) => {
             <strong>Description:</strong>
             <p>{report.description}</p>
           </div>
+          <div className="h-0.5 w-full bg-white my-2"></div>
           <div className="mb-4">
             <strong>Recommendations:</strong>
             {report.recommends.length === 0 && (
@@ -78,6 +83,7 @@ const MedicalReport = ({ isOpen, report, toggleIsOpen }) => {
               </ul>
             )}
           </div>
+          <div className="h-0.5 w-full bg-white my-2"></div>
           <div className="mb-4">
             <strong>Non-recommendations:</strong>
             {report.nonrecommendeds.length === 0 && (

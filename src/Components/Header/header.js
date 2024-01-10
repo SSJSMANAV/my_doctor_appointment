@@ -3,15 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
   faBars,
-  faSignIn,
-  faPerson,
   faUser,
   faRightToBracket,
+  faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import "../../../src/App.css";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useNavigate } from "react-router-dom/dist";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getLoggedInState } from "../../action-creators/auth_action";
 
@@ -124,21 +123,27 @@ function Header() {
         )}
         {user === null && !isLoggedIn && (
           <div className="flex flex-row sm:gap-x-1 md:gap-x-5">
-            <div className="flex flex-row items-center border border-solid border-black rounded-sm hover:bg-black bg-transparent text-black-400 py-1.5 px-4   hover:text-white transition-all duration-300  ease-in-out">
+            <div
+              onClick={() => {
+                navigate("/login");
+              }}
+              className="flex flex-row cursor-pointer items-center border border-solid border-black rounded-sm hover:bg-black bg-transparent text-black-400 py-1.5 px-4   hover:text-white transition-all duration-300  ease-in-out"
+            >
               <FontAwesomeIcon className="pr-3" icon={faUser}></FontAwesomeIcon>
-              <Link to="/login" className="text-sm">
-                Login
-              </Link>
+              <p className="text-sm">Login</p>
             </div>
 
-            <div className="flex flex-row items-center border border-solid border-red-500 rounded-sm hover:bg-red-500 bg-transparent text-red-500 py-1.5 px-4   hover:text-white transition-all duration-300  ease-in-out">
+            <div
+              onClick={() => {
+                navigate("/signup");
+              }}
+              className="flex flex-row cursor-pointer items-center border border-solid border-red-500 rounded-sm hover:bg-red-500 bg-transparent text-red-500 py-1.5 px-4   hover:text-white transition-all duration-300  ease-in-out"
+            >
               <FontAwesomeIcon
                 className="pr-3"
                 icon={faRightToBracket}
               ></FontAwesomeIcon>
-              <Link to="/signup" className="text-sm">
-                Sign Up
-              </Link>
+              <p className="text-sm">Sign Up</p>
             </div>
           </div>
         )}
@@ -157,8 +162,8 @@ function Header() {
                   showOptions ? "max-h-screen" : "max-h-0"
                 } ${showOptions ? "opacity-100" : "opacity-10"}`}
               >
-                <ul className="p-0 m-0 sm:text-sm ">
-                  <li
+                {/* <ul className="p-0 m-0 sm:text-sm "> */}
+                {/* <li
                     onClick={() => {
                       toggleOptions();
                     }}
@@ -173,19 +178,26 @@ function Header() {
                     className="p-2 hover:bg-orange-200 z-20"
                   >
                     Account Info
-                  </li>
-                  <li
+                  </li> */}
+                <div className="flex flex-row  justify-center items-center hover:bg-orange-200 cursor-pointer">
+                  <div
                     onClick={() => {
                       toggleOptions();
                       localStorage.clear();
                       dispatch(getLoggedInState());
                       navigate("/login");
                     }}
-                    className="p-2 hover:bg-orange-200 rounded-b-lg cursor-pointer z-20"
+                    className="p-2  rounded-b-lg  z-20 text-sm"
                   >
                     Sign Out
-                  </li>
-                </ul>
+                  </div>
+                  <FontAwesomeIcon
+                    className="text-gray-600 text-sm "
+                    icon={faSignOut}
+                  ></FontAwesomeIcon>
+                </div>
+
+                {/* </ul> */}
               </div>
             )}
             {showOptions && (
@@ -207,10 +219,10 @@ function Header() {
         <div
           style={{
             transition: "all 0.6s ease",
-            height: showMenu ? "160px" : "0px",
+            height: !showMenu ?   "0px" : user !== null ? "160px" : "100px",
             // opacity: showMenu ? "100%" : "0%",
           }}
-          className={`flex flex-col w-fit text-white overflow-hidden items-center justify-around absolute top-12 left-10 shadow-sm bg-zinc-700 px-2  rounded-md transition-all duration-200 ease-in-out`}
+          className={`flex flex-col w-fit  text-white overflow-hidden items-center justify-around absolute top-12 left-10 shadow-sm bg-zinc-700 px-2  rounded-md transition-all duration-200 ease-in-out`}
         >
           <Link
             onClick={() => {

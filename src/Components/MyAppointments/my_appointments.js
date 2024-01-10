@@ -113,22 +113,22 @@ const MyAppointments = () => {
 
           <div className="flex w-full justify-between mb-5">
             {/* {windowWidth >= 800 && role !== "patient" && ( */}
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-start">
+            <div className="text-gray-600 font-bold  w-1/4 flex flex-row justify-start">
               Doctor
             </div>
             {/* )}  */}
             {/* {windowWidth >= 800 && role !== "doctor" && ( */}
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+            <div className="text-gray-600 font-bold w-1/4 flex flex-row justify-center">
               Patient
             </div>
             {/* )}  */}
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+            <div className="text-gray-600 font-bold w-1/4 flex flex-row justify-center">
               Start Time
             </div>
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+            <div className="text-gray-600 font-bold w-1/4 flex flex-row justify-center">
               Status
             </div>
-            <div className="text-gray-600 font-normal w-1/4 flex flex-row justify-center">
+            <div className="text-gray-600 font-bold w-1/4 flex flex-row justify-center">
               Action
             </div>
           </div>

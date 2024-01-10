@@ -1,9 +1,7 @@
-import ReactDatePicker from "react-datepicker";
 import BookingDateItem from "./booking_date_item";
 import DatePicker from "react-datepicker";
 
 import React, { useState } from "react";
-import { addDays, subDays } from "date-fns";
 import { useParams } from "react-router-dom/dist";
 import { fetchSchedules } from "../../action-creators/doctors_list_action";
 import { useEffect } from "react";
@@ -18,7 +16,7 @@ const AppointmentDates = () => {
   console.log(doctorId);
   const timeStamp = Date.now();
   const dateObject = new Date(timeStamp);
-const [selectedDate, setSelectedDate] = useState(dateObject);
+  const [selectedDate, setSelectedDate] = useState(dateObject);
   const [isLoading, setIsLoading] = useState(false);
   const [schedule, setSchedule] = useState([]);
 
@@ -37,7 +35,6 @@ const [selectedDate, setSelectedDate] = useState(dateObject);
       console.log(e.message);
     }
   };
-  
 
   useEffect(() => {
     const timeStamp = Date.now();
@@ -54,7 +51,8 @@ const [selectedDate, setSelectedDate] = useState(dateObject);
           &#8249;
         </button> */}
         <DatePicker
-          className="z-0 text-center border-2 border-solid border-orange-400 py-1 rounded-sm"
+        style={{ zIndex: 0 }}
+          className=" text-center border-2 border-solid border-orange-400 py-1 rounded-sm"
           selected={selectedDate}
           onChange={async (date) => {
             console.log(date);
@@ -63,7 +61,6 @@ const [selectedDate, setSelectedDate] = useState(dateObject);
             fetchDoctorSchedule(date.toISOString().split("T")[0]);
           }}
           dateFormat="yyyy-MM-dd"
-          
         />
         {/* <ReactDatePicker
           className="text-center text-orange-500 font-semibold text-sm border-none focus:outline-none hover:outline-none"

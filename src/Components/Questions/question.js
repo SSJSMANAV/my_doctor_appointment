@@ -38,7 +38,7 @@ const Questions = (props) => {
         className={
           state
             ? "transition-height max-height overflow-y-auto"
-            : "transition-height1 min-height"
+            : "transition-height min-height delay-0"
         }
       >
         <p className="px-4 pb-2 ">{props.answer}</p>
