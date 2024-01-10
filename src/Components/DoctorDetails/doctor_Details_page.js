@@ -13,7 +13,6 @@ import {
   faStar,
   faMessage,
   faBookmark,
-  faBookBookmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import { fetchDoctorById } from "../../action-creators/doctors_list_action";
@@ -25,7 +24,6 @@ import {
   bookmarkTheDoctor,
   unBookmarkTheDoctor,
 } from "../../action-creators/chat_action";
-import { useJsApiLoader } from "@react-google-maps/api";
 import { db } from "../../firebase";
 
 const DoctorDetailsPage = () => {
@@ -154,7 +152,7 @@ const DoctorDetailsPage = () => {
                     </Box>
                     {/* <p className="pl-2  text-gray-300 ">{doctorData.rating}</p> */}
                   </div>
-                  <div className="flex justify-around items-center border border-t-slate-200 pb-4 pt-4 mt-2">
+                  <div className="flex justify-around px-4 items-center border border-t-slate-200 pb-4 pt-4 mt-2 gap-x-4">
                     <div
                       onClick={() => {
                         if (role !== "patient") {
@@ -163,7 +161,7 @@ const DoctorDetailsPage = () => {
                           setPopupVisible(true);
                         }
                       }}
-                      className="flex flex-row cursor-pointer text-sm font-bold gap-x-2 items-center bg-orange-400 px-3 py-2 border border-gray-300"
+                      className="flex flex-row cursor-pointer justify-center sm:w-full text-sm font-bold gap-x-2 items-center bg-orange-400 px-3 py-2 border border-gray-300"
                     >
                       <FontAwesomeIcon
                         icon={faStar}
@@ -172,21 +170,19 @@ const DoctorDetailsPage = () => {
                       />
                       Rate Us
                     </div>
-                    <div>
-                      <div
-                        onClick={navigateToChatsPage}
-                        className={` ${
-                          role === "patient"
-                            ? "cursor-pointer"
-                            : "cursor-not-allowed"
-                        } flex flex-row items-center gap-x-2 bg-blue-400 lg:px-2 sm:px-1 lg:py-2 sm:py-1 text-sm font-semibold border border-gray-300 border-solid`}
-                      >
-                        <FontAwesomeIcon
-                          icon={faMessage}
-                          className="text-white text-lg"
-                        ></FontAwesomeIcon>
-                        Send Message
-                      </div>
+                    <div
+                      onClick={navigateToChatsPage}
+                      className={` ${
+                        role === "patient"
+                          ? "cursor-pointer"
+                          : "cursor-not-allowed"
+                      } flex flex-row items-center justify-center sm:w-full gap-x-2 bg-blue-400 px-3 py-2 text-sm font-semibold border border-gray-300 border-solid`}
+                    >
+                      <FontAwesomeIcon
+                        icon={faMessage}
+                        className="text-white text-lg"
+                      ></FontAwesomeIcon>
+                      <p> Message </p>
                     </div>
                     {role === "patient" && (
                       <Bookmark
