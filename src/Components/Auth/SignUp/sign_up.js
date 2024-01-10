@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,8 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [imageFile, setImageFile] = useState("");
 
+  const scrollRef = useRef(0);
+
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("* Username is required."),
     email: Yup.string()
@@ -26,6 +28,10 @@ const SignUp = () => {
     dob: Yup.string().required("* Date of Birth is required."),
     password: Yup.string().required("* Password is required."),
   });
+
+  useEffect(() => {
+    window.scrollTo(0, scrollRef.current);
+  }, []);
 
   return (
     <main className=" flex lin-grad w-full">

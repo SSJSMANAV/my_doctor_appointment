@@ -1,5 +1,3 @@
-export const UserToken = {
-  get userToken() {
-    return "";
-  },
-};
+let currentUser;
+
+module.exports = currentUser;

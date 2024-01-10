@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { fetchDoctorApplications } from "../../action-creators/doctor-applications_action";
 import DoctorRequestItem from "../Applications/doctor_request_item";
@@ -10,6 +10,7 @@ import Sidebar from "./sidebar";
 
 const DoctorApplications = () => {
   const dispatch = useDispatch();
+  const scrollRef = useRef(0);
 
   const authState = useSelector((state) => {
     return state.auth;
@@ -78,6 +79,7 @@ const DoctorApplications = () => {
         });
     };
     getDoctorApplications();
+    window.scrollTo(0, scrollRef.current);
   }, [dispatch, selectedStatus, token]);
 
   const [isOpen, setIsOpen] = useState(false);

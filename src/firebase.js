@@ -4,13 +4,13 @@ import "firebase/compat/firestore";
 import "firebase/compat/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAQJQLycBvTM9-X1QGIzhKJxZ5eIuHtqN0",
-  authDomain: "mydoctor-402213.firebaseapp.com",
-  projectId: "mydoctor-402213",
-  storageBucket: "mydoctor-402213.appspot.com",
-  messagingSenderId: "339928265859",
-  appId: "1:339928265859:web:17bd7d38b20ea728aad7b6",
-  measurementId: "G-DQ8GMRHDG7",
+  apiKey: "AIzaSyBVfhmKS7xY2b2PRc7mIqsE-wK9yM6d0xQ",
+  authDomain: "my-portfolio-4f616.firebaseapp.com",
+  projectId: "my-portfolio-4f616",
+  storageBucket: "my-portfolio-4f616.appspot.com",
+  messagingSenderId: "357464885376",
+  appId: "1:357464885376:web:3613df43acd49cbfc17e65",
+  measurementId: "G-YZ534DD1EH"
 };
 
 // Use this to initialize the firebase App

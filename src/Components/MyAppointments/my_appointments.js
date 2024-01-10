@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AddAppointmentButton from "./add_appointment_button";
@@ -57,6 +57,8 @@ const MyAppointments = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, sethasError] = useState(null);
 
+  const scrollRef = useRef(0);
+
   useEffect(() => {
     const fetchAppointments = async () => {
       setIsLoading(true);
@@ -76,6 +78,7 @@ const MyAppointments = () => {
         });
     };
     fetchAppointments();
+    window.scrollTo(0, scrollRef.current);
   }, [dispatch, token]);
   return (
     <div className="pb-24 flex pt-24">

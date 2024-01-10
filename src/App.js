@@ -24,6 +24,8 @@ import Footer from "./Components/Footer/footer";
 import DoctorApplications from "./Components/Applications/doctor-applications";
 import AddSchedule from "./Components/MyAppointments/add_schedule_page";
 import ChatPage from "./Components/Chat/chat";
+import ChatScreen from "./Components/Chat/chat_screen";
+import BottomChatIcon from "./Components/Chat/bottom_chat_icon";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +70,7 @@ function App() {
         }}
       />
       <div>
+        <BottomChatIcon></BottomChatIcon>
         <Header></Header>
         <Routes>
           <Route
@@ -118,7 +121,7 @@ function App() {
             element={<DoctorForm />}
           ></Route>
           <Route
-            path="/doctor-details/:doctorId/checkout-form"
+            path="/checkout-form"
             element={<CheckoutForm></CheckoutForm>}
           ></Route>
           <Route path="/login" element={<Login></Login>}></Route>
@@ -136,8 +139,12 @@ function App() {
             element={<AddSchedule></AddSchedule>}
           ></Route>
           <Route
-            path="/chats"
+            path="/chat-messages/:doctorId/:patientId"
             element={<ChatPage></ChatPage>}
+          ></Route>
+          <Route
+            path="/chats/:userId"
+            element={<ChatScreen></ChatScreen>}
           ></Route>
         </Routes>
 

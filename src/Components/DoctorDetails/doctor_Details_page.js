@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,16 +12,36 @@ import {
   faLocationDot,
   faStar,
   faMessage,
+  faBookmark,
+  faBookBookmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
 import { fetchDoctorById } from "../../action-creators/doctors_list_action";
 import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import RatingPopup from "./rating_pop_up";
-
+import { useSelector } from "react-redux";
+import {
+  bookmarkTheDoctor,
+  unBookmarkTheDoctor,
+} from "../../action-creators/chat_action";
+import { useJsApiLoader } from "@react-google-maps/api";
+import { db } from "../../firebase";
 
 const DoctorDetailsPage = () => {
   const { doctorId } = useParams();
+
+  const scrollRef = useRef(0);
+
+  const authState = useSelector((state) => {
+    return state.auth;
+  });
+
+  const user = authState.user;
+
+  const role = authState.user.role;
+
+  const userId = authState.user._id;
 
   const [value, setValue] = React.useState(4);
 
@@ -30,8 +50,6 @@ const DoctorDetailsPage = () => {
     { icon: faLocationDot, text: "Location" },
     { icon: faStar, text: "Rating & Reviews" },
   ];
-
-  const [isFavourited, setIsFavourited] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -59,16 +77,25 @@ const DoctorDetailsPage = () => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const navigate = useNavigate();
 
+  const navigateToChatsPage = () => {
+    if (role !== "patient") {
+      return;
+    }
+    navigate(`/chat-messages/${doctorId}/${userId}`);
+  };
 
   useEffect(() => {
     fetchDoctorDetails();
+    window.scrollTo(0, scrollRef.current);
   }, []);
 
   return (
     <main>
       {isPopupVisible && (
         <div
-          onClick={() => setPopupVisible(false)}
+          onClick={() => {
+            setPopupVisible(false);
+          }}
           className="fixed inset-0 bg-black opacity-50"
         ></div>
       )}
@@ -107,7 +134,7 @@ const DoctorDetailsPage = () => {
                     Dr. {doctorData.username}
                   </p>
                   <div className="flex lg:flex-row  justify-center mt-2 text-sm">
-                    <p className="bg-blue-300 text-blue-500 lg:px-2 sm:px-1 rounded-lg align-center mr-4 w-fit">
+                    <p className="bg-blue-300 text-white lg:px-2 sm:px-1 rounded-md align-center mr-4 w-fit">
                       {doctorData.specialization}
                     </p>
                     <p className=" text-gray-400">
@@ -125,30 +152,50 @@ const DoctorDetailsPage = () => {
                         value={doctorData.rating}
                       />
                     </Box>
-                    <p className="pl-2  text-gray-300 ">{doctorData.rating}</p>
+                    {/* <p className="pl-2  text-gray-300 ">{doctorData.rating}</p> */}
                   </div>
-                  <div className="flex justify-around border border-t-slate-200 pb-4 pt-4 mt-2">
-                    <div className="flex">
-                      <FontAwesomeIcon
-                        icon={faMessage}
-                        onClick={() => {
-                          navigate('/chats');
-                          // setIsFavourited(!isFavourited);
-                        }}
-                        className="pr-2 text-white bg-sky-200 mt-1.5 lg:text-2xl sm:text-lg sm:ml-2 border border-slate-200 py-2 px-2 rounded-full lg:mr-8 sm:mr-4 cursor-pointer shadow-sm shadow-slate-200"
-                      />
+                  <div className="flex justify-around items-center border border-t-slate-200 pb-4 pt-4 mt-2">
+                    <div
+                      onClick={() => {
+                        if (role !== "patient") {
+                          toast.error("Access denied.");
+                        } else {
+                          setPopupVisible(true);
+                        }
+                      }}
+                      className="flex flex-row cursor-pointer text-sm font-bold gap-x-2 items-center bg-orange-400 px-3 py-2 border border-gray-300"
+                    >
                       <FontAwesomeIcon
                         icon={faStar}
                         color="white"
-                        onClick={() => setPopupVisible(true)}
-                        className="pr-2 mt-1.5 text-white bg-orange-400 lg:text-2xl sm:text-lg  border border-slate-200 py-2 px-2 rounded-full cursor-pointer shadow-sm shadow-slate-200"
+                        className=" text-white lg:text-lg sm:text-lg cursor-pointer"
                       />
+                      Rate Us
                     </div>
-                    <div className="mt-2">
-                      <button className=" bg-yellow-400 lg:px-2 sm:px-1 lg:py-2 sm:py-1 text-sm font-semibold border border-black border-solid">
-                        View Details
-                      </button>
+                    <div>
+                      <div
+                        onClick={navigateToChatsPage}
+                        className={` ${
+                          role === "patient"
+                            ? "cursor-pointer"
+                            : "cursor-not-allowed"
+                        } flex flex-row items-center gap-x-2 bg-blue-400 lg:px-2 sm:px-1 lg:py-2 sm:py-1 text-sm font-semibold border border-gray-300 border-solid`}
+                      >
+                        <FontAwesomeIcon
+                          icon={faMessage}
+                          className="text-white text-lg"
+                        ></FontAwesomeIcon>
+                        Send Message
+                      </div>
                     </div>
+                    {role === "patient" && (
+                      <Bookmark
+                        role={role}
+                        doctorId={doctorId}
+                        doctorData={doctorData}
+                        user={user}
+                      ></Bookmark>
+                    )}
                   </div>
                 </div>
               </div>
@@ -227,16 +274,62 @@ const DoctorDetailsPage = () => {
 
 export default DoctorDetailsPage;
 
-// const [doctorData] = useOutletContext();
-//   // const location = useLocation();
-//   // const locationData = location.state;
-//   console.log('helksdkldsl');
-//   console.log(doctorData.location);
-//   const currentLocation = {
-//     lat: doctorData.location.latitude,
-//     lng: doctorData.location.longitude,
-//   };
-//   const center = {
-//     lat: doctorData.location.latitude,
-//     lng: doctorData.location.longitude,
-//   };
+const Bookmark = ({ role, doctorId, doctorData, user }) => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const bookmarkDoctor = async () => {
+    if (!isBookmarked) {
+      await bookmarkTheDoctor(doctorId, doctorData, user)
+        .then(() => {
+          toast.success(`Dr. ${doctorData.username} has been bookmarked.`);
+          setIsBookmarked(true);
+        })
+        .catch((e) => {
+          toast.error(e.message);
+        });
+    } else {
+      await unBookmarkTheDoctor(doctorId, doctorData, user)
+        .then(() => {
+          toast.success(
+            `Dr. ${doctorData.username} has been removed from your bookmarks.`
+          );
+          setIsBookmarked(false);
+        })
+        .catch((e) => {
+          toast.error(e.message);
+        });
+    }
+  };
+
+  useEffect(() => {
+    const getBookmarked = async () => {
+      let users = [];
+
+      const collectionRef = await db
+        .collection(`patients/${user._id}/followings`)
+        .where("doctorId", "==", doctorId);
+      const snapshot = await collectionRef.get();
+
+      users = snapshot.docs.map((doc) => doc.data());
+      if (users.length === 0) {
+        setIsBookmarked(false);
+      } else {
+        setIsBookmarked(true);
+      }
+    };
+
+    getBookmarked();
+  }, [doctorId, user._id]);
+
+  return (
+    <div>
+      <FontAwesomeIcon
+        onClick={bookmarkDoctor}
+        className={`${
+          isBookmarked ? "text-orange-400" : "text-gray-500"
+        } text-2xl cursor-pointer`}
+        icon={faBookmark}
+      ></FontAwesomeIcon>
+    </div>
+  );
+};

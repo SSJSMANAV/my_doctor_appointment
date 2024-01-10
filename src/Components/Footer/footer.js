@@ -43,24 +43,41 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="lg:w-3/5 sm:w-full">
+        <div className="lg:w-3/5 sm:w-full sm:pl-10">
           <div className="grid lg:grid-cols-3 lg:pl-8 ">
             {/* 1 */}
             <div className="flex flex-col lg:pt-1  items-start lg:text-left sm:justify-center sm:pt-10">
               <h1 className="font-semibold text-lg pb-4">Quick Links</h1>
-              <div className="flex flex-col h-40 justify-between mt-3 text-gray-700">
-                <p className=" hover:text-slate-950 cursor-pointer">Home</p>
-                <p className=" hover:text-slate-950 cursor-pointer">About Us</p>
-                <p className=" hover:text-slate-950 cursor-pointer">Services</p>
-                <p className=" hover:text-slate-950 cursor-pointer">Blog</p>
+              <div className="flex flex-col h-40 justify-start gap-y-5 mt-3 text-gray-700">
+                <p
+                  onClick={() => {
+                    navigate("/home");
+                  }}
+                  className=" hover:text-slate-950 cursor-pointer"
+                >
+                  Home
+                </p>
+                <p
+                  onClick={() => {
+                    navigate("/find-doctors");
+                  }}
+                  className=" hover:text-slate-950 cursor-pointer"
+                >
+                  Services
+                </p>
               </div>
             </div>
 
             {/* 2 */}
             <div className="flex flex-col lg:pt-1  items-start lg:text-left sm:justify-center sm:pt-10">
               <h1 className="font-semibold text-lg pb-4">I want to: </h1>
-              <div className="flex flex-col h-40 justify-between mt-3 text-gray-700">
-                <p className=" hover:text-slate-950 cursor-pointer">
+              <div className="flex flex-col h-40 justify-start mt-3 gap-y-5 text-gray-700">
+                <p
+                  onClick={() => {
+                    navigate("/find-doctors");
+                  }}
+                  className=" hover:text-slate-950 cursor-pointer"
+                >
                   Find a Doctor
                 </p>
                 <p
@@ -71,11 +88,13 @@ const Footer = () => {
                 >
                   Become a Doctor
                 </p>
-                <p className=" hover:text-slate-950 cursor-pointer">
+                <p
+                  onClick={() => {
+                    navigate("/find-doctors");
+                  }}
+                  className=" hover:text-slate-950 cursor-pointer"
+                >
                   Find a Location
-                </p>
-                <p className=" hover:text-slate-950 cursor-pointer">
-                  Get an Opinion
                 </p>
               </div>
             </div>
@@ -83,9 +102,23 @@ const Footer = () => {
             {/* 3 */}
             <div className="flex flex-col lg:pt-1  items-start lg:text-left sm:justify-center sm:pt-10">
               <h1 className="font-semibold text-lg pb-4">Support</h1>
-              <div className="flex flex-col h-40 justify-between mt-3 text-gray-700">
-                <p className=" hover:text-slate-950 cursor-pointer">Donate</p>
-                <p className=" hover:text-slate-950 cursor-pointer">About Us</p>
+              <div className="flex flex-col h-40 justify-start gap-y-5 mt-3 text-gray-700">
+                <p
+                  onClick={() => {
+                    navigate("/checkout-form");
+                  }}
+                  className=" hover:text-slate-950 cursor-pointer"
+                >
+                  Donate
+                </p>
+                <p
+                  onClick={() => {
+                    navigate("/home");
+                  }}
+                  className=" hover:text-slate-950 cursor-pointer"
+                >
+                  About Us
+                </p>
                 <p
                   onClick={() => {
                     navigate("/login");

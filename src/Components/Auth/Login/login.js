@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
@@ -16,12 +16,19 @@ import { ClipLoader } from "react-spinners";
 const LogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const scrollRef = useRef(0);
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("* Invalid email address.")
       .required("* Email is required."),
     password: Yup.string().required("* Password is required."),
   });
+
+  useEffect(() => {
+    window.scrollTo(0, scrollRef.current);
+  }, []);
 
   return (
     <main className="lg:main-container lg:justify-center lg:items-center flex lg:flex-row bg-white lin-grad sm:flex-col  ">

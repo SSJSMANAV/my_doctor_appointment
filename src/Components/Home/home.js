@@ -2,7 +2,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Questions from "../Questions/question";
 import Review from "../Review/review";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import "../../css/home/home.css";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +28,8 @@ const Home = () => {
   });
 
   const doctorsList = doctorsListState.doctorsList;
+
+  const scrollRef = useRef(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -92,6 +94,11 @@ const Home = () => {
         .catch((e) => {});
     };
     getDoctorApplications();
+    window.scrollTo(0, scrollRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -181,72 +188,6 @@ const Home = () => {
         </div>
       )}
 
-      {/* {doctorsList.length !== 0 && (
-        <div container="sixth_container" className="pb-32">
-          <div className="w-4/6  mt-20 mx-auto">
-            <div className="w-5/12 my-0 mr-auto ml-auto ">
-              <h3 className="text-4xl font-semibold">Our great doctors</h3>
-              <p className="mt-3 font-normal">
-                World class for everyone. Our health System offers unmatched,
-                expert healthcare
-              </p>
-            </div> */}
-
-      {/* GRID CONTAINER */}
-      {/* <div className="mt-24 grid grid-cols-3 gap-10">
-              {doctorsList.map((doctor) => {
-                return (
-                  <div className="profile-card">
-                    <div>
-                      <img
-                        src={`http://localhost:3009/assets/${doctor.image}`}
-                        style={{ width: "90%", height: "22rem" }}
-                        className="object-cover shadow-sm border border-solid border-slate-300"
-                        alt="alt"
-                      />
-                    </div>
-                    <div
-                      className="mt-4 text-left px-2"
-                      style={{ width: "90%" }}
-                    >
-                      <h1 className="font-semibold text-xl text-gray-700">
-                        Dr. {doctor.name}
-                      </h1>
-                      <div className="flex justify-between">
-                        <button className="mt-4 px-6 py-1 bg-sky-200 text-sky-700 rounded-xl font-semibold ">
-                          {doctor.specialization}
-                        </button>
-                        <p className="mt-5">
-                          {doctor.rating} <span className="font-light"></span>
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            className="text-yellow-400"
-                          />
-                        </p>
-                      </div>
-                      <div className="flex justify-between">
-                        <p className="text-xs font-semibold  mt-5">
-                          {doctor.hospital}
-                        </p>
-                        <button
-                          onClick={() => {
-                            navigate(
-                              `/doctor-details/${doctor.doctorId}/appointmentdates`
-                            );
-                          }}
-                          className="border border-black rounded-full px-3 py-1 mt-3 hover:transform hover:translate-x-2 transition-transform duration-300 ease-in-out"
-                        >
-                          <FontAwesomeIcon icon={faArrowRight} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      )} */}
       {/* SECOND CONTAINER */}
       <Section2
         firstClassName="heading-text-1"
@@ -267,134 +208,7 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Grid Container */}
           <MedicalServices></MedicalServices>
-          {/* <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3  gap-10 mt-20  ">
-            <div className=" bg-slate-300 p-4 rounded-2xl">
-              <h1 className="text-xl text-left font-medium">Cancer Care</h1>
-              <p className="text-left mt-2 text-sm font-normal w-4/5">
-                World class for everyone. Our health System offers unmatched,
-                expert healthcare
-              </p>
-              <div className="flex justify-between mt-5 mb-5">
-                <button className="bg-blue-600 text-white  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-                <div className="mt-4 ">
-                  <p
-                    className="bg-blue-200 px-3 py-1"
-                    style={{ borderRadius: "8px" }}
-                  >
-                    1
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className=" bg-slate-300 p-4 rounded-2xl">
-              <h1 className="text-xl text-left font-medium">
-                Labor & Delivery
-              </h1>
-              <p className="text-left mt-2 text-sm font-normal w-4/5">
-                World class for everyone. Our health System offers unmatched,
-                expert healthcare
-              </p>
-              <div className="flex justify-between mt-5 mb-5">
-                <button className="bg-blue-600 text-white  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-                <div className="mt-4 ">
-                  <p
-                    className="bg-purple-200 px-3 py-1"
-                    style={{ borderRadius: "8px" }}
-                  >
-                    2
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className=" bg-slate-300 p-4 rounded-2xl">
-              <h1 className="text-xl text-left font-medium">
-                Heart & Vascular
-              </h1>
-              <p className="text-left mt-2 text-sm font-normal w-4/5">
-                World class for everyone. Our health System offers unmatched,
-                expert healthcare
-              </p>
-              <div className="flex justify-between mt-5 mb-5">
-                <button className="bg-blue-600 text-white  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-                <div className="mt-4 ">
-                  <p
-                    className="bg-orange-200 px-3 py-1"
-                    style={{ borderRadius: "8px" }}
-                  >
-                    3
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className=" bg-slate-300 p-4 rounded-2xl">
-              <h1 className="text-xl text-left font-medium">Mental Health</h1>
-              <p className="text-left mt-2 text-sm font-normal w-4/5">
-                World class for everyone. Our health System offers unmatched,
-                expert healthcare
-              </p>
-              <div className="flex justify-between mt-5 mb-5">
-                <button className="bg-blue-600 text-white  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-                <div className="mt-4 ">
-                  <p
-                    className="bg-orange-200 px-3 py-1"
-                    style={{ borderRadius: "8px" }}
-                  >
-                    4
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className=" bg-slate-300 p-4 rounded-2xl">
-              <h1 className="text-xl text-left font-medium">Neurology</h1>
-              <p className="text-left mt-2 text-sm font-normal w-4/5">
-                World class for everyone. Our health System offers unmatched,
-                expert healthcare
-              </p>
-              <div className="flex justify-between mt-5 mb-5">
-                <button className="bg-blue-600 text-white  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-                <div className="mt-4 ">
-                  <p
-                    className="bg-blue-200 px-3 py-1"
-                    style={{ borderRadius: "8px" }}
-                  >
-                    5
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className=" bg-slate-300 p-4 rounded-2xl">
-              <h1 className="text-xl text-left font-medium">Burn Treatment</h1>
-              <p className="text-left mt-2 text-sm font-normal w-4/5">
-                World class for everyone. Our health System offers unmatched,
-                expert healthcare
-              </p>
-              <div className="flex justify-between mt-5 mb-5">
-                <button className="bg-blue-600 text-white  rounded-full px-5 py-1 mt-4 hover:transform transition-all  hover:translate-x-2 duration-300 ease-in-out">
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-                <div className="mt-4 ">
-                  <p
-                    className="bg-purple-200 px-3 py-1"
-                    style={{ borderRadius: "8px" }}
-                  >
-                    6
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
       {/* FIFTH CONTAINER */}

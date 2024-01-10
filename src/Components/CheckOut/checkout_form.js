@@ -1,7 +1,12 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import PayPalButton from "./paypal_button";
 
 const CheckoutForm = () => {
+  const scrollRef = useRef(0);
+
+  useEffect(() => {
+    window.scrollTo(0, scrollRef.current);
+  }, []);
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white p-8 rounded-lg shadow-md shadow-orange-400 text-center lg:w-1/3 sm:w-full sm:m-8 ">

@@ -1,4 +1,5 @@
 import { authSliceActions } from "../slices/auth_slice";
+import currentUser from "../constants";
 
 export const registerPatient = async (patient) => {
   console.log("register patient");
@@ -107,8 +108,10 @@ export const loginPatient = async (email, password) => {
     });
     console.log(response.status);
     const jsonData = await response.json();
+    console.log('login data');
     console.log(jsonData);
     if (response.status === 200) {
+      // currentUser = jsonData.user;
       localStorage.setItem("token", jsonData.token);
       localStorage.setItem("role", jsonData.user.role);
       localStorage.setItem("user", JSON.stringify(jsonData.user));

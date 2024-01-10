@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useLocation } from "react-router-dom";
 import { registerDoctorRequest } from "../../action-creators/auth_action";
@@ -15,6 +15,8 @@ const ProceedToAddDoctor = () => {
     return state.auth;
   });
 
+  const scrollRef = useRef(0);
+
   const token = authState.token;
   const location = useLocation();
 
@@ -30,7 +32,7 @@ const ProceedToAddDoctor = () => {
   };
 
   useEffect(() => {
-    console.log('use effect');
+    console.log("use effect");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
@@ -39,9 +41,10 @@ const ProceedToAddDoctor = () => {
         setMapLoaded(true);
         console.log("the value is");
         // console.log(  currentLocation === null);
-        console.log('ldskj');
+        console.log("ldskj");
       });
     }
+    window.scrollTo(0, scrollRef.current);
   }, []);
 
   const handleSubmit = async () => {

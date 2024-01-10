@@ -1,5 +1,5 @@
 // AddDoctorForm.js
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const AddDoctorForm = () => {
   const navigate = useNavigate();
+  const scrollRef = useRef(0);
 
   const [imageFiles, setImageFiles] = useState([]);
   const [showFields, setShowFields] = useState(false);
@@ -64,6 +65,10 @@ const AddDoctorForm = () => {
     );
     setEducationList(updatedEducationList);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, scrollRef.current);
+  }, []);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center mt-24 mb-5">

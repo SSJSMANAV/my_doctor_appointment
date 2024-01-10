@@ -22,7 +22,7 @@ const DoctorsList = ({ doctors }) => {
 
     return () => {
       console.log("observer cleanup");
-      // observer.disconnect();
+      observer.disconnect();
     };
   });
   return (

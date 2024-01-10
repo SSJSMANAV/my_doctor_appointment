@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,6 +87,8 @@ const FindDoctors = () => {
       });
   };
 
+  const scrollRef = useRef(0);
+
   useEffect(() => {
     console.log("running useEffect");
     const getDoctorApplications = async () => {
@@ -114,10 +116,9 @@ const FindDoctors = () => {
         });
     };
     getDoctorApplications();
+    window.scrollTo(0, scrollRef.current);
 
-    // Cleanup observer when component unmounts
     return () => {
-      console.log("observer cleanup");
     };
   }, [dispatch]);
 

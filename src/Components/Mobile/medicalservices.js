@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faAngleRight, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const ServiceCard = ({ title, description, index, color }) => (
   <div className={`bg-slate-300 p-4 rounded-2xl`}>
@@ -123,13 +123,13 @@ const MedicalServices = () => {
             className="absolute -left-10 top-1/2 transform -translate-y-1/2 text-slate-500  px-2 py-1 rounded-xl text-3xl  btn-left"
             onClick={handlePrev}
           >
-            {"<"}
+            <FontAwesomeIcon icon={faAngleLeft}></FontAwesomeIcon>
           </button>
           <button
             className="absolute -right-10 top-1/2 transform -translate-y-1/2 text-slate-500  px-2 py-1 rounded-xl text-3xl  btn-right"
             onClick={handleNext}
           >
-            {">"}
+            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
           </button>
         </>
       )}
