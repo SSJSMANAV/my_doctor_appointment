@@ -5,42 +5,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom/dist";
 import toast from "react-hot-toast";
 
-const reviews = [
-  {
-    user: {
-      name: "John Doe",
-      profileImage: "user1.jpg", // Replace with the path to the user's profile image
-    },
-    rating: 4,
-    description: "Great experience! I highly recommend this service.",
-  },
-  {
-    user: {
-      name: "Alice Smith",
-      profileImage: "user2.jpg", // Replace with the path to the user's profile image
-    },
-    rating: 5,
-    description: "The best service I've ever used. 5 stars!",
-  },
-  {
-    user: {
-      name: "Alice Smith",
-      profileImage: "user2.jpg", // Replace with the path to the user's profile image
-    },
-    rating: 5,
-    description: "The best service I've ever used. 5 stars!",
-  },
-  {
-    user: {
-      name: "Alice Smith",
-      profileImage: "user2.jpg", // Replace with the path to the user's profile image
-    },
-    rating: 5,
-    description: "The best service I've ever used. 5 stars!",
-  },
-  // Add more review objects as needed
-];
-
 const RatingsAndReviews = () => {
   const [reviews, setReviews] = useState([]);
 
@@ -79,7 +43,7 @@ const RatingsAndReviews = () => {
   }, []);
 
   return (
-    <div className="h-96 w-full bg-white overflow-y-auto pt-5 mt-10">
+    <div className="h-96 w-full bg-white pt-5 mt-5 border overflow-y-auto overflow-x-hidden ">
       {reviews.length === 0 && (
         <p className="text-center pt-10 text-black text-sm font-bold">
           {" "}
@@ -98,19 +62,23 @@ const RatingsAndReviews = () => {
 };
 
 const ReviewItem = ({ review }) => (
-  <div className="border p-4 mb-4">
-    <div className="flex items-center">
-      {/* <img
-        src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
-        alt={review.user.name}
-        className="w-12 h-12 rounded-full mr-4 object-cover"
-      /> */}
-      <div>
+  <div className="border p-4 mb-4 mx-4 border-solid border-black flex flex-col ">
+    <div className="flex flex-row items-center justify-start">
+      <img
+        src={`http://localhost:3009/assets/${review.userImage}`}
+        alt={review.username}
+        className="w-12 h-12 rounded-full mr-4 object-cover border border-solid border-black "
+      />
+      <div className="flex flex-col justify-start">
         <h3 className="font-semibold text-lg">{review.username}</h3>
-        <Rating name="simple-controlled" value={review.rating} onChange={() => {}} />
+        <Rating
+          name="simple-controlled"
+          value={review.rating}
+          onChange={() => {}}
+        />
       </div>
     </div>
-    <p className="mt-3">{review.comment}</p>
+    <p className="mt-3 w-full h-fit">{review.comment}</p>
   </div>
 );
 
