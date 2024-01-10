@@ -83,9 +83,9 @@ const ProceedToAddDoctor = () => {
           )}
         </div>
         <div className="lg:w-1/2 p-4">
-          {currentLocation !== null && (
+          {/* {currentLocation !== null && (
             <p> current longitude: {currentLocation.lng}</p>
-          )}
+          )} */}
           <p> * Apply for Doctor</p>
 
           <button

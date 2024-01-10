@@ -123,10 +123,10 @@ function Header() {
           </div>
         )}
         {user === null && !isLoggedIn && (
-          <div className="flex flex-row gap-x-5">
+          <div className="flex flex-row sm:gap-x-1 md:gap-x-5">
             <div className="flex flex-row items-center border border-solid border-black rounded-sm hover:bg-black bg-transparent text-black-400 py-1.5 px-4   hover:text-white transition-all duration-300  ease-in-out">
               <FontAwesomeIcon className="pr-3" icon={faUser}></FontAwesomeIcon>
-              <Link to="/login" className="">
+              <Link to="/login" className="text-sm">
                 Login
               </Link>
             </div>
@@ -136,7 +136,7 @@ function Header() {
                 className="pr-3"
                 icon={faRightToBracket}
               ></FontAwesomeIcon>
-              <Link to="/signup" className="">
+              <Link to="/signup" className="text-sm">
                 Sign Up
               </Link>
             </div>

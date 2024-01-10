@@ -1,13 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/find_doctors.css";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const ProfileCard = ({doctor, className}) => {
   const navigate = useNavigate();
 
+  const authState = useSelector((state) => {
+    return state.auth;
+  });
+
+  const loggedIn = authState.loggedIn;
   const navigateToDetailsPage = () => {
-    console.log('here' + doctor);
-    navigate(`/doctor-details/${doctor.doctorId}/appointmentdates`);
+    if (loggedIn === false) {
+      toast.error('Please login to view details.');
+      navigate('/login');
+    } else {
+      navigate(`/doctor-details/${doctor.doctorId}/appointmentdates`);
+    }
+
+    
   };
   return (
     <div className={` ${className} text-center bg-white-100 rounded-md shadow-lg p-4 my-0 pt-12 cursor-pointer transition-all hover:scale-105`}>

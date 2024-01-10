@@ -4,7 +4,6 @@ import ChatUsers from "./chat-users";
 import ChatMessages from "./chat_message";
 
 const ChatScreen = () => {
-
   const scrollRef = useRef(0);
 
   const [selectedChat, setSelectedChat] = useState(null);
@@ -23,7 +22,7 @@ const ChatScreen = () => {
     console.log("sent by user");
     console.log(id);
     console.log(image);
-    
+
     if (role === "patient") {
       setdoctorId(id);
       setpatientId(userId);
@@ -43,12 +42,12 @@ const ChatScreen = () => {
   }, []);
 
   return (
-    <div className="h-screen  w-full flex flex-row">
-      <div className="w-1/4 pt-20 bg-sky-100 overflow-y-auto overflow-hidden">
+    <div className="h-screen w-full flex flex-row">
+      <div className="sm:w-1/3 md:w-1/4 pt-20 bg-sky-100 overflow-y-auto overflow-hidden">
         <ChatUsers selectChat={selectChat}></ChatUsers>
       </div>
       <div className="h-full w-0.5 bg-gray-400"></div>
-      <div className="w-3/4 pt-20 bg-sky-100">
+      <div className="sm:w-2/3 md:w-3/4  pt-20 bg-sky-100">
         {selectedChat === null && (
           <p className="text-center text-lg font-bold"> No chat selected.</p>
         )}
