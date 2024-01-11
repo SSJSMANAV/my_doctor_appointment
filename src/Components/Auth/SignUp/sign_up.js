@@ -3,7 +3,13 @@ import { useDispatch } from "react-redux";
 import "./signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
-import { faHouse, faCalendar, faLock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faCalendar,
+  faLock,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -16,6 +22,8 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [imageFile, setImageFile] = useState("");
+
+  const [showPassword, setshowPassword] = useState(false);
 
   const scrollRef = useRef(0);
 
@@ -209,14 +217,23 @@ const SignUp = () => {
                     <div className="relative w-8/12">
                       <div className="flex items-center">
                         <Field
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           name="password"
-                          className="w-full border border-gray-300 rounded pl-10 py-2 pr-3 focus:outline-none focus:ring focus:border-blue-300"
+                          className="w-full border border-gray-300 rounded pl-10 py-2 pr-8 focus:outline-none focus:ring focus:border-blue-300"
                           placeholder="Password"
                         />
                         <div className="absolute pl-3 flex items-center">
                           <FontAwesomeIcon
                             icon={faLock}
+                            className="text-gray-500"
+                          />
+                        </div>
+                        <div className="absolute right-2 flex items-center">
+                          <FontAwesomeIcon
+                            onClick={() => {
+                              setshowPassword(!showPassword);
+                            }}
+                            icon={showPassword ? faEyeSlash : faEye}
                             className="text-gray-500"
                           />
                         </div>

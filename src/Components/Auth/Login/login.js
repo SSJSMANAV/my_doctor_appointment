@@ -1,7 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import {
+  faEnvelope,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -25,6 +29,8 @@ const LogIn = () => {
       .required("* Email is required."),
     password: Yup.string().required("* Password is required."),
   });
+
+  const [showPassword, setshowPassword] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, scrollRef.current);
@@ -105,15 +111,24 @@ const LogIn = () => {
                       </div>
                       <div className="relative mt-4 flex flex-col justify-center">
                         <div className="flex items-center">
-                          <Field
-                            type="password"
+                          <Field    
+                            type={showPassword ? 'text' : 'password'}
                             name="password"
-                            className="w-full border border-gray-300 rounded pl-10 py-2 pr-3 focus:outline-none focus:ring focus:border-blue-300"
+                            className="w-full border border-gray-300 rounded pl-10 py-2 pr-8 focus:outline-none focus:ring focus:border-blue-300"
                             placeholder="Password"
                           />
                           <div className="absolute pl-2 flex items-center">
                             <FontAwesomeIcon
                               icon={faLock}
+                              className="text-gray-500"
+                            /> 
+                          </div>
+                          <div className="absolute right-2 flex items-center">
+                            <FontAwesomeIcon
+                              onClick={() => {
+                                setshowPassword(!showPassword);
+                              }}
+                              icon={showPassword ? faEyeSlash : faEye}
                               className="text-gray-500"
                             />
                           </div>
@@ -124,7 +139,7 @@ const LogIn = () => {
                           className="text-red-500 text-sm pt-2"
                         />
                       </div>
-                      
+
                       <div className="flex justify-center mt-8">
                         <button
                           type="submit"
