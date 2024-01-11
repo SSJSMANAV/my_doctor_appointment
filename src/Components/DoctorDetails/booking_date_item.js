@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const BookingDateItem = ({ schedule, date }) => {
+const BookingDateItem = ({ doctorData, schedule, date }) => {
   const authState = useSelector((state) => {
     return state.auth;
   });
@@ -56,7 +56,7 @@ const BookingDateItem = ({ schedule, date }) => {
           </p>
           <p className="text-sm text-gray-400 font-bold">
             {" "}
-            ABC Hospital, Kathmandu
+            {doctorData.email}
           </p>
         </div>
         {booked && (

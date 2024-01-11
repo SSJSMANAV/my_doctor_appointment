@@ -1,7 +1,6 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Questions from "../Questions/question";
-import Review from "../Review/review";
 import { useEffect, useRef } from "react";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import "../../css/home/home.css";
@@ -12,7 +11,7 @@ import { doctorsListSliceActions } from "../../slices/doctors_slice";
 import { fetchDoctorsList } from "../../action-creators/doctors_list_action";
 import "../../css/find_doctors.css";
 
-import { faMinus, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, } from "@fortawesome/free-solid-svg-icons";
 import Section2 from "./section_two";
 import ImageSlider from "./image_slider";
 import MedicalServices from "../Mobile/medicalservices";
@@ -111,10 +110,9 @@ const Home = () => {
                 We help patients live a healthy, longer life
               </h1>
               <p className="heading-text-2 text-left">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam
-                adipisci molestias quod sequi distinctio numquam architecto
-                dignissimos, consectetur, consequuntur enim dolores facere
-                molestiae sapiente temporibus non ipsam voluptatibus nisi sunt.
+                Discover a curated list of experienced and caring doctors to
+                meet your healthcare needs. Browse through our diverse range of
+                specialists to find the perfect match for you.
               </p>
               <div className="text-left">
                 <button
@@ -154,7 +152,7 @@ const Home = () => {
             <div className="mt-28">
               <div className="mb-8  ">
                 <img
-                  src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+                  src={process.env.PUBLIC_URL + "/img/doctor2.jpg"}
                   alt="alt"
                   style={{ height: "30%", width: "15rem" }}
                   className="header-image-2 object-cover "
@@ -162,7 +160,7 @@ const Home = () => {
               </div>
               <div className="header-image-3">
                 <img
-                  src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+                  src={process.env.PUBLIC_URL + "/img/doctor-3.jpg"}
                   alt="alt"
                   className="header-image-3 object-cover"
                 />
@@ -437,7 +435,7 @@ const Home = () => {
           <div className="w-1/2 sm:hidden lg:flex ">
             <div className=" pl-40">
               <img
-                src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+                src={process.env.PUBLIC_URL + "/img/doctor-4.jpg"}
                 style={{ width: "90%", height: "25rem" }}
                 alt="alt"
                 className="object-cover"
@@ -453,7 +451,7 @@ const Home = () => {
         <div className="w-4/6 lg:flex my-0 mx-auto">
           <div className="lg:w-1/3 pt-12 sm:hidden lg:flex ">
             <img
-              src={process.env.PUBLIC_URL + "/img/doctor-1.png"}
+              src={process.env.PUBLIC_URL + "/img/doctor-5.jpg"}
               style={{ width: "100%", height: "26rem" }}
               alt="alt"
               className="object-cover"

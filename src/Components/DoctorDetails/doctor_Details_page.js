@@ -59,7 +59,7 @@ const DoctorDetailsPage = () => {
         console.log(data.result);
         console.log("the doctor");
         setDoctorData(data.result);
-        
+
         setIsLoading(false);
         setError(null);
       })
@@ -191,24 +191,18 @@ const DoctorDetailsPage = () => {
                         user={user}
                       ></Bookmark>
                     )}
-                  </div>
+                  </div>      
                 </div>
               </div>
             </div>
-            <div className="flex sm:hidden lg:flex mt-10  px-4 py-4  lg:w-10/12 sm:w-full sm:mb-4 bg-slate-100 justify-between items-center shadow-sm shadow-slate-400">
-              <div className="pr-4 ">
-                <FontAwesomeIcon
-                  icon={faCircleExclamation}
-                  className=" text-yellow-400  text-lg "
-                ></FontAwesomeIcon>
-              </div>
-              <p className="px-4 w-2/3 text-sm">
-                Help Lorem to have a better service by reporting an issue on
-                this medical facilities.
+            <div className="flex flex-row sm:hidden lg:flex lg:flex-row mt-10  px-4 py-4  lg:w-10/12 sm:w-full sm:mb-4 bg-slate-100 justify-between items-center shadow-sm shadow-slate-400">
+              <FontAwesomeIcon
+                icon={faCircleExclamation}
+                className=" text-yellow-400  text-lg "
+              ></FontAwesomeIcon>
+              <p className="px-4 w-2/3 text-sm text-start">
+                Bookmark the doctor to get personalized chat with him / her.
               </p>
-              <button className="border border-gray-400 px-2 text-sm text-red-400 font-semibold">
-                Report
-              </button>
             </div>
           </div>
           <div className="flex flex-col lg:w-3/5 sm:w-full">

@@ -1,6 +1,6 @@
 import BookingDateItem from "./booking_date_item";
 import DatePicker from "react-datepicker";
-
+import { useOutletContext } from "react-router-dom/dist";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom/dist";
 import { fetchSchedules } from "../../action-creators/doctors_list_action";
@@ -19,6 +19,11 @@ const AppointmentDates = () => {
   const [selectedDate, setSelectedDate] = useState(dateObject);
   const [isLoading, setIsLoading] = useState(false);
   const [schedule, setSchedule] = useState([]);
+
+  const [doctorData] = useOutletContext();
+  console.log("appointment dates ma doctor data");
+  console.log(doctorData);
+  console.log("appointment dates ma doctor data");
 
   const fetchDoctorSchedule = async (date) => {
     // const formattedDate = date.toISOString().split("T")[0];
@@ -51,7 +56,7 @@ const AppointmentDates = () => {
           &#8249;
         </button> */}
         <DatePicker
-        style={{ zIndex: 0 }}
+          style={{ zIndex: 0 }}
           className=" text-center border-2 border-solid border-orange-400 py-1 rounded-sm"
           selected={selectedDate}
           onChange={async (date) => {
@@ -91,6 +96,7 @@ const AppointmentDates = () => {
           schedule.map((schedule) => {
             return (
               <BookingDateItem
+                doctorData={doctorData}
                 date={selectedDate}
                 schedule={schedule}
               ></BookingDateItem>

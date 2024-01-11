@@ -138,7 +138,7 @@ const AddDoctorForm = () => {
                     <option value="Cardiologist">Cardiologist</option>
                     <option value="Endocrinologist">Endocrinologist</option>
                     <option value="Hemaologist">Hemaologist</option>
-                    <option value="female">Immunologist</option>
+                    <option value="Immunologist">Immunologist</option>
                     <option value="Immunologist">Internist</option>
                     <option value="Neurologist">Neurologist</option>
                     <option value="Pulmonologist">Pulmonologist</option>
