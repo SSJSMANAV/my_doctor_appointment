@@ -63,6 +63,7 @@ const ProceedToAddDoctor = () => {
   };
 
   return (
+    <LoadScript googleMapsApiKey="AIzaSyAQJQLycBvTM9-X1QGIzhKJxZ5eIuHtqN0">
     <div className=" sm:flex lg:flex-row mt-6  sm:w-full sm:justify-center">
       <div className="flex lg:flex-row sm:flex-col mt-12 lg:w-2/3 sm:w-11/12  ">
         <div className="lg:w-1/2 sm:w-full lg:p-4 flex flex-col">
@@ -98,6 +99,7 @@ const ProceedToAddDoctor = () => {
         </div>
       </div>
     </div>
+    </LoadScript>
   );
 };
 

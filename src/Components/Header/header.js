@@ -119,6 +119,14 @@ function Header() {
                 Doctor-Applications
               </Link>
             )}
+            {user !== null && authState.role === "admin" && (
+            <Link
+              to="/doctors"
+              className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
+            >
+              Doctors
+            </Link>
+          )}
           </div>
         )}
         {user === null && !isLoggedIn && (
@@ -263,10 +271,24 @@ function Header() {
             )} */}
           {user !== null && authState.role === "admin" && (
             <Link
+            onClick={() => {
+              toggleMenu();
+            }}
               to="/doctor-applications"
               className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
             >
               Doctor-Applications
+            </Link>
+          )}
+          {user !== null && authState.role === "admin" && (
+            <Link
+            onClick={() => {
+              toggleMenu();
+            }}
+              to="/doctors"
+              className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
+            >
+              Doctors
             </Link>
           )}
         </div>

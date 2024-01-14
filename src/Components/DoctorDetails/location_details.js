@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { LoadScript } from "@react-google-maps/api";
+
 import { GoogleMap, Marker } from "@react-google-maps/api";
 const containerStyle = {
   width: "100%",
@@ -32,6 +34,7 @@ const LocationDetails = ({ location }) => {
   }, []);
 
   return (
+    <LoadScript googleMapsApiKey="AIzaSyAQJQLycBvTM9-X1QGIzhKJxZ5eIuHtqN0">
     <div className="sm:w-full sm:h-full sm:mb-12">
       {mapLoaded && (
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
@@ -40,6 +43,8 @@ const LocationDetails = ({ location }) => {
         </GoogleMap>
       )}
     </div>
+    </LoadScript>
+
   );
 };
 

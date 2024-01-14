@@ -15,7 +15,6 @@ import SignUp from "./Components/Auth/SignUp/sign_up";
 import CheckoutForm from "./Components/CheckOut/checkout_form";
 import AddDoctorForm from "./Components/AddDoctor/add_doctor";
 import ProceedToAddDoctor from "./Components/AddDoctor/proceed_to_add_doctor";
-import { LoadScript } from "@react-google-maps/api";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -26,6 +25,7 @@ import AddSchedule from "./Components/MyAppointments/add_schedule_page";
 import ChatPage from "./Components/Chat/chat";
 import ChatScreen from "./Components/Chat/chat_screen";
 import BottomChatIcon from "./Components/Chat/bottom_chat_icon";
+import Doctors from "./Components/Doctors/doctors";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyAQJQLycBvTM9-X1QGIzhKJxZ5eIuHtqN0">
+    <div>
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -81,7 +81,7 @@ function App() {
           <Route exact path="/signup" element={<SignUp />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/find-doctors" element={<FindDoctors />}></Route>
-
+          <Route exact path="/doctors" element={<Doctors />}></Route>
           <Route
             path="/doctor-details/:doctorId"
             element={<DoctorDetailsPage />}
@@ -150,7 +150,7 @@ function App() {
 
         <Footer></Footer>
       </div>
-    </LoadScript>
+    </div>
   );
 }
 
