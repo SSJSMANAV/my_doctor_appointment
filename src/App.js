@@ -26,6 +26,7 @@ import ChatPage from "./Components/Chat/chat";
 import ChatScreen from "./Components/Chat/chat_screen";
 import BottomChatIcon from "./Components/Chat/bottom_chat_icon";
 import Doctors from "./Components/Doctors/doctors";
+import { LoadScript } from "@react-google-maps/api";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div>
+<div>
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -150,7 +151,7 @@ function App() {
 
         <Footer></Footer>
       </div>
-    </div>
+      </div>
   );
 }
 

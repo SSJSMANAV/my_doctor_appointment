@@ -120,13 +120,13 @@ function Header() {
               </Link>
             )}
             {user !== null && authState.role === "admin" && (
-            <Link
-              to="/doctors"
-              className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
-            >
-              Doctors
-            </Link>
-          )}
+              <Link
+                to="/doctors"
+                className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
+              >
+                Doctors
+              </Link>
+            )}
           </div>
         )}
         {user === null && !isLoggedIn && (
@@ -227,7 +227,7 @@ function Header() {
         <div
           style={{
             transition: "all 0.6s ease",
-            height: !showMenu ?   "0px" : user !== null ? "160px" : "100px",
+            height: !showMenu ? "0px" : user !== null ? "160px" : "100px",
             // opacity: showMenu ? "100%" : "0%",
           }}
           className={`flex flex-col w-fit  text-white overflow-hidden items-center justify-around absolute top-12 left-10 shadow-sm bg-zinc-700 px-2  rounded-md transition-all duration-200 ease-in-out`}
@@ -271,9 +271,9 @@ function Header() {
             )} */}
           {user !== null && authState.role === "admin" && (
             <Link
-            onClick={() => {
-              toggleMenu();
-            }}
+              onClick={() => {
+                toggleMenu();
+              }}
               to="/doctor-applications"
               className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
             >
@@ -282,9 +282,9 @@ function Header() {
           )}
           {user !== null && authState.role === "admin" && (
             <Link
-            onClick={() => {
-              toggleMenu();
-            }}
+              onClick={() => {
+                toggleMenu();
+              }}
               to="/doctors"
               className="hover:text-orange-400 transition-all duration-300 py-1 px-2"
             >

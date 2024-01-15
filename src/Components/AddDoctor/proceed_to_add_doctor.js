@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { registerDoctorRequest } from "../../action-creators/auth_action";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
@@ -14,6 +14,8 @@ const ProceedToAddDoctor = () => {
   const authState = useSelector((state) => {
     return state.auth;
   });
+
+  const navigate = useNavigate();
 
   const scrollRef = useRef(0);
 
@@ -56,6 +58,7 @@ const ProceedToAddDoctor = () => {
     await registerDoctorRequest(doctorData, token)
       .then((data) => {
         toast.success(data);
+        navigate("/home");
       })
       .catch((e) => {
         toast.error(e.message);
@@ -63,11 +66,10 @@ const ProceedToAddDoctor = () => {
   };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyAQJQLycBvTM9-X1QGIzhKJxZ5eIuHtqN0">
     <div className=" sm:flex lg:flex-row mt-6  sm:w-full sm:justify-center">
       <div className="flex lg:flex-row sm:flex-col mt-12 lg:w-2/3 sm:w-11/12  ">
         <div className="lg:w-1/2 sm:w-full lg:p-4 flex flex-col">
-          <div className="text-gray-500 font-semibold text-sm">
+          {/* <div className="text-gray-500 font-semibold text-sm">
             Pin point doctor's location ( * Hospital)
           </div>
           {mapLoaded && (
@@ -81,7 +83,7 @@ const ProceedToAddDoctor = () => {
                 <Marker position={currentLocation} />
               )}
             </GoogleMap>
-          )}
+          )} */}
         </div>
         <div className="lg:w-1/2 p-4">
           {/* {currentLocation !== null && (
@@ -99,7 +101,6 @@ const ProceedToAddDoctor = () => {
         </div>
       </div>
     </div>
-    </LoadScript>
   );
 };
 
